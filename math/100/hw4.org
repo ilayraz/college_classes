@@ -1,0 +1,131 @@
+#+OPTIONS: toc:nil
+
+* 5.1.10
+** $A=\set{1,2,3,4},B=\set{1,2,3,4,5,6},f(a)=a$
+** $A=\set{-2,-1,0,1,2},B=\set{0,1,2},f(a)=|a|$
+** $A=\set{1,2,3},B=\set{1,2,3},f(a)=a$
+** $A=\set{-2,-1,0,1,2},B=\set{-1,0,1,2}, f(a)=|a|$
+* 5.1.12
+** $f(x) = e^x$
+** $f(x) = x\sin(x)$
+** $f(x) = x$
+** $f(x) = |x|$
+* 5.1.14
+** $f(x)=\frac{x}{2}+6$
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Let $a_1,a_2\in\R\ s.t.\ f(a_1)=f(a_2)$
+       \begin{align*}
+         \implies \frac{a_1}{2}+6 &= \frac{a_2}{2}+6 \\
+         \frac{a_1}{2} &= \frac{a_2}{2} \\
+         a_1 &= a_2
+       \end{align*}
+       Which shows that $f$ must be one-to-one by definition $\qedhere$
+     \end{proof}
+   #+END_LaTeX
+** $f(x)=4x^3$
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Let $a_1,a_2\in\R\ s.t.\ f(a_1)=f(a_2)$
+       \begin{align*}
+         \implies 4a_1^3 &= 4a_2^3 \\
+         a_1^3 &= a_2^3 \\
+         a_1 &= a_2
+       \end{align*}
+       Which shows that $f$ must be one-to-one by definition $\qedhere$
+     \end{proof}
+   #+END_LaTeX
+** $f(x)=x^3-x$
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Proof by counter-example. Let $a_1=0,a_2=1$ \\
+       $f(a_1)=0^3+0=f(a_2)=1^3-1=0$ \\
+       Therefore, $f$ must not be one-to-one $\qedhere$
+     \end{proof}
+   #+END_LaTeX
+** $f(x)=e^x$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          Let $a_1,a_2\in\R\ s.t.\ f(a_1)=f(a_2)$
+          \begin{align*}
+            \implies e^{a_1} &= e^{a_2} \\
+            \ln(e^{a_1}) &= \ln(e^{a_2}) \\
+            a_1 &= a_2
+          \end{align*}
+          Which shows that $f$ must be one-to-one by definition $\qedhere$
+        \end{proof}
+   #+END_LaTeX
+** $f(x)=\sin(x)$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          Proof by counter-example. Let $a_1=0,a_2=2\pi$ \\
+          $f(a_1)=\sin(0)=f(a_2)=\sin(2\pi)=0$ \\
+          Therefore, $f$ must not be one-to-one $\qedhere$
+        \end{proof}
+   #+END_LaTeX
+* 5.2.2
+** $A=\set{1,2},B=\set{1,2},C=\set{1,2,3,4}, f(x)=x, g(x)=x$
+** $A=\set{1},B=\set{1,2},C=\set{1,2}, f(x)=x,g(x)=x$
+** $A=\set{-1,1},B=\set{-1.1},C=\set{1}f(x)=x,g(x)=|x|$
+** $A=\set{-1,1},B=\set{1},C=\set{1}, f(x)=|x|,g(x)=x$
+* 5.2.4
+** Yes
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Let $a_1,a_2\in A$ such that $f(a_1)=f(a_2)$
+       \begin{align*}
+         &\implies (g\circ f)(a_1) = (g\circ f)(a_2) &&\tag{Since $f(a_1)=f(a_2)$} \\
+         &\implies a_1 = a_2 &&\tag{Since $g\circ f$ is 1-1}
+       \end{align*}
+       Which shows that $f$ must be 1-1 $\qedhere$
+     \end{proof}
+   #+END_LaTeX
+** False
+   Let $A=\set{1},B=\set{-1,1},C=\set{1}, f(x)=x,g(x)=|x|$ \\
+   Add that $f$ must be onto.
+   #+BEGIN_LaTeX
+     \begin{proof}
+       $\forall b_1, b_2\in B\ s.t.\ b_1\neq b_2,\ \exists a_1, a_2 \in A\ s.t.\ f(a_1)=b_1$ and $f(a_2)=b_2$ (Since f is onto). Note that since $g\circ f$ is 1-1, $f$ must also be 1-1.
+       \begin{align*}
+         f(a_1) &\neq f(a_2) &&\tag{$f$ is 1-1} \\
+         g(f(a_1)) &\neq g(f(a_2)) &&\tag{$g\circ f$ is 1-1} \\
+         g(b_1) &\neq g(b_2) &&\tag{substitution}
+       \end{align*}
+       Which shows that $g$ must be 1-1 $\qedhere$
+     \end{proof}
+   #+END_LaTeX
+** False (Note uses the proof that g must be onto in problem 5.2.4-4 as an assumption).
+   Let $A=\set{1},B=\set{-1,1},C=\set{1}. f(x)=x, g(x)=|x|$ \\
+   Add that $g$ must be 1-1.
+   #+BEGIN_LaTeX
+     \begin{proof}
+       $\forall c\in C \exists b \in B\ s.t.\ g(b)=c$ (since $g$ is onto). Furthermore, since $g\circ f$ is onto, $\exists a\in A\ s.t. g(f(a))=c$
+       \begin{align*}
+         g(f(a)) &= c \\
+         \implies f(a) &= b &&\tag{Since $g$ is 1-1}
+       \end{align*}
+       Since for all $c\in C$ there exists a unique $b \in B$ and some $a \in A$ that maps to that $b$, this shows that $f$ must be onto $\qedhere$.
+     \end{proof}
+   #+END_LaTeX
+** True
+   #+BEGIN_LaTeX
+     \begin{proof}
+       $\forall c\in C\ \exists a \in A\ s.t.\ g(f(a))=c$ (since $g\circ f$ is onto).
+       \begin{align*}
+         &\implies \exists b\in B\ s.t.\ f(a)=b &&\tag{definition of function composition} \\
+         &\implies g(b)=c
+       \end{align*}
+       Since for all $c\in C, \exists b\in B$ that maps to it, this shows that $g$ must be onto. $\qedhere$
+     \end{proof}
+   #+END_LaTeX
+* 5.3.4
+  $A=\set{1},B=\set{1,2}, f(x)=x, S=\set{2}, f^{-1}(S)=\emptyset$
+* 5.3.5
+** $f^{-1}(\set{4})=\set{-2,2}$
+** $f^{-1}([-2,9])=[-3,3]$ (undefined on $[-2,0)$ so all that's left is $[0,9]$)
+** $f^{-1}((1,4])= [-2,-1)\cup (1,2]$ (undefined on $(-1,1)$ since $[0,1)$ is not part of the subset)
+* 5.3.12(1)
+  $f(x)=|x+1|,A=\set{-2,3},B=\set{0,3}$ \\
+  $f(A\cap B) = f(\set{3})=\set{4}$ \\
+  $f(A) \cap f(B) = \set{1,4}\cap\set{1,4} = \set{1,4}$ \\
+  $f(A\cap B)\neq f(A)\cap f(B)$

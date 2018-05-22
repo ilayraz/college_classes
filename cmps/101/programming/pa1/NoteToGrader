@@ -1,0 +1,16 @@
+Includes extra credit problem to find 1000! written to a file called "factorial.txt".
+
+Approach:
+    apint:
+        Storage: byte array where each byte is a digit. Sign stored in a seperate boolean
+        Addition: digit addition with carryover
+        Subtraction: digit subtraction with borrow
+        Multiplication: long multiplication
+        Division: long division
+    aprat:
+        Storage: one apint for numerator, one for denominator. Both are positive. Sign stored in a seperate boolean
+        Normalization: Find GCD using euclid's method then divide both numerator and denominator by GCD
+        Addition: a/b + c/d = (ad+cd)/(bd) then normalize.
+        Subtraction: same as addition but negative.
+        Multiplication: (a/b)(c/d) = (ab)/(bd) then normalize
+        Division: (a/b)/(c/d) = (a/b)(d/c) then normalize

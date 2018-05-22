@@ -1,0 +1,8 @@
+ToC:
+- Anagram.java: anagram ADT
+- AnagramMap.java: map ADT for anagrams
+- AnagramTest.java: test file
+- FindAnagrams.java: main file
+- Makefile: makefile
+- wordList.txt: wordlist text file
+- README: this

@@ -1,0 +1,121 @@
+* 9.3-1
+  If the elements are divided into groups of 8, the median of medians will be
+  less than at least 4 elements from each group, meaning that out of the
+  $\ceil{\frac{n}{7}}$ groups, it will be greater than $\frac{4n}{14}$ of them. \\
+  Similarly, it will also be less than the same amount. \\
+  This means that on average, no more than $\frac{4n}{14}$ elements will be called on.
+  This means that $T(n) \leq T(\frac{n}{7}) + T(\frac{10n}{14}) + O(n)$ \\
+  Using substitution, let $T(n) < cn, m \geq k \implies T(m) \leq T(m/7) + T(10m/14)+O(m) \leq cm(\frac{1}{7}+\frac{10}{14}+O(m) \qed$ \\
+
+  For groups of 3, $T(n)=T(\ceil{n/3})+T(\ceil{4n/6})+O(n)$ \\
+  Using substitution, show $T(n) \geq cn\lg(n)$ \\
+  $T(m)\geq c(m/3)\lg(m/3) + c(2m/3)\lg(2m/3) + O(m) \geq cm\lg(m)+O(m) \qed$ \\
+  Which clearly means that dividing into groups of 3 does not find the median of medians in linear time.
+* 11.2-1
+  Let the elements in the set be $\set{e_1,\ldots,e_n}$ \\
+  Let $X_i = \sum_{j>i} E[h(k_i)=h(k_j)]$ \\
+  Assuming uniform hashing, the chance of that happening is $\frac{1}{n}$
+  $X_i = \sum_{i>j} \frac{1}{m} = \frac{n-i}{m}$
+  The sum of collisions is clearly: \\
+  $\sum_{i=1}^{n} E[X_i] = \frac{n^2-n}{2m}$
+* 11.2-2
+  | key | value      |
+  |   0 | empty      |
+  |   1 | 10, 19, 28 |
+  |   2 | 20         |
+  |   3 | 12         |
+  |   4 | empty      |
+  |   5 | 5          |
+  |   6 | 33, 15     |
+  |   7 | empty      |
+  |   8 | 17         |
+* 11.2-5
+  If the hash table has a size of $m$, and the universe of hashed has a size of $nm$,
+  then the bucket will be computed using $h(k)\pmod{m}$ for any given $k$.
+  Clearly, for a set $U$, where $|U| > nm$, then this universe forms an equivalence congruence relation modulo $m$
+  which has $m$ partitions of size $n$. This means that there exists a subset of $U$ of size $n$ which all fall onto the same slot of the hash table. \\
+  The worse cast run time for hashing with chaining would occur if all elements of the hash table would
+  all come from one such subset such that all elements would fall onto the same slot of the hash table.
+* 12.1-1
+  Height 2:
+  |   |   |   | 10 |    |    |    |
+  |   | 4 |   |    |    | 17 |    |
+  | 1 |   | 5 |    | 16 |    | 21 |
+
+  Height 3:
+  |   |   |   | 10 |    |
+  |   | 4 |   |    | 16 |
+  | 1 |   | 5 |    | 17 |
+  |   |   |   |    | 21 |
+
+  Height 4:
+  |   | 5 |    |
+  | 1 |   | 10 |
+  | 4 |   | 16 |
+  |   |   | 17 |
+  |   |   | 21 |
+
+  Height 5:
+  |   | 4 |    |
+  | 1 |   |  5 |
+  |   |   | 10 |
+  |   |   | 16 |
+  |   |   | 17 |
+  |   |   | 21 |
+
+  Height 6:
+  |  1 |
+  | 44 |
+  |  5 |
+  | 10 |
+  | 16 |
+  | 17 |
+  | 21 |
+* 12.1-3
+  Let $S$ be an empty stack
+  #+BEGIN_EXAMPLE
+    INORDER-WALK(T)
+        if (T == NULL)
+           return
+
+        while (!S.isEmpty())
+              while (T != NULL)
+                    S.push(T)
+                    T = T.left
+              T = S.pop()
+              Walk T.data
+              T = T.right
+  #+END_EXAMPLE
+* 12.2-1
+  Options c and e are not possible. \\
+  Option c is not possible because after taking the left node from 911 (meaning everything following that element should be smaller than it),
+  912 is reached, which is clearly greater than 911. \\
+  Option e is not possible because after taking the right node from 347 (meaning everything following that element should be greater than it),
+  299 is reached, which is clearly less than 347.
+* 12.3-4
+  No, deletion in binary search trees is not commulative. Example:
+  Original
+  |   | 2 |   |   |
+  | 1 |   |   | 4 |
+  |   |   | 3 |   |
+
+  Delete 1:
+  |   | 2 |   |   |      |
+  |   |   |   | 4 |      |
+  |   |   | 3 |   | NULL |
+
+  Deleting 2:
+  |   | 4 |
+  | 3 |   |
+  |   |   |
+
+  Compared to:
+  Delete 2:
+  |   | 3 |   |
+  | 1 |   | 4 |
+
+  Delete 1:
+  | 3 |   |
+  |   | 4 |
+
+  Clearly, the two resulting trees are not equal. $\qed$

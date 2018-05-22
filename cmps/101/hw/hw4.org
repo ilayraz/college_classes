@@ -1,0 +1,153 @@
+* 8.1-1
+  A comparison tree with n leafs needs to compare each element to another, which means that there needs to be at least $n-1$ comparisons in order to compare a given element to every other element except itself.
+* 8.1-2
+    #+BEGIN_LaTeX
+    \begin{align*}
+      $$ &\int_0^n \lg(x)dx \leq\sum_{k=1}^n \lg(k) \leq \int_1^{n+1} \lg(x)dx$$ \\
+      $$ &\frac{n\lg(n)-n}{\lg 2} \leq \sum_{k=1}^n \lg(k) \leq \frac{(n+1)\lg(n+1)-(n+1)}{\lg 2}$$
+    \end{align*}
+  #+END_LaTeX
+  Which is clearly in $\Theta(n\lg n)$
+* 8.2-1
+ | A | 6 | 0 | 2 | 0 | 1 | 3 |  4 | 6 | 1 | 3 | 2 |
+ | C | 2 | 2 | 2 | 2 | 1 | 0 |  2 |   |   |   |   |
+ | C | 2 | 4 | 6 | 8 | 9 | 9 | 11 |   |   |   |   |
+ | B |   |   |   |   |   | 2 |    |   |   |   |   |
+ | C | 2 | 4 | 5 | 8 | 9 | 9 | 11 |   |   |   |   |
+ | B |   |   |   |   |   | 2 |    | 3 |   |   |   |
+ | C | 2 | 4 | 5 | 7 | 9 | 9 | 11 |   |   |   |   |
+ | B |   |   |   | 1 |   | 2 |    | 3 |   |   |   |
+ | C | 2 | 3 | 5 | 7 | 9 | 9 | 11 |   |   |   |   |
+ | B |   |   |   |   |   | 2 |    | 3 |   |   | 6 |
+ | C | 2 | 3 | 5 | 7 | 9 | 9 | 10 |   |   |   |   |
+ | B |   |   |   | 1 |   | 2 |    | 3 | 4 |   | 6 |
+ | C | 2 | 3 | 5 | 7 | 8 | 9 | 10 |   |   |   |   |
+ | B |   |   |   | 1 |   | 2 |  3 | 3 | 4 |   | 6 |
+ | C | 2 | 3 | 5 | 6 | 8 | 9 | 10 |   |   |   |   |
+ | B |   |   | 1 | 1 |   | 2 |  3 | 3 | 4 |   | 6 |
+ | C | 2 | 2 | 5 | 6 | 8 | 9 | 10 |   |   |   |   |
+ | B |   | 0 | 1 | 1 |   | 2 |  3 | 3 | 4 |   | 6 |
+ | C | 1 | 2 | 5 | 6 | 8 | 9 | 10 |   |   |   |   |
+ | B |   | 0 | 1 | 1 | 2 | 2 |  3 | 3 | 4 |   | 6 |
+ | C | 1 | 2 | 4 | 6 | 8 | 9 | 10 |   |   |   |   |
+ | B | 0 | 0 | 1 | 1 | 2 | 2 |  3 | 3 | 4 |   | 6 |
+ | C | 0 | 2 | 4 | 6 | 8 | 9 | 10 |   |   |   |   |
+ | B | 0 | 0 | 1 | 1 | 2 | 2 |  3 | 3 | 4 | 6 | 6 |
+* 8.2-2
+  If counting sort encouters two elements, the index of array $C$ would increase, then since the placment array starts at the end of $A$ and goes backwards, it would
+  place the last element in the bigger index of $A$, then the next time it sees the same element in $A$ it would place at the index of one smaller than the previous one, therefore
+  counting sort is stable since it places the equivalent elements in the correct order.
+* 8.3-1
+  | COW | SEA | TAB | BAR |
+  | DOG | TEA | BAR | BIG |
+  | SEA | MOB | EAR | BOX |
+  | RUG | TAB | TAR | COW |
+  | ROW | RUG | SEA | DIG |
+  | MOB | DOG | TEA | DOG |
+  | BOX | DIG | DIG | EAR |
+  | TAB | BIG | BIG | FOX |
+  | BAR | BAR | MOB | MOB |
+  | EAR | EAR | DOG | NOW |
+  | TAR | TAR | COW | ROW |
+  | DIG | COW | ROW | RUG |
+  | BIG | ROW | NOW | SEA |
+  | TEA | NOW | BOX | TAB |
+  | NOW | FOX | FOX | TAR |
+  | FOX | BOX | RUG | TEA |
+* 8.3-2
+  Insertion sort and merge sort are stable sorts. \\
+  In order to make any sorting algorithm a stable sort, create an array of tuples $(i, v)$ where $i$ is the index and $v$ is the value at that index,
+  then define an ordering relation on this set such that $a\leq b \iff a[v] \leq b[v]$ and $a[i] < b[i]$. This relation would gurentee that for two elements with
+  the same value, the would with the lower index would be the smaller element. This would not asymptoically change the running time of the algorithm, however it will
+  double the space requierment for it.
+* 8.3-3
+  Need to prove: after sorting the $i^{th}$ digit, then everything up to the $i^{th}$ digit is sorted.
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Base case: $P_1$ after sorting the first digit out of one digit, the list is trivially sorted. \\
+      Inductive hypothesis: Assume $P_{i-1}$ is true. \\
+      Inductive step: Assume that there exists two elements which after sorting the $i^{th}$ digit, are still not in order.
+      This means that one of their previous digits are different, however, since $P_{i-1}$ is true, their previous digits must have at one point been sorted in relative order,
+      and since the sorting algorithm chosen is stable, their differing digits are still sorted in relative order by definition of a stable algorithm. This creates
+      a contradiction, meaning that after sorting their $i^{th}$ element, those two elements must be in order up to the $i^{th}$ element. \qedhere
+    \end{proof}
+  #+END_LaTeX
+  The fact that a stable sorting algorithm is used was used in the proof to show that if two elements were at one point relativly sorted, then they are still
+  relativly sorted afterwards.
+* 8.4-1
+  Original: $\set{.79,.13,.16,.64,.20,.89,.53,.71,.42}$
+  | 0 |   1 |   2 | 3 |   4 | 5 |   6 |   7 |   8 | 9 |
+  |   | .13 | .20 |   | .42 |   | .64 | .79 | .89 |   |
+  |   | .16 |     |   |     |   |     | .71 |     |   |
+becomes:
+| 0 |   1 |   2 | 3 |   4 | 5 |   6 |   7 |   8 | 9 |
+|   | .13 | .20 |   | .42 |   | .64 | .71 | .89 |   |
+|   | .16 |     |   |     |   |     | .79 |     |   |
+becomes: $\set{.13,.16,.20,.42,.64,.71,.79,.89}$
+* 8.4-2
+  The worst case of bucket sort is $\Theta(n^2)$ would occur when all of the elements fall in one bucket, since then bucket sort would have to perform insertion sort
+  on $n$ elements, which would have a running time of $\Theta(n^2)$. \\
+  A simple change that could be done to make the running time $O(n\lg n)$ would be to change the sub-sorting algorithm from insertion sort to a sorting algorithm that
+  has a running time of $O(n\lg n)$ such as Quicksort or Merge sort.
+* 8.4-3
+  Let $X_i$ be the indicator random variable that is equal to 1 if the coin lands on a heads and 0 otherwise. \\
+  Let $X= X_1 + X_2$. \\
+  $E[X] = E[x_1 + x_2] = E[x_1] + E[x_2] = \frac{1}{2}+\frac{1}{2} = 1$ \\
+  $(E[X])^2 = 1^2 = 1$ \\
+  $E[X^2] = E[(X_1+X_2)^2] = E[X_1^2+2X_1X_2+X_2^2] = E[X_1^2] + 2E[X_1]E[X_2] + E[X_2^2] = \frac{1}{2} + 2\cdot\frac{1}{2}\cdot\frac{1}{2} + \frac{1}{2} = \frac{1}{2} + \frac{1}{2} + \frac{1}{2} = \frac{3}{2}$ \\
+  Note that $E[X_i^2]=1^2\cdot\frac{1}{2}=\frac{1}{2}$
+* p. 8-4
+** a
+   For every red jug, use it to fill every blue jug until you find one that matches. Take that pair out, and repeat for every red jug until none are left.
+   This means that every red jug is compared against every blue jug, which means that this algorithm requires $\Theta(n^2)$ comparisons.
+** b
+   There are $n!$ permutations of ordering the red jug with the blue jugs, out of which only one is correct.
+   This problem describes a decision tree with at least $n!$ leaves, and less than $3^h$ leaves (since each node has three children, less than, equal to, and greater than), where $h$ is the height of the tree.
+   Therefore, $n! \leq l \leq 3^h \implies \log_3(n!) \leq h$, which means that the algorithm requires $\Omega(n\lg n)$ comparisons.
+** c
+   A variation of randomized quicksort. Select a random blue jug. Partition all red jugs into two lists: those that are larger than the chosen blue jug
+   and those that are smaller than it. While doing this division, the red jug of equal size must have been found. Use the red jug of equal size to
+   similarily repeat this procedure on all the blue jugs. Repeat this process recursivly on the two subarrays until both lists are ordered.
+   This algorithm has an average case runtime similar to quicksort, meaning an average runtime of $O(n\lg n)$.
+   The worse case of this algorithm occurs, similarly to quicksort, when the algorithm partitions the array into one array, meaning that either
+   the maximal or the minimal element is chosen. This would mean that the algorithm would have to perform $n$ comparisons for each of its $n$ elements,
+   giving a runtime of $O(n^2)$.
+* P. 8-6
+** a
+   This problems asks what is the number of ways a list of size $2n$ can be divided into two sublists of $n$ elements, which is equivalent to asking
+   how many combinations of $n$ elements can be made out of $2n$ n elements. \\
+   $\binom{2n}{n} = \frac{(2n)!}{n!(2n-n)!} = \frac{(2n)!}{2(n!)}$.
+** b
+   This problem describes a decision tree with $\binom{2n}{n} \leq l \leq 2^h$ leaves, where $l$ is the number of leaves and $h$ is the height.
+   This means that:
+   #+BEGIN_LaTeX
+     \begin{align*}
+       2^h &\geq \frac{(2n)!}{2(n!)} \\
+       &\geq \lg(\frac{(2n)!}{2(n!)}) \\
+       &= \lg((2n)!) - \lg(2) - \lg(n!) \\
+       &= (2n\lg(2n) - 2n\lg(e) + O(\lg(n))) - \lg(2) - (n\lg(n) - n\lg(e) + O(\lg(n))) &&\tag{Using Stirling's approximation} \\
+       &= 2n\lg(n)+2n\lg(2) - n\lg(e) - 1 - n\lg(n) \\
+       &= 2n + n\lg(n) - n\lg(e) - 1 \\
+       n\lg(n) - n\lg(e) - 1 &\geq o(n) \\
+       2n + n\lg(n) - n\lg(e) - 1 &\geq 2n - o(n)
+     \end{align*}
+   #+END_LaTeX
+   Which means that this algorithm must make at least $2n - o(n)$ comparisons.
+** c
+
+   #+BEGIN_LaTeX
+     \begin{proof}
+       by contradiction. Assume that $a$ and $b$ are from different lists and end up next to each other in the merged list. \\
+       Let $c_1$ be the element after $a$ in the split list, and let $c_2$ be the element after $b$ in the split list. \\
+       We will now prove that in order for $a$ and $b$ to end up next to each other in the combined list, $b$ must be the element $c_2$. \\
+       The algorithm will begin by first comparing $a$ to $c_2$, this creates two cases: either $a$ is smaller than or equal to $c_2$ or $c_2$ is greater than $a$. \\
+       If $c_2\leq a$, the algorithm will then proceede to compare $a$ to $b$, which contradicts the assumption that $a$ will not be compared to $b$. \\
+       If $c_2 \geq a$, then the algorithm will then preceede to compare $c_1$ to $c_2$, and must place one of them in the list. In order for $a$ to be next to $b$,
+       this means that $b$ must in fact be the element $c_2$, which contradicts the assumption that $a$ will not be compared to $b$ in all cases, therefore the assumption
+       that $a$ will not be compared to $b$ must be wrong, meaning that $a$ must be at some point compared to $b$. \qedhere
+     \end{proof}
+   #+END_LaTeX
+** d
+   The worse case for this algorithm occurs when all the elements are interleaved between the two lists. If all the elements are interleaved, then clearly
+   they would all be compared twice, except for either the first or the last element which will only have to be compared once as there is nothing else left to compare them to.
+   This means that the number of comparisons done on two lists with $n$ elements must therefore be $2n-1 \qed$

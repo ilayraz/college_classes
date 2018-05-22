@@ -1,0 +1,20 @@
+* 7.2-1
+  $T(1)=1=c(1)^2,\ c=1$ \\
+  $T(n-1) = c_1(n-1)^2$ \\
+  #+BEGIN_LaTeX
+    \begin{align*}
+      T(n) &= T(n-1)+c_2n \\
+      &\leq c_1(n-1)^2+c_2n \\
+      &\leq c_1n^2 - 2nc_1 + c_1 + c_2n \\
+      &\leq c_1n^2 &&\tag{$c1>\frac{c_2}{2}$, $n\geq(2c_1-c_2)$}\qed
+    \end{align*}
+  #+END_LaTeX
+* 7.2-2
+  When all elements are the same =QUICKSORT= has a runtime of $O(n^2)$ since the partition will always occur at the last position which will make it have worst-time behaviour.
+* 7.2-3
+  When the elements are sorted in decreasing order the pivol is less than all other elements which means that the partition is n-1 to 0, which is the same as the worse case above.
+* 7.2-4
+  Since =INSERTION-SORT= is an adaptive sort, it has a $O(n)$ runtime on a sorted list, so when it works on a nearly sorted list, it's runtime is nearly $O(n)$ as opposed to =QUICK-SORT='s best case of $O(n\lg n)$
+* 7.2-5
+  The minimum depth is aproximate to $n\alpha^x \leq 1 \implies \alpha^x \leq \frac{1}{n} \implies x \geq \log_\alpha \frac{1}{n}$ \\
+  The maximum depth is approximate to $\log_{1/(1-\alpha)} n = -\frac{\lg n}{\lg(1-\alpha)}$

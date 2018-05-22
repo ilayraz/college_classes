@@ -1,0 +1,106 @@
+#+OPTIONS: toc:nil
+
+* 2.5.6
+** Provde counterexample to $P(A \cup B) = P(A) \cup P(B)$.
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Let $A=\{1\}, B=\{2\}$.
+      \begin{align*}
+        P(A \cup B) &= P(A) \cup P(B) \\
+        P(\{1\} \cup \{2\}) &= P(\{1\}) \cup P(\{2\}) \\
+        P(\{1,2\}) &= \{\{1\},\{\emptyset\}\} \cup \{\{2\},\{\emptyset\}\} \\
+        \{\{1\},\{2\},\{1,2\},\{\emptyset\}\} &= \{\{1\},\{2\},\{\emptyset\}\} \\
+        &\rightarrow\leftarrow &&\qedhere
+      \end{align*}
+    \end{proof}
+  #+END_LaTeX
+** Is it ever true that $P(A \cup B) = P(A) \cup P(B)$?
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Let $A=\{1,2\}, B=\{1\}$.
+       \begin{align*}
+         P(A \cup B) &= P(A) \cup P(B) \\
+         P(\{1,2\}\cup\{1\}) &= P(\{1,2\}) \cup P(\{1\}) \\
+         P(\{1,2\}) &= \{\{1\},\{2\},\{1,2\},\{\emptyset\}\}\cup\{\{1\},\{\emptyset\}\} \\
+         \{\{1\},\{2\},\{1,2\},\{\emptyset\}\} &= \{\{1\},\{2\},\{1,2\},\{\emptyset\}\} &&\qedhere
+       \end{align*}
+     \end{proof}
+   #+END_LaTeX
+* 3.2.3
+  #+BEGIN_LaTeX
+    \begin{align*}
+      a_1&=\frac{1}{(1)(2)}&=\frac{1}{2} \\
+      a_2&=\frac{1}{(1)(2)}+\frac{1}{(2)(3)}&=\frac{2}{3} \\
+      a_3&=\frac{1}{(1)(2)}+\frac{1}{(2)(3)}+\frac{1}{(3)(4)}&=\frac{3}{4}
+    \end{align*}
+  #+END_LaTeX
+  Conjecture: $$a_n = \sum_{i=1}^n \frac{1}{(i)(i+1)} = \frac{n}{n+1}$$
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Base case: $a_1 = \frac{1}{2}$ \\
+      Inductive hpothesis: $a_n = \frac{n}{n+1}$ \\
+      Show that $a_{n+1} = \frac{n+1}{n+2}$
+      \begin{align*}
+        a_{n+1} &= \sum_{i=1}^{n+1} \frac{1}{(i)(i+1)} \\
+        &= \frac{1}{(n+1)(n+2)} + \sum_{i=1}^n \frac{1}{(i)(i+1)} \\
+        &= \frac{1}{(n+1)(n+2)} + \frac{n}{n+1} \\
+        &= \frac{1}{(n+1)(n+2)} + \frac{n(n+2)}{(n+1)(n+2)} \\
+        &= \frac{n^2+2n+1}{(n+1)(n+2)} \\
+        &= \frac{(n+1)^2}{(n+1)(n+2)} \\
+        &= \frac{n+1}{n+2} &&\qedhere
+      \end{align*}
+    \end{proof}
+  #+END_LaTeX
+* 3.2.5
+  Given $m, n \in \N$. Let $m$ divides $n$ ($m|n$) mean that for a given $k \in \N$, $mk=n$.
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Base case ($n=1$): $6k = 1^3-1, k=0$. \\
+      Inductive hypothesis: $6|(n^3-n)$ \\
+      Show that $6k = ((n+1)^3-(n+1))$ for some $k \in \N$
+      \begin{align*}
+        6k &= (n+1)^3-(n+1) \\
+        &= n^3+3n^2+3n+1-n-1 \\
+        &= (n^3-n) + 3n(n+1) \\
+      \end{align*}
+        Since $n^3-n$ divides 6 by assumption, it can be ignored. \\
+        Since $n$ and $n+1$ are 2 consecutive integers, they are even and therefore divide by 2. Let $2s=n(n+1)$ for some $s \in \N$.
+        \begin{align*}
+          6k &= 3(2s) \\
+          6k &= 6s \\
+          k &= s
+        \end{align*}
+        Therefore since both $n^3-n$ and $3n(n+1)$ divide by 6, $(n^3-n) + 3n(n+1)$ divides by 6. \qedhere
+    \end{proof}
+  #+END_LaTeX
+* 4.1.10
+** 2
+   $A=\N. x\sim y$ if $x+y$ is even
+   1) Reflexive, yes: For every $x$ in $A$, $x+x=2x$, which is clearly even.
+   2) Symmetric, yes: Addition is commutative.
+   3) Anti-symmetric, no: Let $x=2, y=4, x+y=y+x=6$, which is even, therefore $x\sim y$, and $y\sim x$, but $x\neq y$.
+   4) Transitive, yes: Let $x,y,z\in A\ s.t\ x\sim y\land y\sim z\implies x+y=2a\land y+z=2b, a,b\in\N\implies x+y+y+z=2a+2b = x+z=2(a+b-y)$, which is even.
+** 3
+   $A=\N. x\sim y$ if $x+y$ is odd
+   1) Reflexive, no: $3+3=6$ which is even.
+   2) Symmetric, yes: Addition is commutative.
+   3) Anti-symmetric, no: Let $x=2, y=3, x+y=y+x=5$, which is odd, therefore $x\sim y, y\sim x$, but $x\neq y$.
+   4) Transitive, no: Let $x=2,y=3,z=4$, $x+y=5$ which is odd and $y+z=7$ which is odd, but $x+z=6$ which is even.
+** 4
+   $A=\ps(\N).\ x\sim y$ if $x\subseteq y$
+   1) Reflexive, yes: Let $x\in A$, $x\subseteq x$ by definition of a subset.
+   2) Symmetric, no: Let $x,y\in A,\ x\subseteq y\nimplies y\subseteq x$
+   3) Anti-symmetric, true: Let $x,y\in A,\ x\sim y\land y\sim x\implies x\subseteq y\land y\subseteq x\implies x=y$ by definition of set equality
+   4) Transitive, yes: Let $x,y,z\in A\ s.t\ x\sim y\land y\sim z\implies x\subseteq y\land y\subseteq z\implies x\subseteq y\subseteq z\implies x\subseteq z$
+** 5
+   $A=\R.\ x\sim y$ if $x=2y$
+   1) Reflexive, no: Let $x=2.\ 2\neq4$.
+   2) Symmetric, no: Let $x=4,y=2.\ x=2y\rightarrow 4=2\times2$ but $2\neq2\times4$, therefore $x\sim y$, but $y$ is not related to $x$.
+   3) Anti-symmetric, yes: Let $x,y\in A$. The only case where $x\sim y$ and $y\sim x$ is when $x=2y$ and $y=2x$, which will only occur when both $x$ and $y$ are equal to $0$.
+   4) Transitive, no: Let $x=4, y=2, z=1$. Clearly, $x\sim y$ and $y\sim z$, but $x\neq2z\rightarrow 4\neq 2$, therefore $x$ is not related to $z$.
+** 6
+   $A=\R.\ x\sim y$ if $x-y$ is rational
+   1) Reflexive, yes: Let $x\in A.\ x-x = 0$, which is rational.
+   2) Symmetric, yes: Let $x,y\in A. x\sim y\implies x-y\text{ is rational}\implies y-x$ is rational since $y-x$ is equal to the negative of $x-y$ and the negative of a rational number is rational.
+   3) Anti-symmetric, no: Let $x=2, y=4$. Clearly $x\sim y$ and $y\sim x$ since the sum of two rational numbers is rational and the negative of a rational number is also rational, and clearly $x\neq y$.
+   4) Transitive, yes: Let $x,y,z\in A\ s.t\ x\sim y\land y\sim z\implies x-y=a\land y-z=b\text{ where }a,b\in\Q\implies x-y+y-z=a+b\implies x-z=a+b$ which must be rational since $a$ and $b$ are rational numbers and the sum of two rational numbers is rational.

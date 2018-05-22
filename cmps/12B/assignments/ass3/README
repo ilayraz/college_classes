@@ -1,0 +1,16 @@
+Ilay Raz
+ilraz
+CMPS12B-02
+2/6/18
+README
+
+A dictionary implementation using a doubly linked array
+
+- README
+- Dictionary.java
+- DictionaryTest.java
+- DuplicateKeyException.java
+- KeyNotFoundException.java
+- DictionaryInterface.java
+- DictionaryClient.java
+- Makefile

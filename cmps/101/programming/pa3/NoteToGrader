@@ -1,0 +1,3 @@
+Uses prime factorization to create a unique code for each anagram.
+Puts all anagrams in a HashMap that maps from the code to an ArrayList structure of the 
+anagrams.

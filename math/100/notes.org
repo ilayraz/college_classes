@@ -1,0 +1,1419 @@
+#+OPTIONS: toc:2
+MIDTERM: Friday on Week 6 (May 11)
+* 2018 April 2
+** What is a proof
+*** Assumptions/hypothesis -> (logic) -> conclusion
+*** condtions -> (proof) -> results
+*** Give a reason for every step
+*** Ex. If x is an integer, then x^2 >= x
+** Class covers
+*** Logic
+*** Sets
+*** Functions/maps
+**** injection
+***** one-to-one
+**** surjection
+***** onto
+**** bijection
+***** Injective+Surjective
+** Equivalent relations
+*** Similarties in elements of a set
+** Number Theory
+*** Ex. GCD, prime factorization
+*** modulus arithmatic
+** Cardinality
+*** Number of elements in set
+** Real Numbers
+** Logics
+*** =statement=
+**** A sentence that's either true/false
+**** Examples
+***** Lisa is a student at UCSC
+***** 2*3=7
+***** 2x=y is not a statment
+*** =predicate=
+**** A sentence with free variables
+**** Becomes a statment when varibles take specific values
+**** Examples
+***** 2x=y
+****** if x=2, y=3, 2*2=3 is a statment
+***** x^2 >= x
+*** =Implication=
+**** Examples
+***** If A(x) then B(x)
+***** If A then B
+***** A implies B
+***** If A is true then B is true
+***** If x is an integer, then x^2 >= x
+**** Notation $A \implies B$
+*** =Truth Table=
+    | A | B | A \implies B | A and B | A or B | ~A | A \iff B |
+    |---+---+--------------+---------+--------+----+----------|
+    | T | T | T            | T       | T      | F  | T        |
+    | T | F | F            | F       | T      | F  | F        |
+    | F | F | T            | F       | F      | T  | T        |
+    | F | T | T            | F       | T      | T  | F        |
+*** =Conjunction=
+**** logical and
+**** Examples
+***** A and B
+***** $A \land B$
+*** =Disjunction=
+**** logical or
+**** Examples
+***** A or B
+***** $A \lor B$
+*** =Negation=
+**** Logical not
+**** Examples
+***** Not A
+***** ~A
+***** $\neg A$
+*** =Equivalence=
+**** A if and only if B
+**** $A \iff B$
+**** $A \implies B AND B \implies A$
+* 2018 April 4
+** =Tautology=
+*** Statement which is always true
+*** Ex. $A \land \neg A$
+** =Contradiction=
+*** A statment which is always false
+*** Ex. $A \land \neg A$
+** =Contrapositive=
+*** Contrapositive of $A \implies B$ is $\neg B \implies \neg A$
+** Prove 1-1
+*** $f: S \mapsto S$
+*** f is 1-1
+*** if $x_1, x_2 \in S, x_1 \neq x_2$
+**** $f(x_1) \neq f(x_2)$
+*** Contrapositive:
+**** Let $x_1, x_2 \in S$
+**** If $f(x_1) = f(x_2) \implies x_1=x_2$
+** Examples
+*** $\forall$ integer $x, \exists$ integer $y s.t y=x^2$
+**** negation: $\exists x s.t y \neq x^2 \forall y$
+*** John has blue eyes and red hair
+**** Negation: Either John does not have blue eyes or red hair
+*** $\neg (A \lor B) \iff \neg A \land \neg B$
+*** x is even or positive => x is odd and negative
+** Set Theory
+*** =Set=
+**** Collection of certain objects
+**** Ex.
+***** A = \{1,2\}
+***** B = all UCSC students
+***** C = all people and chairs in this room
+***** $\N = \{1,2,3\}$
+****** Set of positive integers (natural numbers)
+***** $\Z = \{0, \pm 1, \pm 2, \pm 3\}$
+****** Set of all integers
+***** $\R$ set of real numbers
+***** $\Q$ set of rationals
+**** Notation
+***** A is a set
+***** $a \in A$: a is an element of A
+****** $1,2 \in \{1,2\}$
+***** $b \notin A$ b is not an element of A
+****** $3 \notin \{1,2\}$
+***** =Empty set= $\emptyset$
+***** =subset=
+****** $B \subset A$: B is a subset of A
+****** $\forall b \in B \implies b \in A$
+****** Examples
+******* $\{1\} \subset \{1, 2, 3\}$
+******* For any set $A$, $\emptyset \subset A$
+******* The # of subsets of $\{1, 2, \ldots n\}
+******* $\binom\{n\}\{0\} + \binom\{n\}\{1\} + \binom\{n\}\{2\} + \binom\{n\}\{3\} + \ldots + \binom\{n\}\{n\} = 2^n$
+******* $2\Z = \{2n | n \in \Z\} \subseteq \Z\}$
+******* $2\Z+1 =$ all odd numbers $\subseteq \Z$
+***** Operations
+****** Let $A, B$ be sets
+****** =Union=
+******* $A \cup B = \{x | x \in A$ or $x \in B\}$
+****** =Intersection=
+******* $A \cap B = \{x | x \in A$ and $x \in B\}$
+****** =Disjoin sets=
+******* $A \cap B = \emptyset$
+****** =Set difference=
+******* $A/B = \{x | x \in A$ and $x \notin B\}$
+****** =Complement=
+******* $A \subseteq U$
+******* $A^c = \{x \in U | x \notin A\} = U\\A$
+******* If $A \subseteq U, U = A \cup A^c$
+****** Examples
+******* $A = \R, B = \{1,2,3\}$
+******* $A \cup B = A$
+******* $A \cap B = \{1,2,3\}$
+******* let $A_i (i \in I)$ be sets
+******* $\cup A_i = \{x | x \in A_i$ for some $i \in I\}$
+******* $A_n = [n, n+1], n= 0, 1, \ldots$
+******* (infinite union sign here) $A_n = \{x \in \R | x \geq 0\}$
+* 2018 April 6
+** Union Example
+*** $A_n = (0, \frac{1}{n}), n \geq 1$
+*** \cup_{n\geq 1} A_n = (0, 1)
+*** \cap_{n\geq 1} A_n = \emptyset
+*** \cap_{n\geq 1} [0, 1/n) = \{0\}
+** Example Proof
+*** Pf 1
+   #+BEGIN_LaTeX
+     Let A, B, C be sets. Then $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+     \begin{proof}
+       Let $x \in A \cup (B \cap C) \implies x \in A \lor X \in B \cap C$
+       \begin{align*}
+         If x \gets A &\implies x \in A \cup B \land x \in A \cup C \\
+         &\implies x \in (A \cup B) \cap (A \cup C) \\
+         If x \in B \cap C &\implies x \in B \land x \in C \\
+         &\implies x \in A \cup B \land x \in A \cup C \\
+         &\implies x \in (A \cup B) \cap (A \cup C)
+       \end{align*}
+       Thus $A \cup (B \cap C) \subseteq (A \cup B) \cap (A \cup C)$
+       Let $x \in (A \cup B) \cap (A \cup C)$
+       \begin{align*}
+         &\implies x \in A \cup B \land x \in A \cup C \\
+         &\implies (x \in A \lor x \in B) \land (x \in A \lor x \in C)
+       \end{align*}
+       If $x \in A \implies x \in A \cup (B \cap C)$
+       otherwise $\implies x \in B \land x \in C \implies x \in B \cap C$
+       \implies $x \in A \cup (B \cap C) \qedhere$
+     \end{proof}
+   #+END_LaTeX
+*** Pf 2
+    #+BEGIN_LaTeX
+      \begin{proof}
+        $A \cap (\cup A_i) = \cup A \cap A_i, i \in I$
+        Let $x \in A \cap (\cup A_i)$
+        \begin{align*}
+          &\implies x\in A \land x \in \cup A_i, i \in I \\
+          &\implies x \in A \land x \in A_j \text{for some} j \in I \\
+          &\implies x \in A \cap A_j \\
+          &\implies x \in \cup A \cap A_i, i \in I &&\qedhere
+        \end{align*}
+        let $x \in \cup (A \cap A_j) for i \in I$
+        \begin{align*}
+          &\implies x \in A\cap A_j \text{for some} j \in I \\
+          &\implies x \in A \land x \in A_j \\
+          &\implies x \in A \land x \in \cup A_j, j \in I \\
+          &\implies x \in A \cap (\cup A_j) &&\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX
+*** Let $A, B \subseteq U$, then
+**** $A\\B = A \cap B^c$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         $A\\B = \{x \in A \land x \notin B \}$
+         \begin{align*}
+           $x \in A / B &\iff x \in A \land x \notin B$ \\
+           &\iff x \in A \land x \in B^c \\
+           &\iff x \in A \cap B^c &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+**** $A \\ (B\cup C) = (A\\B) \cap (A\\C)$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Let $x \in A / (B \cup C)$
+         \begin{align*}
+           &\iff x \in A \land x \notin B\cup C \\
+           &\iff x \in A \land x\notin A \land x\notin C \\
+           &\iff x \in A/B \land x \in A/C \\
+           &\iff x \in (A/B)\cap (A/C) &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+** =De Morgan's Law=
+   Let $A_i \subseteq \bigcup, i \in I$, then
+   (\bigcup A-i, i \in I)^c = \bigcap A^c_i
+   (\bigcap A_i)^c = \bigcup A^c_i
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Let $x \in (\bigcup_{i \in I} A_i)^c$
+       \begin{align*}
+         &\iff x \notin \bigcup A_i, i \in I \\
+         &\iff x \notin A_i \forall i \in I \\
+         &\iff x \in A_i^c \forall i \in I \\
+         &\iff x \in \bigcap A_i^c i \in I &&\qedhere
+       \end{align*}
+     \end{proof}
+   #+END_LaTeX
+* 2018 April 9
+** =Power set=
+    Let $A$ be a set. The power set of $A$ $P(A) = \{B|B\subseteq A\}$
+*** Example
+    $A = \{1,2\}. P(A) = \{ \emptyset, \{1\}, \{2\}, A\}$ \\
+    $B = \{a,b,c\}. P(B) = \{ \emptyset, \{a\},\{b\},\{c\},\{a,b\},\{a,c\},\{b,c\},B\}$
+*** Cardinality of poewr set
+    If $A$ has exactly $n$ elements, then $P(A)$ has $2^n$ elements.
+** =Lemma=
+   Trivial proof. Preparating for bigger proof
+** =Proposition=
+   More important than lemma.
+** =Theorm=
+   The most important proof.
+** Example proof
+   Lemma: If $A \subseteq B$, then $P(A) \subseteq P(B)$
+       Let $x \in P(A) \implies x \subseteq A \subseteq B \implies x \in P(B) \qed$ \\
+     Let $A, B$ be sets, then \\
+     1. $P(A) \cap P(B) = P(A \cap B)$ \\
+     2. $P(A) \cup P(B) \subseteq P(A \cup B)$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         1. Let $x \in P(A) \cap P(B)$
+         \begin{align*}
+           &\iff x \in P(A) \land x \in P(B) \\
+           &\iff x \subseteq A \land x \subseteq B \\
+           &\iff x \subseteq a \cap B \\
+           &\iff x \in P(A \cap B) &&\qedhere
+         \end{align*}
+         2. Clearly, $A \subseteq A \cup B, B \subseteq A \cup B \implies P(A) \subseteq P(A \cup B), P(B) \subseteq P(A \cup B)$ by lemma, therefore $P(A) \cup P(B) \subseteq P(A \cup B) \qed$
+       \end{proof}
+     #+END_LaTeX
+     Remark: In general, $P(A) \cup P(B) \neq P(A \cup B)$
+     #+BEGIN_LaTeX
+       \begin{align*}
+         &A=\{1\}, B=\{2\} \\
+         &P(A)=\{\emptyset, \{1\}\} \\
+         &P(B)=\{\emptyset, \{2\}\} \\
+         &A \cup B = \{1,2\} \\
+         &P(A \cup B) = \{\emptyset, \{1\}, \{2\}, \{1.2\}\}
+       \end{align*}
+     #+END_LaTeX
+** =Induction=
+   Let P_n be a statment, n=1,2,... \\
+   Induction proves P_n is true for all n.
+** =Axiom=
+   Somthing you assume is true without proving
+** =Least element assumption=
+   Any non-empty subset $S$ of $\N$ has the least element.
+** =Axiom of induction=
+   Let $S$ be a subset of $\N$ such that: \\
+   1. $1 \in S$ \\
+   2. If $k \in S \implies (k+1) \in S$ \\
+   Then $S = \N$
+   #+BEGIN_LaTeX
+     \begin{proof}
+       If $S \subset \N$
+       \begin{align*}
+         &\implies S^c \neq \emptyset &&\text{clearly, } n \in S \implies 1 \notin S^C \\
+         &\text{Let} n \in S^c \text{ be the least element} \\
+         &\implies n > 1 \\
+         &\implies n-1 \notin S^c \\
+         &\implies n-1 \in S \\
+         &\implies n-1+1 = n \in S \\
+         &\implies n \in S \cap S^c = \emptyset \\
+         &\rightarrow\leftarrow
+       \end{align*}
+     \end{proof}
+   #+END_LaTeX
+** =Inductive Principle=
+   Let P_n be a statment associated to n=1,2,3... Assume: \\
+   1) P_1 is true \\
+   2) If P_k is true \implies P_{k+1} is true
+** Example
+**** Example 1
+    #+BEGIN_LaTeX
+      \begin{proof}
+        Let $S=\{n \in \N | P_n$ is true$\}$ $\subseteq \N$ \\
+        Want $S = \N$ \\
+        Clearly $1 \in S$. If $k \in S \implies P_k$ is true \implies $P_{k+1}$ is true \implies $k+1 \in S$ \\
+        By induction axiom, $S=\N \qedhere$
+      \end{proof}
+    #+END_LaTeX
+**** Example 2
+     $1+2+...+n = \frac{n(n+1)}{2}$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Let n=1. LHS = 1, RHS = $\frac{1(1+1)}{2}$ = 1 \\
+         Assume (*) is true for k: 1+2+...+k = $\frac{k(k+1)}{2}$
+         \begin{align*}
+           &\implies 1+2+\ldots +k+k+1 \\
+           &\implies 1+2+\ldots +k) +k+1 \\
+           &=\frac{k(k+1)}{2}+k+1 \\
+           &=(k+1)(\frac{k}{2}+1) \\
+           &=\frac{(k+1)(k+2)}{2} \\
+           &\implies \text{(*) is true for } k+1 &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+* 2018 April 11
+** Binomial expansion
+   $(x+y)^n=\Sigma^{i=0}^n \binom{n}{i} x^iy^{n-i}$ Where $\binom{n}{i} = \frac{n!}{i!(n-i)!}$
+   #+BEGIN_LaTeX
+     \begin{proof}
+       $n=1$, LHS=$x+y$, RHS=$\binom{1}{0} y + \binom{1}{1} x = x+y$ \\
+       Assume $(x+y)^k = \Sigma_{i=0}^k \binom{k}{i} x^i y^{k-i}$
+       \begin{align*}
+         (x+y)^{k+1} &= (x+y)(x+y)^k \\
+         &\implies (x+y) \Sigma_{i=0}^k \binom{k}{i} x^i y^{k-i} \\
+         &= (x+y) (\binom{k}{0} y^k + \binom{k}{1} xy^{k-1} + \ldots + \binom{k}{k} x^k) \\
+         &= \binom{k}{0} y^{k+1} + \binom{k}{1} xy^k + \ldots + \binom{k}{k} x^ky + \binom{k}{0} xy^k + \ldots + \binom{k}{k-1} x^ky + \binom{k}{k} x^{k+1} \\
+         &= \binom{k}{0}y^{k+1} + \Sigma_{i=0}^{k-1} (\binom{k}{i} + \binom{k}{i+1})x^{i+1}y^{k-i} \\
+         &\implies (x+y)^{k+1} = \binom{k+1}{0} y^{k+1} + \Sigma_{i=0}^{k-1} \binom{k+1}{i+1} x^{i+1} y^{k-i} + \binom{k+1}{k+1} x^{k+1} \\
+         &= \binom{k+1}{0} y^{k+1} + \Sigma_{i=1}^k (\binom{k+1}{i} x^iy^{k-(i-1)} + \binom{k+1}{k+1} x^{k+1} \\
+         &= \Sigma_{i=0}^{k+1} \binom{k+1}{i} x^iy^{k+1-i} &&\qedhere
+       \end{align*}
+     \end{proof}
+   #+END_LaTeX
+** =Strong induction=
+   Let $P_n$ be a statment for $n=1,2,\ldots$ satisfying: \\
+   1) $P_1$ is true \\
+   2) If $P_i$ is true for $i \leq k \implies P_{k+1}$ is true
+      Then $P_n$ is true for all $n$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          Let $S = \{n \in \N | P_n \text{ is not true}\}$. Prove $S=\emptyset$ \\
+          Assume $S\neq\emptyset$. Let $k+1$ be the least number in $S$. \\
+          Clearly, $k\geq1$
+          \begin{align*}
+            &\implies 1,2,\ldots,k\notin S \\
+            &\iff P_1,\ldots,P_k \text{ are true} \\
+            &\implies 2,\ldots,P_{k+1}\text{ is true} &&\text{by assumption} \\
+            &\implies k+1\notin S \rightarrow\leftarrow &&\qedhere
+          \end{align*}
+        \end{proof}
+      #+END_LaTeX
+** Examples
+   Prove $6|(n^3-n)$ for all $n\geq 1$
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Let $n=1 \implies n^3-n=1^3-1=0$, $6|0\iff6|(1^3-1)$. \\
+       Assume $6|(k^3-k)$. Want $6|((k+1)^3-(k+1))$
+       \begin{align*}
+         (k+1)^3-(k+1) &= k^3+3k^2+3k+1-k-1 \\
+         &= k^3-k+3k^2+3 &&\text{It's good enough to show that} 6|(3k^2+3k) \\
+         3k^2+3k &= 3k(k+1) &&k(k+1)\text{ is always even} \\
+         &\implies 6|3k(k+1) &&\qedhere
+       \end{align*}
+     \end{proof}
+   #+END_LaTeX
+* 2018 April 13
+** =Relations=
+*** Definitions
+    Let $A, B$ be sets. \\
+    $A \times B = \{(a,b)|a \in A, b \in B\}$ \\
+    1) A relation $R$ from $A$ to $B$ is a subset $R \subseteq A \times B$ \\
+    2) A relation $R$ on $A$ is a relation from $A$ to $A$, $R \subseteq A \times A$ \\
+    3) Let $\sim$ be a relation on $A$ \\
+       3.1) $\sim$ is reflexive: $\forall a\in A: a\sim a ((a,a)\in R)$ \\
+       3.2) $\sim$ is symmetric: if $a\sim b\implies b\sim a$ \\
+       3.3) $\sim$ is anti-symmetric: if $a\sim b, b\sim a \implies a=b$ \\
+       3.4) $\sim$ is transitive: if $a\sim b, b\sim c\implies a\sim c$
+*** Examples
+**** $A=\{1,2,3\}, B=\{x,y\}$ \\
+     $R=\{(1,x),(1,y),(2,y)\} \subseteq A \times B$
+**** $A=\{1,2,3\}, R=\{(1,1),(2,2),(3,3)\} \subseteq A \times A$ \\
+    $A=\{1,2,3\}, R=\{(1,1),(2,2),(3,3)\}$ \\
+    $1\sim1, 2\sim2, 3\sim3$
+**** Let $A=\Z$ \\
+     $m,n\in\Z$ \\
+     $m\sim n$: $m+n$ is even \\
+     $(m,n)\in R$: $m+n$ is even \\
+     $(1,3),(2,4)\in R$ \\
+     $(1,4),(2,3)\notin R$
+**** Def $\sim$ on $A$: $a\sim b\iff a=b$ \\
+     1) Reflexive: $a\sim a \forall a\in A$ \\
+     2) Symmetric: if $a\sim b \implies b=a \implies a\sim a$ \\
+     3) Anti-symmetric: if $a\sim b, b\sim a\implies a=b$ \\
+     4) Transitive: $a\sim b, b\sim c\implies a=b=c\implies a\sim c$
+**** $m,n\in\Z$ \\
+     $m\sim n\iff m+n$ is even \\
+     1) Reflexive: $\forall m\in\Z\implies m+n$ is even $\implies m\sim m$ \\
+     2) Symmetric: If $m\sim n\implies m+n$ is even $\implies n+m$ is even $\implies n\sim m$ \\
+     3) Anti-symmetric no: $1\sim3, 3\sim1$ does not imply $1=3$ \\
+     4) transitive yes: If $m\sim n, n\sim p\implies m+n$ is even and $n+p$ is even $\implies m+n+n+p$ is even $\implies m+p+2n$ is even $\implies m+p=m+p+2n-2n$ is even $\implies m\sim p$
+**** Define a relation on $\R$ \\
+     $x\leq y$ if $y-x\geq0$ \\
+     1) Reflexive yes: $\forall x\in\R, x\subseteq x$ \\
+     2) Symmetric no: $1\leq2$, but $2\nleq1$ \\
+     3) anti-symmetric yes: If $x\leq y, y\leq x\implies x=y$ \\
+     4) Transitive yes: If $x\leq y, y\leq z\implies x\leq z$
+**** $A$ is a set and $P(A)$ is the power set of $A$ \\
+     Define a relation on $P(A)$: $x\sim y: x\subseteq y$
+     1) Reflexive yes: $\forall x\in P(A)\implies x\subseteq x$ \\
+     2) Symmetric no: If $x\sim y \implies x\subseteq y$ does not imply $y\nsubseteq x$ (as long as A is not the empty set) \\
+     3) Anti-symmetric yes: $x\sim y, y\sim x\implies x\subseteq y\land y\subseteq x\implies x=y$ \\
+     4) Transitive yes: $x\sim y, y\sim z\implies x\subseteq y\subseteq z\implies x\sim z$
+*** Notation
+    $a, b \in A$ have a relation \\
+    $(a,b)\in R \subseteq A\times A$ \\
+    $a\sim b$
+* 2018 April 16
+** =Ordering relation=
+*** Definition
+    1) A relation $\leq$ on a set $A$ is called a partial order if $\leq$ is reflexive, anti-symmetric, and transitive. In this case, $A$ is called a partially ordered set.
+    2) A partial order $\leq$ on $A$ is called a =total order= if $\forall a,b\in A\implies a\leq b\lor b\leq a$
+*** Example
+**** $A: a\leq b\iff a=b$
+     1) Reflexive, yes: $\forall a\in A, a\leq a$
+     2) Anti-symmetric, yes: If $a\leq b\land b\leq a\iff a=b$
+     3) Transitive, yes: If $a\leq b, b\leq c\implies a=b=c\implies a\leq c$
+     If $A=\{a\}$, $\leq$ is a total order.
+     If $A$ has more than two elements, it is not a total order.
+**** $A = \R.\ x\leq y:\ y-x\geq0$
+     1) Reflexive, yes: $a\leq a:\ a-a\geq0$
+     2) Anti-symmetric, yes: If $a\leq b, b\leq a\implies a-b\geq0, b-a\geq0\implies a=b$
+     3) Transitive, yes: If $a\leq b, b\leq c\implies a\leq c$
+
+     Total order: $\forall a,b\in\R\implies a\leq b\lor b\leq a$
+**** Define on $\ps(A):\ x\leq y$ if $x\subseteq y$
+     1) Reflexive, yes: $x\leq x:\ x\subseteq x$
+     2) Anti-symmetric, yes: If $x\leq y, y\leq x\implies x\subseteq y, y\subseteq x\implies x=y$
+     3) Transitive, yes: If $x\leq y, y\leq z\implies x\subseteq y\subseteq z\implies x\subseteq z\implies x\leq z$
+
+     In general, \leq is not a total order. $A=\{1,2\}. \ps(A)=\{\emptyset, \{1\},\{2\},\{1,2\}\}$. $\{1\}\nsubseteq\{2\}. \{2\}\nsubseteq\{1\}$
+** Definitions
+   Let $A$ be a partially ordered set.
+*** =Maximal Element=
+    $x\in A$ is called maximal if $x\leq y, y\in A\implies x=y$
+*** =Minimal element=
+    $z\leq x\implies z=x$
+*** =Greatest element=
+    $y\leq x\forall y\in A$
+*** =Least element=
+    $x\leq y\forall y\in A$
+*** Examples
+**** $A=[0,1)$ with \leq
+     Minimal is 0. \\
+     There is no maximal. \\
+     The least is 0. \\
+     There is no greatest. \\
+**** $\ps(A)$
+     Minimal = the least = \emptyset \\
+     Maximal = the greatest = $A$
+*** Theorms
+    1) If $A$ is a partially ordered set, then $A$ has a unique greatest if it exists.
+       #+BEGIN_LaTeX
+         \begin{proof}
+           Let $x_1, x_2\in A$ be greatests.
+           \begin{align*}
+             &\implies x_1\leq x_2 \land x_2\leq x_1 \\
+             &\implies x_1=x_2 &&\qedhere
+           \end{align*}
+         \end{proof}
+       #+END_LaTeX
+    2) If there is a least element $\implies$ it is unique
+    3) If $A$ is totally ordered, any maximal is the greatest
+    4) If $A$ is totally ordered, any minimal is least
+* 2018 April 18
+** =Partition=
+**** Definition
+     Fix a set $A$. A subset $\Omega\subseteq\ps(a)$ is called a partition if:
+     1) $\forall x,y\in\Omega\implies x\cap y=\emptyset\lor x=y$
+     2) $\emptyset\notin\Omega$
+     3) $A=\bigcup x, x\in\Omega$
+**** Exmaples
+***** A = all students in this room \\
+      A_1 = all students in row 1 \\
+      A_2 = \ldots up to A_6 \\
+      $A_i\cap A_j = \emptyset$ if $i\neq j$ \\
+      $\emptyset\neq A_i$ \\
+      $$\bigcup_{i=1}^6 A_i=A$$ \\
+***** A = all professors at UCSC.
+      Each subset is all professors in the given department
+***** $\Omega=\{2\Z, 2\Z+1\}$ is a partition of $\Z$
+***** $A=\{1,2,3,4,5\}.\ \Omega=\{\{1\},\{2,3\},\{4,5\}\}$
+***** $\Omega=\{(-\infty,0),[0,\infty)\}$ is a partition
+***** $\Omega=\{(n,n+1)|n\in\Z\}$
+***** $\Omega=\{4\Z,4\Z+1,4\Z+2,4\Z+3\}$ is a partition of $\Z$
+***** $\Omega=\{n\Z,n\Z+1,\ldots,n\Z+n-1\}\ n>0$ is a partition of $\Z$
+** =Equivalence relation=
+*** Definition
+    A relation \sim on A is called an equivalent relation if it is reflexive, symmetric, and transitive.
+*** Theorms
+**** Let \Omega be a partition of A. Define a relation \sim_\Omega as follows: \\
+     $a\sim_\Omega b\iff\exists x\in\Omega\ s.t.\ a,b\in x$
+**** If \Omega is a partition of A, then \sim_\Omega is an equivalence relation on A.
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Reflexive: $\forall a\in A\implies x\in\Omega\ s.t\ a\in x$ \\
+         Symmetric: If $a\sim_\Omega b\implies\exists x\in\Omega\ s.t\ a,b\in x\implies b,a\in x\implies b\sim_\Omega a$ \\
+         Transitive: If $a\sim_\Omega b\land b\sim_\Omega c\implies \exists x,y\in\Omega\ s.t\ a,b\in x\land b,c\in y\implies b\in x\cap y\implies x=y\implies a,b,c\in x\implies a\sim_\Omega c\qedhere$
+       \end{proof}
+     #+END_LaTeX
+*** Examples
+**** Consider $m,n\in\Z, m\equiv n(\mod 2)$ is an equivalent relation. $m\equiv n(\mod 2)\iff 2|(m-n)$
+     1) Reflexive: $2|(n-n)\forall n\in\Z$
+     2) Symmetric: If $m\equiv n(\mod 2)\implies 2|(m-n)\implies 2|(n-m)\implies n\equiv m(\mod 2)$
+     3) Transitive: If $m\equiv n(\mod 2)\land n\equiv p(\mod 2)\implies 2|(m-n)\land 2|(n-p)\implies 2|[(m-n)+(n-p)] = 2|(m-p)$
+**** $\Omega=\{3\Z,3\Z+1,3\Z+2\}$ is a partition of $\Z$
+     Define $m\sim_\Omega n\implies m,n\in (3\Z+r) r\in\{0,1,2\} \implies m=3a+r,n=3b+r\implies m-n=3(a-b)\iff 3\mid(m-n)$
+* 2018 April 20
+** Examples of equivalence relation
+*** $a\sim b$ if $||a|=|b|$
+    1) $|a|=|a|\ \forall a\in\R\iff a\sim a$
+    2) If $a\sim b\implies|a|=|b|\implies b\sim a$
+    3) If $a\sim b, b\sim c\implies |a|=|b|, |b|=|c|\implies |a|=|c|\implies a\sim c$
+*** $\R^2:\ (x_1,y_1)\sim(x_2,y_2)\iff x_1^2+y_1^2=x_2^2+y_2^2$
+    1) $x^2+y^2=x^2+y^2: (x,y)\sim(x,y)$
+    2) If $x_1,y_1)\sim(x_2,y_2)\implies x_1^2+y_1^2=x_2^2+y_2^2\implies (x_2,y_2)\sim(x_1,y_1)$
+    3) If $(x_1,y_1)\sim(x_2,y_2),(x_2,y_2)\sim(x_3,y_3)\implies x_1^2+y_1^2=x_2^2+y_2^y=x_3^2+y_3^2\implies (x_1,y_1)\sim(x_3,y_3)$
+*** $\R^2:\ (x_1,y_1)\sim(x_2,y_2)\iff x_1=x_2$
+    Means points are on the same vertical line.
+    1) $(x,y)\sim(x,y)$ trivial
+    2) If $(x_1,y_1)\sim(x_2,y_2)\implies x_1=x_2\implies (x_2,y_2)\sim(x_1,y_1)$
+    3) If $(x_1,y_1)\sim(x_2,y_2)\sim(x_3,y_3)\implies x_1=x_2=x_3\implies (x_1,y_1)\sim(x-3,y_3)$
+** =Equivalence class=
+*** Definition
+    Let \sim be an equivalence relation on A and $a\in A$. The equivalence class of a is $T_a=\setc{b\in A}{a\sim b} = \setc{b\in A}{b\sim a}$
+*** Examples
+**** $\R:\ a\sim b\iff |a|=|b|.\ T_a = \set{a,-a}=T_{-a}$
+**** $\R^2:\ (x_1,y_1)\sim(x_2,y_2)\iff x_1^2+y_1^2=x_2^2+y_2^2.\ T_{(x,y)}=\setc{(x_1,y_1)\in\R^2}{x_1^2+y_1^2=x^2+y^2=r^2}$
+**** $\R^2:\ (x_1,y_1)\sim(x_2,y_2)\iff x_1=x_2$. Each equivalence class is a vertical line.
+**** $\Z:\ a\equiv b(\mod 2)\iff 2|(a-b)$
+     $T_0=2\Z$ \\
+     $T_1=2\Z+1$ \\
+     $T_2=2\Z$ \\
+     $T_3=2\Z+1$
+*** Theorms
+**** Let \sim be an equivalence relation on A. Let $\Omega=\setc{T_a}{a\in A}$, then \Omega is a partition of A.
+     #+BEGIN_LaTeX
+       \begin{proof}
+         1) $\forall a,b\in A$, want $T_a=T_b\lor T_a\cap T_b=\emptyset$ \\
+         If $T_a\cap T_b=\emptyset$, done. Otherwise, $T_a\cap T_b\neq\emptyset$ \\
+         Let $c\in T_a\cap T_b$. Claim: $T_a=T_b\iff T_a\subseteq T_b\land T_b\subseteq T_b$. \\
+         Let $x\in T_a$
+         \begin{align*}
+           &\implies x\sim a\land a\sim c\land c\sim b &&(c\in T_a, c\in T_b) \\
+           &\implies x\sim c\land c\sim b \\
+           &\implies x\sim b \\
+           &\implies x\in T_b\\
+           &\implies T_a\subseteq T_b\land T_b\subseteq T_a
+         \end{align*}
+         2) $\forall a\in A,\ T_a\neq\emptyset:$ because $a\in T_a$ \\
+         3) $A=\bigcup T_a, a\in A$. Clearly, $\bigcup T_a\subseteq A, a\in A$ \\
+         $\forall a\in A\implies a\in T_a\implies A\subseteq \bigcup T_a, a\in A$
+       \end{proof}
+     #+END_LaTeX
+** Homework questions
+*** Pg. 98, problem 7
+    Is it possible for a partially oredered set to have a least element, and a minimal element that is not a least? No.
+    #+BEGIN_LaTeX
+      \begin{proof}
+        Let $m\in A$ be minimal, and $l\in A$ be the least.
+        \begin{align*}
+          &\implies l\leq m &&\text{because l is less than or equal to all elements} \\
+          &\implies l=m &&\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX
+*** 1.8.10
+    Negate: if $x$ is an odd integer, then $x^2$ is an even integer = $\exists \text{ odd integer } x\ s.t.\ x^2\text{ is odd}$
+* 2018 April 23
+** =Functions=
+*** Definition
+    A function $f$ from set $A$ to set $B$ is a subset $f\subseteq A\times B$ such that $\forall a\in A, \exists!\ b\in B$ such that $(a,b)\in f$
+*** Notation
+**** $f: A\mapsto B$
+**** $a\mapsto f(a)=b$
+*** Definitions
+    Let $f: A\mapsto B$ be a function.
+**** $\forall a\in A,\ f(a)$ is called the =image= of a
+**** $A$ is called the domain
+**** $B$ is called the co-domain
+**** $\text{Range}(f)=\text{Image}(f)=\setc{t(a)}{a\in A}\subseteq B$ \\
+     =Range= or image of $A$ under $f$ (range or image of A)
+**** $f, g:\ A\mapsto B$ are functions. \\
+     $f=g\iff f(a)=g(a)\ \forall a\in A$ \\
+     $f=g\subseteq A\times B$
+*** =One-to-one= / =Injection=
+     $f$ is 1-1 (injection) if $a_1,a_2\in A$ and $a_1\neq a_2\implies f(a_1)\neq f(a_2)$ \\
+     Contrapositive: If $f(a_1)=f(a_2)\implies a_1=a_2$
+*** =Onto= / =Surjection=
+     $f$ is onto (surjective) if Ran$(f)=B\ (\forall b\in B \exists a\in A \text{ s.t. } f(a)=b)$
+*** =one-to-one corespondence= / =bijection=
+    Means 1-1 + onto
+*** Examples.
+**** $f=\R\mapsto\R$ \\
+     $f(x)=x^2$ \\
+     Image of $x:\ f(x)=x^2$ \\
+     Domain = codmain = $\R$ \\
+     $\text{Im}(f)=\setc{y\in\R}{y\geq0}
+**** $f(x)=\frac{1}{x-1}$ \\
+     Domain: $\R \setminus \set{1} = (-\infty,1)\cup(1\infty)$ \\
+     Co-domain = Ran$(f)$
+**** $f:\ \Z\mapsto\Z$ \\
+     $f(n)=2n$ \\
+     Domain = co-domain = $\Z$ \\
+     Ran$(f)=2\Z$
+**** Let $A=\set{1,2,3,4}, B=\set{1,2,3}$. Is there a bijection $A$ to $B$? No.
+**** $A=\set{1,2,3,\ldots}, B=\set{2,3,4,\ldots}$ is a bijection? Yes. (1-2, 2-3, 3-4, \ldots)
+**** $f:\ \Z\mapsto3\Z.\ f(n)=3n$. Is this a bijection? Yes. \\
+     1-1: If $f(n_1)=f(n_2)$ or $3n_1=3n_2\implies n_1=n_2$ \\
+     Onto: $\forall 3n\in3\Z\implies 3n=f(n)$ \qed
+**** $f(x)=x^2:\ \R\mapsto\R$ \\
+     Onto: No. $-1\notin\text{Ran}(f)$ \\
+     1-1: No. $f(1)=f(-1)=$
+** =Composition=
+*** Definition
+    $f:\ A\mapsto B, g:\ B\mapsto C$ are functions. \\
+    $g\circ f: A\mapsto C$ \\
+    $(g\circ f)(a)=g(f(a))\ \forall a\in A$ \\
+    $g\circ f:\ A\mapsto^f B\mapsto^g C$
+*** Theorms
+**** Associativity \\
+     Let $f: A\mapsto B, g: B\mapsto C, h: C\mapsto D$ be functions \\
+     Then $h\circ(g\circ f) = (h\circ g)\circ f$ \\
+     #+BEGIN_LaTeX
+       \begin{proof}
+         $h\circ(g\circ f)=(h\circ g)\circ f\iff (h\circ(g\circ f))(x)=((h\circ g)\circ f)(x) \forall x\in A$
+         \begin{align*}
+           (h\circ(g\circ f))(x) &= h((g\circ f)(x)) \\
+           &= h(g(f(x))) \\
+           ((h\circ g)\circ f)(x) &= (h\circ g)(f(x)) \\
+           &= h(g(f(x))) \\
+           &= (h\circ(g\circ f))(x) &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+* 2018 April 25
+** Theorms
+*** Let $f: A\mapsto B,\ g: B\mapsto C$.
+**** If $f$ and $g$ are 1-1, so is $g\circ f$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Let $a_1,a_2\in A$ and $a_1\neq a_2$
+         \begin{align*}
+           &\implies f(a_1)\neq f(a_2) &&\tag{f is 1-1} \\
+           &\implies g(f(a_1))\neq g(f(a_2)) &&\tag{g is 1-1}
+         \end{align*}
+         That is, $(g\circ f)(a_1)\neq (g\circ f)(a_2)$. \\
+         That is, $g\circ f$ is 1-1\qedhere
+       \end{proof}
+     #+END_LaTeX
+**** If $f$ and $g$ are onto, so is $g\circ f$
+     \\ Want to show: $\forall c\in C, \exists a\in A\text\ s.t.\ (g\circ f)(a)=c$ \\
+     #+BEGIN_LaTeX
+       \begin{proof}
+         \begin{align*}
+           &\forall c\in C,\exists b\in B\ s.t.\ g(b)=c &&\tag{g in onto} \\
+           &\implies \exists a\in A\ s.t.\ f(a)=b &&\tag{f is onto} \\
+           &\implies c=g(b)=g(f(a))=(g\circ f)(a) \\
+           &\implies g\circ f\text{ is onto}&&\qedhere
+         \end{align*}
+
+       \end{proof}
+     #+END_LaTeX
+**** If $f$ and $g$ are bijecions, so is $g\circ f$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Since $f,g$ are bijections \\
+         $\implies$ f and g are 1-1, and are onto \\
+         $\implies g\circ f$ is 1-1 and onto \\
+         by 1,2 $\implies g\circ f$ is a bijection \qedhere
+       \end{proof}
+     #+END_LaTeX
+** Examples
+*** $f: A\mapsto B,\ g: B\mapsto C$. (HW 2.2.4)
+**** If $g\circ f$ is 1-1. Is $f$ or $g$ 1-1? \\
+     f is 1-1.
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Let $a_1,a_2\in A$ such that $f(a_1)=f(a_2)$.
+         \begin{align*}
+           &\implies (g\circ f)(a_1)=(g\circ f)(a_2) \\
+           &\implies a_1=a_2 &&\tag{Since $g\circ f$ is 1-1}
+         \end{align*} \qedhere
+       \end{proof}
+     #+END_LaTeX
+     Direct proof:
+     #+BEGIN_LaTeX
+       \begin{proof}
+         If $a_1\neq a_2$
+         \begin{align*}
+           &\implies (g\circ f)(a_1)\neq(g\circ f)(a_2) &&\tag{since $g\circ f$ is 1-1}\\
+           &\implies f(a_1)\neq f(a_2) &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+     If $g\circ f$ is 1-1, $g$ is not necessarily 1-1.
+**** If $g\circ f$ is onto, is $f$ or $g$ onto?
+     \\ Want: $\forall c\in C,\exists b\in B\ s.t.\ g(b)=c$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Since $g\circ f$ is onto$\implies\exists a\in A\ s.t.\ (g\circ f)(a)=c$ \\
+         Le $b=f(a)\in B\implies g(b)=c \qedhere$
+       \end{proof}
+     #+END_LaTeX
+     If $g\circ f$ is onto, $f$ is not necessarily onto.
+** =Identity map=
+*** Definition
+    $Id_a: A\mapsto A. Id_a(a)=a, \forall a\in A$
+*** Lemma
+**** $Id_A$ is a bijection
+     #+BEGIN_LaTeX
+       \begin{proof}
+         1-1 \\
+         If $a_1\neq a_2$ \\
+         $Id_A(a_1)=a \neq Id_A(a_2) = a_2$ \qedhere
+       \end{proof}
+       \begin{proof}
+         $\forall a\in A\ a=Id_A(a)$
+       \end{proof}
+     #+END_LaTeX
+**** Let $f: A\mapsto B$ \\
+     Then $f\circ Id_A=f,\ Id_B\circ f=f$
+*** Theorm
+**** $f: A\mapsto B$ is a bijection $\iff\exists g: B\mapsto A\ s.t.\ g\circ f=Id_A\land f\circ g=Id_B$ \\
+     #+BEGIN_LaTeX
+       \begin{proof}
+         $\impliedby$ 1-1. Let $a_1,a_2\in A$ s.t. $f(a_1)=f(a_2)$
+         \begin{align*}
+           g(f(a_1)) &= g(f(a_2)) \\
+           (g\circ f)(a_1) &= (g\circ f)(a_2) \\
+           Id_A(a_1) &= Id_A(a_2) \\
+           a_1 &= a_2 &&\tag{By definition of identity map}
+         \end{align*}
+         Onto. $\forall b\in B$ want $a\in A$ s.t. $f(a)=b$
+         \begin{align*}
+           \implies (f\circ g)(b) &= Id_B(b) \\
+           f(g(b)) &= b \\
+           \implies f(a) &= b &&\tag{Let $a=g(b)\in A$}
+         \end{align*}
+         $\implies$ Want to fine $g: B\mapsto A$. $\forall b\in B$, define $g(b)$ \\
+         Since $f$ is onto $\implies \exists a\in A$ s.t. $f(a)=b$. \\
+         $\exists! a\in A$ s.t. $f(a)=b$ If $f(a_1)=b=f(a)\implies a_1=a$ because f is 1-1. \\
+         Define $g(b)=a$.
+         \begin{align*}
+           (f\circ g)(b) &= f(g(b)) \\
+           &= f(a) \\
+           &= b \\
+           &= Id_B(b)\implies f\circ g=Id_B \\
+           (g\circ f)(a) &= g(f(a)) &&\tag{$\forall a\in A$} \\
+           &= a \\
+           &= Id_A(a)\implies g\circ f=Id_A &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+*** Examples
+**** Let $A=\set{1,2,3,\ldots,n}$. Find all bijections from A to A. \\
+     First element has $n$ options for mappings, second element has $n-1$ options for mappings, third $n-2$, \ldots = $n!$
+* 2018 April 27
+** =Inverse=
+*** Definition
+    Let $f: A\mapsto B$ and $g: B\mapsto A\ s.t.\ g\circ f=Id_A\land f\circ g=Id_B$
+    $g$ is called the =inverse= of $f$: $g=f^{-1}$
+*** Lemma
+**** If $f: A\mapsto B,\ g: B\mapsto C$ are bijective, then $(g\circ f)^{-1} = f^{-1}\circ g^{-1}$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         $f\circ f^{-1}=Id_B. f^{-1}\circ f=Id_A.$
+         \begin{align*}
+           (g\circ f)\circ(g\circ f)^{-1} &= Id_C \\
+           (g\circ f)^{-1}\circ(g\circ f) &= Id_A \\
+           (g\circ f)\circ(f^{-1}\circ g^{-1}) &= g\circ(f\circ f^{-1})\circ g^{-1} \\
+           &= g\circ Id_B\circ g^{-1} \\
+           &= g\circ g^{-1} \\
+           &= Id_C &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+** =Images= and =Inverse Images=
+*** Definition
+    Let $f: A\mapsto B$ is a function. \\
+    1) $\forall X\subseteq A, f(X)=\setc{f(a)}{a\in X}\subseteq B$ is called the image of X.
+    2) $\forall Y\subseteq  B$ set. $f^{-1}(Y)=\setc{a\in A}{f(a)\in Y}$ is the inverse image of Y (doesn't have to be a function).
+*** Examples
+**** $f: \Z\mapsto\Z$. $f(n)=|n|$. \\
+     $x=\set{-1,2,3}$. \\
+     $f(x)=\set{1,2,3}$. \\
+     $Y=\set{-1,2,3}$. \\
+     $f^{-1}(Y)=\set{\pm2, \pm3}$.
+**** $f: A\mapsto B$ \\
+     $f^{-1}(B)=A$ \\
+     Clearly, $f^{-1}(B)\subseteq A$ and \\
+     $\forall a\in A, \exists! b\in B$ s.t. $f(a)=b \in B\implies a\in f^{-1}(B)\implies A\subseteq f^{-1}(B)$
+**** $f: A\mapsto B$ is a bijection $\iff \forall b \in B,\ f^{-1}(\set{b})$ has exactly one element.
+**** $f: A\mapsto B$ \\
+     $Im(f) = f(A)\subseteq B$ \\
+     $\forall b\in B\setminus f(A)$ \\
+     $f^{-1}(b)=f^{-1}(\set{b})=\emptyset$
+**** $f: A\mapsto B$ is onto \\
+     $\Omega=\setc{f^{-1}(b)}{b\in B}$ is a partition of A.
+* 2018 April 30
+** Parition examples
+*** $f: A\mapsto B$ is onto
+    $\forall b\in B. f^{-1}=\setc{a\in A}{f(a)=b}$ \\
+    $\Omega=\setc{f^{-1}(b)}{b\in B}$
+*** $f: \R^2=\setc{(x,y)}{x,y\in\R}\mapsto\R$
+    $(x,y)\mapsto x-y$ \\
+    $\forall b\in\R, f^{-1}(b)=\setc{(x,y)}{x-y=b}$ \\
+    $x-y=b\iff x=y+b$ is a linear line. \\
+    A line is  a partition / equivalence class. All lines form the paritions.
+*** $f: \R^2\mapsto\R_+=\setc{r\in\R}{r\geq0}$
+    $(x,y)\mapsto x^2+y^2$ \\
+    $f^{-1}(r)=\setc{(x,y)}{x^2+y^2=r}$
+** =Division algorithm=
+*** Definition
+    $\forall a,b\in\Z, b>0 \implies a=qb+r\ 0\leq r<b$. q is quotient, r is remainder
+*** Notation
+    $a|b: b=ac$ for some $a,b,c\in\Z$ \\
+    a divides b or b is divisable by a. b is a multiple of a. a is a divisor or a factor of b. \\
+    $a|b\iff\frac{b}{a}\in\Z$
+*** Properties
+    1) $1|a\ \forall a\in\Z$
+    2) $a|a\ \forall a\in\Z\ a\neq 0$
+    3) If $a|b \land b\neq 0 \implies |a|\leq|b|$
+    4) If $0<a,b\land a|b \implies a\leq b$
+    5) If $a,b>0\land a|b\land b|a \implies a=b$
+    6) If $a|b\land a|c \implies \forall s,t\in\Z\ a|(sb+tc)$
+    7) $a\in\Z$ is called invertible under $x$ if $\exists b\in\Z$ s.t. $ab=1$ \\
+       $1,-1$ are the only invertible elements.
+    8) $\forall a\in\Z, \exists b\in\Z\ s.t.\ a+b=0$ $b$ is called $-a$
+** =Common Divisor=
+*** Definition
+    $d$ is a common divisor of $a$ and $b$ if $d|a\land d|b$
+** =Greatest Common Divisor (GCD)=
+*** Definition
+**** Bad definition: \\
+    Let $a,b\in\Z$ (not both 0). The GCD largest positive common divisor of $a$ and $b$.
+**** Good definition: \\
+     Let $a,b\in\Z$ (not both 0). $d>0$ is called a gcd of $a$ and $b$:
+     1) $d|a,\ d|b$
+     2) If $c|a\land c|b\implies c|d$
+*** Lemma
+**** Let $a,b\in\Z$ (not both 0). If $a,fb$ have a gcd $\implies$ it is unique
+     #+BEGIN_LaTeX
+         \begin{proof}
+           Let $d,d_1$ be gcds of $a$ and $b$
+           \begin{align*}
+             &\implies d|a, d|b \\
+             &\implies d|d_1
+           \end{align*}
+           Similarly, $d_1|a, d_1|b \implies d_1|d$ \\
+           Since $d|d_1\land d_1|d \implies d=d_1 \qedhere$
+         \end{proof}
+     #+END_LaTeX
+** =Least Common Multiple (LCM)=
+*** =Common multiple=
+    Let $a,b\geq 0$ $m$ is called a common multiple of $a$ and $b$ if $m$ is a multiple of $a$ and a multiple of $b$.
+*** Definition
+**** Bad definition
+     The LCM of a and b is the smallest positive common multiple of a and b.
+**** Good definition
+     Let $a,b>0$ $m$ is called a least common multiple of $a$ and $b$:
+     1) $a|m, b|m$
+     2) If $a|n,\ b|n \implies m|n$
+* 2018 May 2
+** Theorms
+*** If $a,b\in\Z$ (not both 0) $\implies a$ and $b$ have a gcd $d$ s.t. $d=ua+vb$ for some $u,v\in\Z$
+    #+BEGIN_LaTeX
+      \begin{proof}
+        Let $a,b\in\Z,\ S=\setc{sa+tb>0}{s,t\in\Z}\subseteq\N$. \\
+        Clearly, $S\neq\emptyset$ as $a^2+b^2>0\in S$. \\
+        Let $d\in S$ be the least element. \\
+        Claim: $d$ is a gcd of $a$ and $b$. \\
+        Since $d\in S,\ \exists u,v\in Z\ s.t.\ d=ua+vb$. \\
+        Prove: $d|a,\ d|b$
+        \begin{align*}
+          a &= qd+r &&0\leq r\leq d-1 \\
+          &\text{Division algorithm: ($d|a\iff r=0$). Assume $r>0$} \\
+          r &= a-qd \\
+          &= a-q(ua+vb) &&\tag{substitution} \\
+          &= (1-qu)a+(-qv)b \in S\\
+          &\implies r<d \\
+          &\rightarrow\leftarrow &&\tag{Since $d$ is the least element in $S$}
+        \end{align*}
+        This contradicts the assumption that $r>0$, therefore $r$ must be equal to $0$, which means that $d|a$. \\
+        Similarily $d|b$. \\
+        If $c|a,\ c|b \implies c|(ua+vb) \implies c|d$ $\qedhere$
+      \end{proof}
+    #+END_LaTeX
+**** Examples
+***** $(2,3)=1=(-1)2+(1)(3)=22+(-1)3$
+***** $(4,6)=2=(-1)4+(1)(6)=(2)4+(-1)6$
+** =coprime/relativly prime=
+*** Definition
+    $a,b\in\Z$ are coprime or relativly prime if $gcd(a,b)=1$
+*** Theorm
+    $(a,b)=1\iff\exists m,n\in\Z\ s.t.\ 1=ma+nb$
+*** Proof
+    #+BEGIN_LaTeX
+      \begin{proof}
+        $\implies$ done (by previous thm). \\
+        $\impliedby$ Let $d=(a,b)$
+        \begin{align*}
+          &\implies d|a\land d|b \\
+          &\implies d|(ma+nb) \\
+          &\implies d|a \\
+          &\implies d=1 &&\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX
+*** Warning
+    If $c=ma+nb>0$ $c$ is not the gcd of $a$ and $b$ in general
+**** $(4,2)=2$
+***** $4=1*4+0*2$ is not $2=(4,2)$
+*** Lemma
+**** If $a|c,\ b|c$ and $(a,b)=1\implies (ab)|c$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         $\exists m,n\in\Z\ s.t.\ 1=ma+nb$
+         \begin{align*}
+           &\implies c=mac+nbc \\
+           &ab|ac,\ ab|bc &&\tag{$\frac{ac}{ab}\frac{c}{b}\in\Z$ by definition} \\
+           &\implies ab|(m(ac)+n(bc)) \\
+           &\implies ab|c &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+**** If $a|(bc)$ and $(a,b)=1 \implies a|c$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Let $s,t\in\Z$ such that $sa+tb=1$
+         \begin{align*}
+           sac+tbc &= c &&\tag{multiply both sides by $c$} \\
+           \frac{sac}{a} &= sc \\
+           \frac{tbc}{a} &= t\frac{bc}{a} &&\tag{all numbers are integers} \\
+           \implies &a|(sac+tbc) \\
+           \implies &a|c &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+* 2018 May 4
+** =Euclidean Algorithm=
+*** Used to find $(a,b)$
+*** Lemma
+    If $a,b\in\Z, b>0$ and $a=qb+r, 0\leq r < b$ $\implies (a,b)=(b,r)$
+    #+BEGIN_LaTeX
+      \begin{proof}
+        Let $d=(a,b),\ d_1=(b,r)$
+        \begin{align*}
+          &\implies d|a,\ d|b \\
+          &\implies d|(a-qb) &&\tag{linear combination of $a,b$} \\
+          r &= a-qb \\
+          &\implies d|r \\
+          &\implies d|d_1 \\ \\
+          &d_1|b,\ d_1|r \\
+          &\implies d_1|(qb+r) &&\tag{linear combination of $b,r$} \\
+          &\implies d_1|a \\
+          &\implies d_1|d \\
+          &\implies d=d_1 &&\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX
+*** Euclidean algorithm for $(a,b),\ a,b\geq0$
+**** $a=q_1b+r_1\ 0\leq r_1<b$
+**** If $r_1=0\implies (a,b)=b$
+**** Else $b=q_2r_1 + r_2\ 0\leq r_2<r_1$
+**** $r_{n+1} = q_{n+3}r_{n+2} \implies (a,b)=r_{n+2}$
+*** Examples
+**** $(10,3)$
+     |  a | q | b | r |
+     |----+---+---+---|
+     | 10 | 3 | 3 | 1 |
+     |  3 | 3 | 1 | 0 |
+     $\implies(10,3)=1$
+**** $(44,28)$
+     |  a | q |  b |  r |
+     |----+---+----+----|
+     | 44 | 1 | 28 | 16 |
+     | 28 | 1 | 16 | 12 |
+     | 16 | 1 | 12 |  4 |
+     | 12 | 3 |  4 | 0  |
+     $\implies (44,28)=4$
+** =Prime number=
+*** Definition
+    $p>1$ is called a prime if $d>0,\ d|p\implies d=1$ or $d=p$
+**** Negation:
+***** $n>1$ is not a prime $\iff \exists a,b>1\ s.t.\ n=ab$
+***** $\iff \exists a>1,\ a\neq n,\ a|n$
+*** Lemma
+**** Let $p$ be a prime and $a\in\Z \implies p|a$ or $(p,a)=1$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         If $p|a$, $\qed$ \\
+         Otherwise, $p$ does not divide $a$. \\
+         Let $d=(p,a)$
+         \begin{align*}
+           &\implies d|p\land d|a \\
+           &\implies d=1 \text{ or } d=p \\
+           &\text{if } d=p \\
+           &\implies p|a \rightarrow\leftarrow \\
+           &\implies d=1 &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+***** corollary:
+      If $p$ is a prime and $p|ab \implies p|a$ or $p|b$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          If $p|a$, $\qed$ \\
+          Otherwise, $(p,a)=1 \implies p|b \qedhere$ \\
+          ($a|bc,\ (a,b)=1 \implies a|c$)
+        \end{proof}
+      #+END_LaTeX
+** Prime factorization theorm
+   Any $n>1$ is a unique product of primes.
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Existance \\\\
+       If $n$ is a prime, $\qed$ \\
+       Otherwise, $n=ab\ \ 1<a,b<n$ \\
+       By strong induction, $a$ and $b$ are products of primes. \\
+       $\implies$ $n$ is a product of primes \\\\
+
+       Uniqueness \\\\
+       Let $n=p_1p_2\ldots p_k$ where $p_1,\ldots,p_k$ are prime and $p_1\leq \ldots\leq p_k$
+     \end{proof}
+   #+END_LaTeX
+* 2018 May 11
+** Logics (10 pts)
+*** Negation
+**** If $A\implies B$ becomes $A$ but not $B$ ($A\land \neg B$)
+*** Contrapositive
+*** Example
+**** If $x$ is positive then $x$ is even
+***** Negation: $\exists$ positive $x$ s.t. $x$ is odd
+***** Contrapositive: If $x$ is odd then $x\leq 0$ ($x$ is not positive)
+** Set theory (10 pts)
+*** Union ($A\cup B$)
+*** Intersection ($A\cap B$)
+*** Empty set ($\emptyset$)
+*** Set subtraction ($A\setminus B = A - B$)
+*** Subsets ($A\subseteq U$)
+*** Complement ($A^c$)
+*** Power set ($\ps(A)$)
+*** Example
+    Prove: $$(\bigcup_{i\in I} A_i)^c = \bigcap_{i\in I} A_i^c$$
+    #+BEGIN_LaTeX
+      \begin{proof}
+        $x \in (\cup_{i\in I} A_i)^c$
+        \begin{align*}
+          &\iff x\in U, x\notin \bigcup_{i\in I} A_i \\
+          &\iff x\notin A_i \forall i\in I \\
+          &\iff x\in A_i^c \forall i \in I \\
+          &\iff x \in \bigcap_{i\in I} A_i^c &&\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX
+** Induction (10 pts)
+*** $P_n$ is a statment $n=1,2,\ldots$
+**** $P_1$ is true
+**** Assume $P_k$ is true $\implies P_{k+1}$ is true
+**** $\implies P_n$ is true for all $n$
+*** Example
+    $$\sum_{i=1}^n i = \frac{n(n+1)}{2}$$
+    #+BEGIN_LaTeX
+      \begin{proof}
+        BC: LHS = 1, RHS = $\frac{1(1+1)}{2} = 1$ \\
+        IH: Assume $$\sum_{i=1}^k i = \frac{k(k+1)}{2}$$
+        \begin{align*}
+          $$\sum_{i=1}^{k+1} &= \sum_{i=1}^k i + k + 1$$ \\
+          &= \frac{k(k+1)}{2} + \frac{2(k+1)}{2} \\
+          &= \frac{(k+1)(k+2)}{2} &\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX
+** Relations (20 pts)
+*** A relation $R$ on a set $A$
+**** $R\subseteq A\times A$
+**** $(a,b)\in R \iff a\sim b$
+**** $\sim$ is a relation on $A$
+*** Reflexive: $\forall a\in A,\ a\sim a$
+*** Symmetric: $a\sim b \implies b\sim a$
+*** Anti-symmetric: $a\sim b \land b\sim a \implies a=b$
+*** Transitive: $a\sim b \land b\sim c \implies a\sim c$
+*** Ordering relation
+**** Partial order: $leq$ (reflexive, anti-symmetric, transitive)
+*** Equivalence relation: $\sim$ (reflexive, symmetric, transitive)
+*** Know the fuck out of equivalence relations
+** Functions (10 pts)
+*** $f: A\mapsto B$ means $f\subseteq A\times B$
+*** $\forall a\in A, \exists! b\in B\ s.t.\ (a,b)\in f$
+*** 1-1: If $a_1\neq a_2\implies f(a_1)\neq f(a_2)$
+**** Or $f(a_1)=f(a_2)\implies a_1=a_2$
+*** Onto: $\forall b\in B, \exists a\in A\ s.t.\ f(a)=b$
+*** Bijection: 1-1+onto
+*** Composition
+**** $f: A\mapsto B$
+**** $g: B\mapsto C$
+**** $(g\circ f)(a) = g(f(a))$
+* 2018 May 16
+** Theorms
+*** 1
+    If $n>1$ and $n=P_1\ldots P_m=Q_1\ldots Q_n$ s.t. $P_i,Q_j$ are primes and $P_1\leq P_2\leq\ldots\leq P_m$
+    and $Q_1\leq Q_2\leq\ldots\leq Q_n \implies m=n$ and $P_i=Q_i \forall i$
+**** Recall:
+***** $P\geq 1$ is called a prime if $d|p,\ d>0\implies d=1$ or $p$
+***** If $p$ is a prime and $p|ab \implies p|a$ or $p|b$
+    #+BEGIN_LaTeX
+      \begin{proof}
+        Induction on m. \\
+        Base case: $m=1$
+        \begin{align*}
+          &\implies P_1=Q_1Q_2\ldots Q_n \\
+          &\implies Q_1|P_1 \\
+          &\implies Q_1=P_1 &&\tag{Since q is prime and primes are greater than 1 and p is a prime} \\
+          &\implies n=1
+        \end{align*}
+
+        Assume result is true for $m$. \\
+        Need result for $m+1$. \\
+        $P_1\ldots P_{m+1} = Q_1\ldots Q_n$
+        \begin{align*}
+          &\implies P_{m+1}|Q_1Q_2\ldots Q_n \\
+          &\implies \exists i\ s.t.\ P_{m+1}|Q_i \\
+          &\implies P_{m+1} \leq Q_i \leq Q_n \\
+          &\text{Similarly, }\exists j\ s.t.\ Q_n|P_j \\
+          &\implies Q_n\leq P_j\leq P_{m+1} \\
+          &\implies P_{m+1}=Q_n \\
+          &\implies P_1\ldots P_m = Q_1\ldots Q_{n-1} \\
+          &\tag{by induction assumption} \\
+          &\implies m=n \iff m+1=n\and P_1\Q_1\ldots P_m=Q_{n-1} &&\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX
+** =Congruence modulo n=
+*** Definition
+    $\Z$, $n$ is a positive integer, $a,b\in\Z$ are congruent modulo n: $a\equiv b \pmod{n}$ if $n|(a-b)$
+*** Theorms
+**** $\equiv\pmod{n}$ is an equivalence relation on $\Z$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         1. $\forall a\in\Z,\ n|0\lor n|(a-a)\implies a\equiv a \pmod{n}$ \\
+         2. If $a\equiv b \pmod{n}\implies n|(a-b)\iff \frac{a-b}{n}\in\Z \implies \frac{b-a}{n}=-\frac{a-b}{n}\in\Z \implies n|(b-a)\implies b\equiv a\pmod{n}$
+         3. If $a\equiv b\pmod{n} \land b\equiv c\pmod{n} \implies n|(a-b)\land n|(b-c) \implies n|[(a-b)+(b-c)]\text{ or } n|(a-c)\implies a\equiv c\pmod{n} \qedhere$
+       \end{proof}
+     #+END_LaTeX
+***** The equivalence class for congruence relation is called a congruence class
+     $T_a = \setc{b\in\Z}{b\equiv a\pmod{n}}$ is the congruence class of $a$.
+**** $\forall a\in\Z,\ T_a=n\Z+a$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         $''\subseteq''$ Let $b\in T_a$
+         \begin{align*}
+           &\implies b=\equiv a\pmod{n} \\
+           &\implies n|(b-a)\text{ or } b-a=dn,\ d\in\Z \\
+           &\implies b=dn+a\in n\Z+a
+         \end{align*}
+         $''\supseteq''$ Let $b\in n\Z+a$
+         \begin{align*}
+           &\implies b=dn+a,\ a\in\Z \\
+           &\implies b-a=dn \\
+           &\iff n|(b-a) \\
+           &\iff b\equiv a\pmod{n} \\
+           &\implies b\in T_a &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+**** $\equiv\pmod{n}$ has exactly $n$ different congruence classes: $T_0\in\Z, T_1=n\Z+1,\ldots, T_{n-1}=n\Z+n-1$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         1. $\forall a\in\Z,\ T_a=T_r$ for some $0\leq R\leq n$
+         \begin{align*}
+           &\implies a=qn+r && 0\leq r<n \\
+           &\implies a-r=qn \\
+           &\implies n|(a-r) \\
+           &\implies a\equiv r\pmod{n} \\
+           &\implies T_a=T_r &&
+         \end{align*}
+         2. $T_r\neq T_s\ \forall 0\leq r, s<n, r\neq s$ \\
+         If $T_r=T_s$ for some $r\neq s$ \\
+         $S\in T_s=T_r$
+         \begin{align*}
+           &\implies r\equiv s\pmod{n} \\
+           &\implies n|(r-s) \\
+           &\text{note: } -n<r-s<n \\
+           &\implies r-s = 0 \\
+           &\implies r=s \\
+           &\rightarrow\leftarrow &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+*** Notation
+    $\forall a\in\Z$ \\
+    $\bar{a} = T_a = n\Z+a$ \\
+    The congruence mod n = $\set{\varphi, T, \ldots, \overline{n-1}} = \Z_n$
+** =Euler-phi function=
+*** Definition
+    $\varphi(n)=|\setc*{1\leq i\leq n}{(i,n)=1}|$ \\
+    $|A|=$ # of elements in $A$ that are relatively prime if A is a fininite set. \\
+    #+BEGIN_LaTeX
+      \begin{align*}
+        &\varphi(1)=1 &&\set{1} \\
+        &\varphi(2)=1 &&\set{1} \\
+        &\varphi(3)=2 &&\set{1,2} \\
+        &\varphi(4)=2 &&\set{1,3} \\
+        &\varphi(5)=4 &&\set{1,2,3,4} \\
+        &\varphi(6)=2 &&\set{1,5}
+      \end{align*}
+    #+END_LaTeX
+    If $p$ is a prime $\implies \varphi(p) = p-1$ \\
+    $\Z_n=\set{\bar{0},\bar{1},\ldots,\overline{n-1}}$
+*** Want to define $+,\times$ on $\Z_n$
+**** $\bar{a}+\bar{b}=\overline{a+b}$
+**** $\bar{a}+\bar{b}=\overline{ab}$
+**** Example
+***** $\Z_3: \bar{2}\times\bar{2}=\bar{4}=\bar{1}$
+***** $\bar{2}\equiv\overline{-1}$ because $\pmod{3}$
+***** In $\Z_5$: $\bar{2}\times\bar{3}=\bar{6}=\bar{1}$
+*** Well defined
+* 2018 May 18
+** HW problem
+*** Theorm
+    If $a \equiv b \pmod{n}$ and $c \equiv d \pmod{n}$ $\implies$ $a+c \equiv b+d \pmod{n}$ and $ac \equiv bd \pmod{n}$
+    #+BEGIN_LaTeX
+      \begin{proof}
+        \begin{align*}
+          \frac{a+c-(b+d)}{n} &= \frac{a-b}{n} + \frac{c-d}{n} \\
+          \implies a+c &\equiv b+d\pmod{n} \\
+          \frac{ac-bd}{n} &= \frac{ac-bc+bc-bd}{n} \\
+          &= \frac{(a-b)c}{n} + \frac{b(c-d)}{n} \\
+          \implies ac &\equiv bd\pmod{n} &&\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX
+**** Corolllary
+     If $\bar{a} = \bar{b}$ and $\bar{c} = \bar{d}$ $\implies$ $\bar{a}+\bar{c} = \bar{b} + \bar{d}$ and $\bar{a}\bar{c} = \bar{b}\bar{d}$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         $\bar{a}=\bar{b} \land \bar{c}=\bar{d} \iff a\equiv b\pmod{n} \land c\equiv d\pmod{n}$
+         \begin{align*}
+           \implies a+c &\equiv b+d \pmod{n} \\
+           ac &\equiv bd \pmod{n} \\
+           \iff \overline{a+c} &= \overline{b+d} \\
+           \overline{ac} &= \overline{bd} \\
+           \bar{a} + \bar{c} &= \overline{a+c} \\
+           \bar{b} + \bar{d} &= \overline{b+d} \\
+           \bar{a}\bar{c} = \overline{ac} &= \overline{bd}=\bar{a}\bar{d} &&\qedhere
+         \end{align*}
+       \end{proof}
+     #+END_LaTeX
+** Properties
+*** $\bar{0}+\bar{a} = \bar{a}$
+*** $\bar{1}\bar{a}=\bar{a}$
+*** $\bar{a}+\bar{b}=\bar{b}+\bar{a}$
+*** $\bar{a}\bar{b}=\bar{b}\bar{a}$
+*** $\bar{a}(\bar{b}+\bar{c})=\bar{a}\bar{b}+\bar{a}\bar{c}$
+*** $(\bar{a}+\bar{b})+\bar{c}=\bar{a}+(\bar{b}+\bar{c})$
+*** $(\bar{a}\bar{b})\bar{c}=\bar{a}(\bar{b}\bar{c})$
+*** $\forall a\in\Z,\ \bar{a}+\overline{-a}=\bar{0}$
+** Definition
+*** 1
+    $\bar{a}\in\Z$ is called =invertible under= $x$ if $\exists b\in\Z\ s.t.\ \bar{a}\bar{b}=\bar{1}$
+    $\iff$ $a$ is invertible modulo $n$.
+*** Theorm
+**** $\bar{a}$ is invertible under $x$ $\iff (a,n)=1$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         $\bar{a}$ is invertible
+         \begin{align*}
+           &\iff \exists \bar{b}\ s.t.\ \bar{a}\bar{b}=\bar{1} \\
+           &\iff \overline{ab}=\bar{1} \\
+           &\iff ab-1 = nk,\ k\in\Z \\
+           &\iff ab+(-k)n = 1 \\
+           &\iff (a,b) = 1 &&\qedhere
+         \end{align*}
+         Two numbers are co-prime iff there exists two numbers s.t. $an+bc = 1$
+       \end{proof}
+
+     #+END_LaTeX
+*** Notation
+**** $\cup(\Z_n) = \setc{\bar{a}}{\bar{a}\text{ is invertible}}$
+     $\Z_n=\set{\bar{0},\bar{1},\ldots,\overline{n-1}}$ \\
+     $\cup(\Z_n)=\setc{\bar{r}}{0\leq r\leq n-1,\ (r,n)=1}$ \\
+     $|\cup(\Z_n)|=\varphi(n)$
+**** If $\bar{a}\bar{b}=\bar{1}$ write $\bar{b}=\bar{a}^{-1}$
+***** Example
+      $n=9$, $\cup(\Z_9)=\set{\bar{1},\bar{2},\bar{4},\bar{5},\bar{7},\bar{8}}$ \\
+      $1^{-1}=1$, $\bar{2}^{-1}=\bar{5}$ \\
+      $\bar{4}^{-1} = \bar{7}$ \\
+      $\bar{5}^{-1}=\bar{2}$
+** Cardinality
+*** Definition
+**** Weak definition
+    Let $A$ be a set. The cardinality of $A$ tells us how "many" elements $A$ has.
+**** Actual definition
+     Sets $A$ and $B$ have the same cardinality if $\exists$ bijection $f: A\mapsto B$
+*** Notation
+    $|A$ = |B|$ means that there exists a bijection between $A$ and $B$
+*** Example
+**** 1
+       Define $f: \Z\mapsto 2\Z$, $f(n)=2n$
+       #+BEGIN_LaTeX
+       \begin{proof}
+       1-1: If $2n=2m \implies m=n$ \\
+       Onto: $\forall 2n\in 2\Z \implies 2n=f(n)$ $\qedhere$
+       \end{proof}
+      #+END_LaTeX
+**** 2
+     $|\Z|=|\N|$ \\
+     $\Z=\set{0,1,-1,2,-2,3,-3,\ldots}$ \\
+     $\N=\set{1,2,3,\ldots}$
+* 2018 May 21
+** Cardinality
+*** Definitions
+**** $|A|\leq |B|: \exists$ a 1-1 $f: A\mapsto B$
+**** $|A| < |B|:$ there does not exists a bijection $f: A\mapsto B$
+*** Theorms
+**** If $A \subseteq B \implies |A| \leq |B|$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         $f: A\mapsto B = a \mapsto a$ is 1-1 $\implies |A| \leq |B| \qedhere$
+       \end{proof}
+     #+END_LaTeX
+**** If $|A| \leq |B|, |B| \leq |C| \implies |A| \leq |C|$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Since $|A|\leq |B|, |B| \leq |C|$ \\
+         $\implies \exists$ 1-1 maps $f: A\mapsto B, g: B\mapsto C$ \\
+         $\implies g\circ f: A\mapsto C$ is 1-1 \\
+         $\implies |A|\leq|C| \qedhere$
+       \end{proof}
+     #+END_LaTeX
+**** If $|A| \leq |B|, |B| = |C| \implies |A| \leq |C|$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         If $|A|\leq|B|, |B|=|C|$ \\
+         $\implies$ 1-1 $f: A\mapsto B$ and a bijection $g: B\mapsto C$ \\
+         $\implies g\circ f: A\mapsto C$ is 1-1 \\
+         $\implies |A|\le|C| \qedhere$
+       \end{proof}
+     #+END_LaTeX
+**** If $|A|=|B|, |B| \leq |C| \implies |A| \leq |C|$
+     #+BEGIN_LaTeX
+       \begin{proof}
+         If $|A|=|B|, |B|\leq|C|$ \\
+         $\implies \exists$ bijection $f: A\mapsto B$ and 1-1 $g: B\mapsto C$ \\
+         $\implies g\circ f: A\mapsto C$ is 1-1 \\
+         $\implies |A|\leq|C| \qedhere$
+       \end{proof}
+     #+END_LaTeX
+**** If $|A|\leq |B|, |B|\leq |A| \implies |A|=|B|$ (Not trivial)
+** =Finite sets=
+*** Definition
+**** $A$ is a finite set if $A$ has finitely many elements ($|A|\leq\infty$)
+**** $A$ is an infinite set if $A$ is _not_ a finite set
+*** Theorms
+**** Let $A$ be a set. The following are equivalent
+***** $A$ is an infinite set
+***** $\exists \set{a_1,a_2,a_3,\ldots}\subseteq A\ s.t.\ a_i\neq a_j, i\neq j$
+***** There is a proper subset $C$ of $A$ s.t. $|C|=|A|$
+***** Proof:
+      #+BEGIN_LaTeX
+        \begin{proof}
+          $(1)\implies(2)$ \\
+          Pick $a_1\in A$, pick up $a_2\in A, a_2\neq a_1$, pick up $a_3\in A, a_3\neq a_1,a_2 \ldots$ \\
+          Continuing this way gives $\set{a_1,a_2,a_3,\ldots}\subseteq A$ and $a_i\neq a_j$ if $i\neq j$ \\\\
+          $(2)\implies(3)$ \\
+          Let $B=\set{a_1,a_2,\ldots}\subseteq A$ \\
+          $\implies A=B\cup B^c$ \\
+          Let $C=\set{a_2,a_3,\ldots}\cup B^c = A\setminus\set{a_1}$ \\
+          Define $f: A\mapsto C\ s.t.\ f(a_i) = a_{i+1} i \geq 1$ and $f(x)=x \forall x\in B^c$ \\
+          $\implies f$ is a bijection \\
+          $(3)\implies(1)$ \\
+          Let $C$ be a proper subset of $A$ and $f: A\mapsto C$ a bijection. \\
+          Idea: find a subset of $A$ which is not a finite set. \\
+          Let $a_1\in A\setminus C$ \\
+          Let $a_2=f(a_1) \in C \implies a_2\neq a_1$ Since $a_2$ must be in $C$ but $a_1$ is not in C. \\
+          ($C=f(A)$) \\
+          Let $a_3=f(a_2)\in C \implies a_3\neq a_1 \land a_3\neq a_2$ \\
+          Let $a_4=f(a_3) \in C \ldots$ \\
+          $\ldots$ \\
+          We get a subset $\set{a_1,a_2,\ldots}$ of $A$ such that $a_i\neq a_j$ if $i\neq j$ $\implies A$ is *not* a finite set $\iff A$ is an infinite set
+        \end{proof}
+      #+END_LaTeX
+***** Corollary
+      If $A$ is an infinite set, $\implies \exists$ a subset $B=\set{a_1,a_2,\ldots}$ s.t. $|B|=|\N| \implies |\N|\leq|A|$

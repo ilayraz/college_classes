@@ -1,0 +1,13 @@
+Ilay Raz
+CMPS12B
+03/16/18
+README
+
+ToC:
+- DictionaryClient.java
+- DictionaryInterface.java
+- Dictionary.java
+- DuplicateKeyException.java
+- KeyNotFoundException.java
+- Makefile
+- README

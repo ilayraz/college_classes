@@ -1,0 +1,6 @@
+Approach:
+    apint:
+        Storage: byte array where each byte is a digit. Sign stored in a seperate boolean
+        Addition: digit addition with carryover
+        Subtraction: digit subtraction with borrow
+        Multiplication: long multiplication

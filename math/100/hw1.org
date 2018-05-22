@@ -1,0 +1,114 @@
+#+OPTIONS: toc:nil
+
+* 1.6.4
+  Verify that $(A\implies (B\lor C))\iff ((A\land\neg B)\implies C)$
+  is a tautology by showing that
+  $(A\implies (B\lor C))$ and $((A\land\neg B)\implies C)$
+  Have the same truth values.
+  |---+---+---+----------+--------+----------------+-----------------------+----------------------------|
+  | A | B | C | B \lor C | \neg B | A \land \neg B | A \implies (B \lor C) | (A \land \neg B)\implies C |
+  |---+---+---+----------+--------+----------------+-----------------------+----------------------------|
+  | T | T | T | T        | F      | F              | T                     | T                          |
+  | T | T | F | T        | F      | F              | T                     | T                          |
+  | T | F | T | T        | T      | T              | T                     | T                          |
+  | T | F | F | F        | T      | T              | F                     | F                          |
+  | F | T | T | T        | F      | F              | T                     | T                          |
+  | F | T | F | T        | F      | F              | T                     | T                          |
+  | F | F | T | T        | T      | F              | T                     | T                          |
+  | F | F | F | F        | T      | F              | T                     | T                          |
+  |---+---+---+----------+--------+----------------+-----------------------+----------------------------|
+* 1.8.3
+** $x+y$ is even and $y+z$ is even ($x, y$, and $z$ are fixed integers.)
+   $x+y$ is odd or $y+z$ is odd
+** $x>0$ and $x$ is rational ($x$ is a fixed real number.)
+   $x \leq 0$ or $x$ is irrational
+** Either $l$ is parallel to $m$, or $l$ and $m$ are the same lime. ($l$ and $m$ are fixed lines in $\R^2$.)
+   $l$ is not parallel to $m$, and $l$ and $m$ are not the same line
+* 1.8.10
+** If $x$ is an odd integer, then $x^2$ is an even integer.
+   $x$ is an even integer, or $x^2$ is an even integer
+** If $x+y$ is odd and $y+z$ is odd, then $x+z$ is odd
+   $x+y$ is even or $y+z$ is even or $x+z$ is odd
+* 1.12.1
+    If $x+y$ is even and $y+z$ is even, then $x+z$ is even.
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Since $x+y$ is even, let $x+y=2a$ for some $a\in\Z$. Likewise, since $y+z$ is even, let $y+z=2b$ for some $b\in\Z$.
+      \begin{align*}
+        x+z &= x+y+y+z-2y \\
+        &= 2a+2b-2y \\
+        &= 2(a+b-y) &&\qedhere
+      \end{align*}
+    \end{proof}
+  #+END_LaTeX
+* 1.13.3
+** If $x<0$, then $x^2>0$
+   If $x^2\leq 0$, then $x\geq 0$
+** If $x\neq 0$, then there exists $y$ for which $xy=1$
+   For all $y$ for which $xy\neq 1$, $x=0$
+** If $x$ is an even integer, then $x^2$ is an even integer.
+   If $x^2$ is an odd integer, then $x$ is an odd integer
+** If $x+y$ is odd and $y+z$ is odd, then $x+z$ is odd
+   If $x+z$ is even, then $x+y$ is even or $y+z$ is even
+** If $f$ is a polynomial of odd degree, then $f$ has at least one real root
+   If $f$ does not have at least one real root, then $f$ is a polynomial of even degree
+* 2.3.3
+** Let $S=[-5,2]$. What is $S^c_\R$
+   $S^c_\R = (-\infty, -5) \cup (2, \infty)$
+* 2.3.15
+** Let $\{I_n\}_{n \in \N}$ be the collection of intervals described in Example 2.3.11.
+*** Find $\bigcup_{n \in \N} I_n = [0, 1]$
+*** Find $\bigcap_{n \in \N} I_n = \{0\}$
+*** If intervals were open, first problem won't change, second problem would be the empty set.
+** Let $\{C_t\}_{t \in \R}$ be the collection of circles described in Example 2.3.11
+*** Find $\bigcup_{t \in \R} C_t$
+    $\{(x, y) | x \in (-\infty, \infty), y \in [-1, 1]\}$
+*** Find $\bigcap_{t \in \R} C_t$
+    $\{\emptyset\}$
+* 2.4.4
+** Let A, B, C be sets. Prove that $A \cap (B \cup C) = (A\cap B)\cup (A\cap C)$.
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Case 1: let $x \in A \cap (B \cup C)$.
+       \begin{align*}
+         &\implies x \in A \land x \in (B \cup C) \\
+         &\implies x \in A \land (x \in B \lor x \in C) \\
+         &\implies (x \in A \land x \in B) \lor (x \in A \land x \in C) \\
+         &\implies (x \in A \cap B) \cup (x \in A \cap C) \\
+         &\implies x \in (A \cap B) \cup (A \cap C) &&\qedhere
+       \end{align*}
+       Case 2: let $x \in (A \cap B) \cup (A \cap C)$.
+       \begin{align*}
+         &\implies x \in A \cap B \lor x \in A \cap C \\
+         &\implies (x \in A \land x \in B) \lor (x \in A \land x \in C) \\
+         &\implies x \in A \land (x \in B \lor x \in C) \\
+         &\implies x \in A \cap (B \cup C) &&\qedhere
+       \end{align*}
+     \end{proof}
+   #+END_LaTeX
+* 2.4.8
+** Let A and B be subsets of U. Prove that
+*** $(A \cup B)^c = A^c \cap B^c$
+    #+BEGIN_LaTeX
+      \begin{proof}
+        Let $x \in (A \cup B)^c$
+        \begin{align*}
+          &\iff x \notin (A \cup B) \\
+          &\iff x \notin A \land x \notin B \\
+          &\iff x \in A^c \land x \in B^c \\
+          &\iff x \in A^c \cap B^c &&\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX
+*** $(A \cap B)^c = A^c \cup B^c$
+    #+BEGIN_LaTeX
+      \begin{proof}
+        Let $x \in (A \cap B)^c$
+        \begin{align*}
+          &\iff x \notin (A \cap B) \\
+          &\iff x \notin A \lor x \notin B \\
+          &\iff x \in A^c \lor x \in B^c \\
+          &\iff x \in A^c \cup B^c &&\qedhere
+        \end{align*}
+      \end{proof}
+    #+END_LaTeX

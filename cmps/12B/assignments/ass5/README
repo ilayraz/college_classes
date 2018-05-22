@@ -1,0 +1,13 @@
+/* Ilay Raz */
+/* ilraz */
+/* CMPS12B-02 */
+/* 2/16/18 */
+/* README */
+
+TOC:
+- README
+- Dictionary.c
+- Dictionary.h
+- DictionaryTest.c
+- DictionaryClient.c
+- Makefile

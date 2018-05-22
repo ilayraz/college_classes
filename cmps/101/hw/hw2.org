@@ -1,0 +1,155 @@
+#+OPTIONS: toc:1
+
+* 3.1-1
+  Assume that $f(n)$ is asymptotically greater than $g(n)$ such that $\max(f(n), g(n))=f(n)$.
+  This means that we need to show that:
+  #+BEGIN_LaTeX
+    \begin{align*}
+      f(n) &= \Theta(f(n)+g(n)) \\
+      &\implies 0\leq c_1f(n)\leq f(n)+g(n)\leq c_2f(n) \\
+      &\text{Since f(n) and g(n) are both asymptotically positive, } f(n)\leq f(n)+g(n)\text{ for some } n>n_0 \\
+      &= 0\leq f(n)\leq f(n)+g(n)\leq c_2f(n) \\
+      &\text{Since f(n) is asymptotically greater than g(n), as n tends towards infinity, g(n) becomes} \\
+      &\text{insiginificant. Therefore, there exists }c_2>1\text{ where }f(n)+g(n)\leq c_2f(n)\text{ for some} \\
+      &n_0\text{ where } n>n_0
+    \end{align*}
+  #+END_LaTeX
+  Which means that $f(n) = \Theta(f(n)+g(n))$. The same applies if $\max(f(n),g(n)) = g(n)$ by symmetry.
+
+* 3.1-2
+  Show $(n+a)^b=\Theta(n^b), b>0$
+  #+BEGIN_LaTeX
+    \begin{align*}
+      &\implies 0\leq c_1n^b\leq (n+a)^b\leq c_2n^b \\
+      &= 0\leq c_1\leq \left(\frac{n+a}{n}\right)^{\!b}\leq c_2 \\
+      &= 0\leq c_1\leq \left(1+\frac{a}{n}\right)^{\!b} \leq c_2 \\
+      &\implies 0\leq 1\leq \left(1+\frac{a}{n}\right)^{\!b}\leq 2 &&\text{for } n_0=a+1
+    \end{align*}
+  #+END_LaTeX
+
+Since for $n>a+1,\ 1\leq1+\frac{a}{n}\leq2$
+
+* 3.1-4
+
+** Is $2^{n+1}=O(2^n)$?
+   #+BEGIN_LaTeX
+     \begin{align*}
+       &\implies 0\leq 2^{n+1}\leq c2^n \\
+       &= 0\leq \frac{2\times2^n}{2^n}\leq c \\
+       &= 0\leq 2 \leq c
+     \end{align*}
+   #+END_LaTeX
+   Which is true for all $c\geq2$
+
+** Is $2^{2n}=O(2^n)$?
+   #+BEGIN_LaTeX
+     \begin{align*}
+       0\leq 2^{2n}\leq c2^n \\
+       0\leq \frac{2^n\times2^n}{2^n}\leq c \\
+       0\leq2^n\leq c
+     \end{align*}
+   #+END_LaTeX
+   Which will not be true for any given $c$ as $n$ tends towards infinity.
+
+* Problem 3-2
+  | A         | B          | O   | o   | \Omega | \omega | \Theta |
+  | lg^k n    | n^\epsilon | yes | yes | no     | no     | no     |
+  | n^k       | c^n        | yes | yes | no     | no     | no     |
+  | \sqrt{n}  | n^{\sin n} | no  | no  | no     | no     | no     |
+  | 2^n       | 2^{n/2}    | no  | no  | yes    | yes    | no     |
+  | n^{\lg c} | c^{\lg n}  | yes | no  | yes    | no     | yes    |
+  | \lg(n!)   | \lg(n^n)   | yes | yes | no     | no     | no     |
+
+* Problem 3-4
+** False. Let $f(n)=n, g(n)=n^2$
+   $n=O(n^2)$, but $n^2\neq O(n)$, meaning, $f(n)=O(g(n))\nimplies g(n)=O(f(n))$
+** False. Let $f(n)=n, g(n)=n^2$
+   $n+n^2\neq\Theta(n)$
+** True
+   $f(n)=O(g(n))\implies f(n)\leq cg(n)$ for some $c>0, n\geq n_0$ \\
+   $\implies \lg(f(n))\leq \lg(cg(n)) = \lg(g(n)) + \lg(c)$ \\
+   Now need to find $d$ such that $\lg(f(n))\leq d\lg(g(n))$ \\
+   Let $d=\frac{\lg(g(n))+\lg(c)}{\lg(g)} = \frac{\lg(c)}{\lg(g(n))}+1\leq \lg(c)+1$ \\
+   True for $d=\lg(c)+1$, which proves that $f(n)=O(g(n))$
+** False. Let $f(n)=2n,g(n)=n$
+   $2n=O(n)\nimplies 2^{2n} = 4^n = O(2^n)$
+** True
+   $0\leq f(n)\leq cf(n)^2$ for $c=1, n_0=1$
+** True
+   $0\leq f(n)\leq cg(n)\implies 0\leq \frac{f(n)}{c}\leq g(n)$
+** False. Let $f(n)=2^n$
+   $0\leq c_12^{n/2}\leq2^n\leq c_22^{n/2}$, which is clearly false, as $2^n$ grows faster than $2^{n/2}$
+** True. Let $g(n)=o(f(n))$
+   Part 1: Given that $g(n)$ is asmyptotically positive, for all large enough n, $f(n)+g(n)\geq f(n)\implies f(n)+g(n)=\Omega(f(n))\implies f(n)+o(f(n))=\Omega(f(n))$ \\
+   Part 2: Since $g(n)$ is asymptotically smaller for a large enough n by the definition of small-o, this means that for a large enough n,
+   $g(n)\leq f(n)\implies g(n)+f(n)\leq 2f(n)$. Therefore $2f(n)=O(f(n))\implies f(n)+g(n)=O(f(n))\implies f(n)+o(g(n))=O(f(n))$. \\
+   Therefore, since $\Theta = O\cap \Omega$, and $f(n)+o(f(n))=O(f(n))$ and $f(n)+o(f(n))=\Omega(f(n))$, this means that $f(n)+o(f(n))=\Theta(f(n))$.2
+* 4.3-1
+  Show $T(n) = T(n-1) + n$ is $O(n^2)$
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Base case: Let $T(1) = 1$. $0\leq1\leq c\times1^2$ for $c=1$. \\
+      Inductive hypothesis: $T(n-1) \leq c(n-1)^2$. \\
+      \begin{align*}
+        T(n) &= T(n-1) + n \\
+        &\leq c(n-1)^2 + n \\
+        &\leq c(n^2-2n+1) + n \\
+        &\leq cn^2 - 2cn + c + n \\
+        &\leq cn^2 &&c\ge1 \\
+        T(n) &\leq O(n^2) &&\qedhere
+      \end{align*}
+    \end{proof}
+  #+END_LaTeX
+
+* 4.3-2
+  Show $T(n) = T(\ceil{n/2})+1$ is $O(\lg n)$
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Let $n\geq2$. \\
+      Base case: $T(2) = \lg 2 = 1$. \\
+      Inductive hypothesis: $T(\ceil{n/2}) \leq c\lg(\ceil{n/2}) + c - d$ Where $d\geq0$ is a constant. \\
+      Inductive step:
+      \begin{align*}
+        T(n) &= T(\ceil{n/2}) + 1 \\
+        &\leq c\lg(\ceil{n/2}) + c + 1 - d \\
+        &\leq c\lg(n) - c\lg(2) + c + 1 - d \\
+        &\leq c\lg(n) + 1 - d \\
+        &\leq c\lg(n) - d \\
+        T(n) &= O(\lg n) &&\qedhere
+      \end{align*}
+    \end{proof}
+  #+END_LaTeX
+
+* 4.5-1
+** $T(n) = 2T(n/4)+1$
+   $a=2, b=4, f(n)=1; \log_42 = 1/2; f(n)=1=O(n^{1/2-\epsilon}), \epsilon=1/4; T(n)=\Theta(\sqrt{n})$
+** $T(n)=2T(n/4)+\sqrt{n}$
+   $a=2, b=4, f(n)=\sqrt{n}; \log_42=1/2; f(n)=\sqrt{n}=\Theta(\sqrt{n}); T(n)=\Theta(\sqrt{n}\lg n)$
+** $T(n)=2T(n/4)+n$
+   $a=2, b=4, f(n)=n; \lg_42=1/2; f(n)=n=\Omega(n^{1/2+\epsilon}), \epsilon=1/4; 2f(n/4) = n/2 \leq cn, c=2/3; T(n)=\Theta(n)$
+** $T(n)=2T(n/4)+n^2$
+   $a=2,b=4,f(n)=n^2; \lg_42=1/2; f(n)=n^2=\Omega(n^{1/2+\epsilon}), \epsilon=1/2; 2f(n/4)=2(n/4)^2=2(n^2/16)=n^2/8 \leq cn^2, c=1/2; T(n)=\Theta(n^2)$
+* Problem 4-5
+** Since there is the same amount of good chips and bad chips, the bad chips would want to mirror the strategy of the good chips, that is, to say that they are the good chips and the good chips are the bad chips, there would be no method to distinguish between a lying bad chip and a good cheap.
+** Pair the chips randomly and select all of the groups where both cheaps claim to be good, since there exists more good chips than bad chips, that means that at least one of the groups selected will be both actually good chips, selecting half of the group of cheaps that claim that both are good will reduce the problem size by nearly a half.
+** This algorithm can be discribed by the recurrence relation: $T(n)=T(\frac{n}{2})+\Theta(n)$, which by the master theorm means that $T(n)=\Theta(n)$.
+* 5.2-1
+** The probability that you hire exactly one time is the probability that the best person is the first person. This leaves $(n-1)!$ permutations for the rest of the positions, which gives a probability of $\frac{(n-1)!}{n!} = \frac{1}{n}$ that you will hire exactly once.
+** Hiring $n$ times means all of the candidates are in a strictly increasing order. There are $n!$ possible orderings of all the candidates and only one of them has all of them in a strictly increasing order. This gives a probability of $\frac{1}{n!}$
+* 5.2-3
+  Assuming this referes to 6-sided dice, and assuming that the dice is balanced, each side has a probability of $\frac{1}{6}$ to land on it and a value of $1-6$. \\
+  Let $X_i$ be the probability of the dice landing on the $ith$ side. \\
+  The average value of a single die roll is equal to:
+  $$E[X] = \sum_{i=1}^6 iPr(X_i) = \frac{1}{6}\sum_{i=1}^6 i = \frac{21}{6} = 3.5$$
+  The sum of $n$ dice rolls will be:
+  $$E[nX] = nE[X] = 3.5n$$
+* 6.1-1
+  Since a heap is a complete binary tree, it can have between $2^h$ and $2^{h+1} - 1$ elements for a given height $h$, since each level starts at $2^k$ elements, if there was one element less there wouldn't be a need for a new level, and if there would be one more element than the max, a new level would be required, which would increase the height.
+* 6.1-2
+  As shown in the last problem, given a height $h$, and a number of elements $n$, $2^h\leq n$, solving for h, $h \leq \lg(n)\implies h = \floor{\lg n}$
+* 6.1-4
+  The smallest element must be in a leaf node. If the smallest element was not in a leaf node, this means that the smallest element has children, and since all elements
+  are unique, these children must be greater than it, which would break the max-heap property.
+* 6.1-7
+  If an element $j$ in the heap has no children, it means that the positions of its possible children, $2j$ and $2j+1$ are both greater than $n$,
+  which means that $2j > n = j > \floor{n/2} \implies j\in\set{\floor{n/2}+1, \floor{n/2}+2, \ldots, n}$. \qed

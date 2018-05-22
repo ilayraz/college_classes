@@ -1,0 +1,48 @@
+#+OPTIONS: toc:nil
+
+* 4.2.4
+  Let $A=\set{0,1,2}. \ps(A)=\set{\emptyset,\set{0},\set{1}\,\set{2}, \ldots, A}$.
+  $\set{0}\nsubseteq\set{1}$ and $\set{1}\nsubseteq\set{0}$, therefore $\ps(A)$ is not totally ordered under $\subseteq$.
+* 4.2.7
+  $A=\setc{\setc{i}{i\in[n,\infty)}}{n\in\N} = \set{\set{0,1,2,3,\ldots},\set{1,2,3,\ldots},\set{2,3,4,\ldots}}$.
+  $\set{2,3,4,\ldots}\subseteq\set{1,2,3,\ldots}\subseteq\set{0,1,2,3,\ldots}$, and so on. Which means that $A$ is an example of an infinite totally ordered subset of $\ps(\N)$
+
+* P97(5)
+  Proof by example. Let $A=\set{1}. \ps(A)=\set{\emptyset,\set{1}}. \emptyset\subseteq\set{1}$. Therefore, all elements in $\ps(A)$ have a relation with each other
+  under $\subseteq$, which means that $\ps(A)$ is an example of a totally ordered power set.
+* P98(7)
+  Proof by contradiction. Let $a$ be a least element in $A$ and $b$ be a minimal element in $A$ that is not a least element.
+  By definition of a least element, $a\leq b$. This means that there exists an element in $A$, such that $a\leq b$ and $a\neq b$.
+  This means that $b$ can not be a minimal element by the definition of a minimal element unless $a=b$, which then means that $b$ must be a least element, which contradicts the original assumption.
+  Therefore, a partially ordered set can not have both a least element and a minimal element that is not a least element.
+
+* 4.3.5
+** $\Omega=\set{\set{1,2},\set{3,4}}$
+** $\Omega=\set{[1,10),[10,20),[20,30),[30,\infty)}$
+** $\Omega=\setc{\set{(a,b)}}{a,b\in\R}$
+* 4.3.7
+  $\sim_\Omega=\set{(1,3),(1,4),(3,4),(2,4),(3,1),(4,1),(4,3),(4,2)}$
+* 4.3.23
+** The set of all people born in Ohio related by year of birth
+   1)
+     The equivalence class of this set are the sets of all people seperated by their year of birth. This equivalence class forms a partition of the set because each person must be born in one and only one year, therefore, each person will be in exactly one equivalence class, which means that each equivalence class shares no person with any other one and that the union of all equivalence classes is equivalent to the original set, which means that this equivalence class is a partition of the original set.
+   2)
+     a) Reflexive: clearly a person must have been born in the same year that he was born in, meaning that a person must be related to himself. \\
+     b) Symmetric: If one person was born in the same year as another person, then clearly that other person must have also been born in the same year as the first person. \\
+     c) Transitive: If one person was born in the same year as another person who was born in the same year as a third person, then clearly they were all born in the same year. \\
+** $S=\Z. a\sim b\iff |a|=|b|$
+   1)
+     In the set of integers, if $a,b\in\Z, a>0, |a|=|b|\iff b=-a$. Since every positive integer must have one and only one negative equivalent, every equivalence class has unique elements from the rest and the union of all equivalence classes must be equal to the original set $S$, meaning that this equivalence class forms a partition of $S$.
+   2)
+     a) Reflexive: $a\in S, |a|=|a|\implies a\sim a$ \\
+     b) Symmetric: $a,b\in S, a\sim b\implies |a|=|b|\implies |b|=|a|\implies b\sim a$ \\
+     c) Transitive: $a,b,c\in S, a\sim b, b\sim c\implies |a|=|b|\land |b|=|c|\implies |a|=|b|=|c|\implies |a|=|c|\implies a\sim c$ \\
+* P99(16: a,c)
+** $T_a=\setc{(a,b)}{\forall a,b\in S\ \exists k\in\Z,\ a-b=k}$
+   1) Reflexive: $a\in S. a-a=0\in\Z\implies a\sim a$
+   2) Symmetric: $a,b\in S. a\sim b\implies a-b=k, k\in\Z. b-a=-k\implies b\sim a$ Since if $k$ is an integer, $-k$ is also an integer.
+   3) Transitive: $a,b,c\in S. a\sim b\land b\sim c\implies a-b=k\land b-c=t\ k,t\in\Z\implies (a-b)+(b-c)=k+t\implies a-c=k+t. (k+t)\in\Z\implies a\sim c$. If $k$ and $t$ are integers, then their sum is also an integer.
+** $T_{(x,y)}=\setc{(x_1,y_1)\in\R^2}{x^2+y^2=x_1^2+y_1^2}$
+   1) Reflexive: $(x,y)\in S. x^2+y^2=x^2+y^2\implies (x,y)\sim(x,y)$
+   2) Symmetric: $(x_1,y_1),(x_2,y_2)\in S. (x_1,y_1)\sim(x_2,y_2)\implies x_1^2+y_1^2=x_2^2+y_2^2\implies x_2^2+y_2^2=x_1^2+y_1^2\implies (x_2,y_2)\sim(x_1,y_1)$
+   3) Transitive: $(x_1,y_1),(x_2,y_2),(x_3,y_3)\in S. (x_1,y_1)\sim(x_2,y_2)\land(x_2,y_2)\sim(x_3,y_3)\implies x_1^2+y_1^2=x_2^2+y_2^2\land x_2^2+y_2^2=x_3^2+y_3^2\implies x_1^2+y_1^2=x_2^2+y_2^2=x_3^2+y_3^2\implies x_1^2+y_1^2=x_3^2+y_3^2\implies (x_1,y_1)\sim(x_3,y_3)$

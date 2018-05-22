@@ -1,0 +1,354 @@
+* 2018 April 2
+** ADTs (Abstract Data Type)
+*** Stores data
+*** Hiding low level detail
+*** Use higher level concepts
+*** Modular
+*** Encapsulation
+**** Information Hiding
+* 2018 April 4
+** Class
+*** Variables/fields/attributes
+*** Methods/operations
+**** Accessor (getters)
+**** Mutators (setters)
+** Algorithm
+*** Well-defined comp. procedure
+*** Values as input -> values as output
+*** Resources needed
+**** Time
+**** Space
+*** Correctness
+**** Loop invariance
+* 2018 April 6
+** Loop Invariant
+*** In insertion sort, at end of every loop, everything before index is sorted
+** =Bubble Sort=
+** Divide & Conquer
+*** Divide problem into simpler ones
+*** Conquer sub-problems (usually recursively)
+*** Combine solutions for subproblems into solution for big problem
+*** Example Merge Sort
+**** M element seq.
+**** Divide into 2 seqs M/2 elements
+**** Sort subsequence
+**** Merge subsequence
+** T(m)
+*** If prob size small enough
+**** Base case brute force O(1)
+*** Else divide into subproblems of 1/l size
+**** aT(m/l)
+**** Let D(m) = time to divide
+**** C(m) = time to combine
+**** T(m) = (O(1) if problem small else (aT(1/l)+D(m)+C(m)))
+*** Example merge
+**** D(m) = O(1)
+**** a = l = 2
+**** Solving sub probs. 2T(m/2)
+**** C(m) = O(m)
+**** T(m) = (O(1) if m=1 else 2T(m/2) + O(m))
+**** T(m) = O(m lg(m))
+** Aymptotic runtime
+*** Upper bound
+**** $O(g(m)) = \{f(m) | \exists c \text{ and } m_0 > 0 s.t. 0 \leq cg(m) \forall m \geq m_0 \}$
+*** Lower bound
+**** $\Omega(g(m)) = \{f(m) | \exists c \text{ and } m_0 s.t. 0 \leq cg(m) \leq f(m) \forall m\geq m_0\}$
+*** bound
+**** $\Theta(g(m)) = \{f(m) | \exists c_1, c_2, m_0 > 0 s.t. 0 \leq c_1g(m) \leq f(m) \leq c_2g(m) \forall m \geq m_0\}$
+* 2018 April 9
+** Example runtime
+   Let $f(m) = 3m^2+m^2\lg m$ \\
+   $g(m) = m^2$ \\
+   Claim $f(m) = \Theta (g(m))$ \\
+   $c_1 = 1, c_2 = 4$ \\
+   $0 \leq m^2 \leq 3m^2+m^2\lg m \leq 4m^2$ \\
+   $\lim_{x \to \infty} \frac{f(m)}{g(m)} = \lim_{m \to \infty} (3+\lg m) =$ no limit
+** Big O examples
+*** $2m^2 = O(m^3)$
+    Have to show $0 \leq 2m^2 \leq cm^3$ for $m \geq m_0$ \\
+    $2m^2 \geq m^3$ \\
+    $2 \geq m$
+   | c | m | 2m^2 | m^3 |
+   | 1 | 1 |    2 |   1 |
+   | 1 | 2 |    8 |   8 |
+   | 1 | 3 |   18 | 27  |
+*** $m = O(m^2)$
+    $0 \leq m \leq m^2$ \\
+    m_0 = 1
+*** $m^2 + m = O(m^2)$
+    $0 \leq m^2 + m \leq cm^2$ for $m \geq m_0$ \\
+    For c = 2, $m^2 + m \leq 2m^2$ \\
+    $m \leq m^2$ \\
+    $1 \leq m$ \\
+    $m_0 = 1$
+*** $\frac{m^2}{2} - 2m = \Theta (m^2)$
+    #+BEGIN_LaTeX
+      \begin{align*}
+        &0 \leq c_1m^2 \leq \frac{m^2}{2} - 2m \leq c_2m^2 \\
+        &c_1 = \frac{1}{4} \\
+        &\frac{m^2}{4} \leq \frac{m^2}{2} - 2m \\
+        &\frac{1}{4} \leq \frac{1}{2} - \frac{2}{m} &&m \geq 8 \\
+        &\frac{m^2}{2} - 2m \leq \frac{m^2}{2} \text{for all m} \\
+        &c_1 = \frac{1}{4} c_2=\frac{1}{2}, m \geq 8
+      \end{align*}
+    #+END_LaTeX
+*** $\sqrt{m} = \Omega (\lg m)$
+    $0 \leq c\lg m \leq \sqrt{m} \text{ for } m\geq m_0$
+    |   m | \lg m | \sqrt{m}   |
+    |   1 |     0 | 1          |
+    |   2 |     1 | \sqrt{2}   |
+    |   4 |     2 | 2          |
+    |   8 |     3 | \sqrt{8}   |
+    |  16 |     4 | 4          |
+    |  32 |     5 | \sqrt{32}  |
+    |  64 |     6 | 8          |
+    | 128 |     7 | \sqrt{128} |
+    If c=1, m_0 = 16
+** Some functions are not asymptotically comparable
+*** Example
+    #+BEGIN_LaTeX
+      \begin{align*}
+        &m = O(m^{1+\sin m}) \\
+        &0 \leq m \leq cm^{1+\sin m} && -1 \leq \sin m \leq 1
+      \end{align*}
+    #+END_LaTeX
+** Example runtime proof
+   $T(m) = \{ 1 \text{ if } m=1 \text{ , else } 2T(floor(\frac{m}{2})) + m\}$ \\
+   $T(m) = O(m\lg m)$ \\
+   Prove $T(m) \leq cm\lg m$ for some $c > 0$ \\
+   Use inductive proof. Start with inductive step. \\
+   Assume bound holds all positive number less than m.
+   #+BEGIN_LaTeX
+     \begin{align*}
+       T(floor(m/2)) &\leq C\text{ floor}(m/2) \lg (floor(m/2)) &&\text{I.H} \\
+       &T(m) &= 2T(floor(m/2)) + m \\
+       &\leq 2(c m/2 \lg m/2) + m \\
+       &\leq cm\lg (m/2) + m \\
+       &\leq cm\lg m - cm\lg 2 + m \\
+       &= cm\lg m - cm + m \\
+       &\leq cm\lg m \text &&\text{if} c\geq 1
+     \end{align*}
+   #+END_LaTeX
+* 2018 April 13
+** =Discrete random variable= X
+*** Function from discrete space to reals
+*** Examples
+    Random variable X and some real number x \\
+    Define event X=x \\
+    $\{s \in S|X(s)=x\}$ \\
+    $$P_n\{X=x\} = \sum_{s \in S \land X(s)=x} P_n\{s\}$$ \\
+    Expectation: $$E\[x\] = \sum_x xP_n\{X=x\}$$ \\
+    $E\[x+y\] = E\[x\]+E\[y\]
+**** Sum of $m$ dice throws
+     | value | P   |
+     |     1 | 1/6 |
+     |     2 | 1/6 |
+     |     3 | 1/6 |
+     |     4 | 1/6 |
+     |     5 | 1/6 |
+     |     6 | 1/6 |
+     Sum(Expected value) = (1)(1/6)+(2)(1/6)+\dots+(6)(1/6) = 7/2
+     E[X_i] = 7/2 \\
+     X = X_1 + X_2 + X_3 + \ldots + X_m \\
+     $E[X] = E \sum (x_1+\ldots)$ \\
+     = $$\sum_1^6 \[X_i\]$$ \\
+     = 6*7/2 = 21 \\
+     = m*7/2
+**** Indicator random value
+     A \subseteq S event \\
+     I\{A\} (I is indicator random variable. Value=1 if A else 0) \\
+     E\[I\\{A\}\] = 1 * P_n\{A\} + 0 * P_n\{~A\} = P_n\{A\}
+**** \sigma random permutation
+     Let \sigma random permutation on (1,2,3,\ldots,m) \\
+     X(\sigma) = number of fixed points of \sigma \\
+     Let X_i be an indicator random variable \sigma(i) = z' (fixed point) (1 if fixed point else 0) \\
+     X = X_1+X_2+\ldots+X_m \\
+     E(X) = E(X_1) + E(X_2) + \ldots + E(X_m) \\
+     E(X_i) = P_r(\sigma(i)=i) = 1/m (since there are m values that could be at a specifiec point and they are all equally likely) \\
+     E(X) = \sum_1^m 1/m = 1
+** Hiring problem
+   Interview and deicde on hiring \\
+   If person is best so far, lay off current and hire new one \\
+   Cost to interview = C_I \\
+   Cost to hire = C_H \\
+   Assume C_H > C_I \\
+   Probability that best person in m is last one picked is 1/m \\
+   Probability that i^{th} person is hired = 1/i (same as probability that best person is in last position out of i positions) \\
+   Let X be a random variables representing the number of hires \\
+   Let X_i be indicator R.V. that the i^{th} person is hired \\
+   X = \sum^m X_i \\
+   E[X] = E[\sum^m X_i] = \sum^m E[X_i] = \sum^m P_n\{X_i is hired\} = \sum^m 1/2^i = 1+1/2+1/4+1/8+\ldots = \lg m + O(1)
+** Max heap
+*** Complete binary tree except for the leafs
+*** Parent must have value greater than or equal to children
+*** Stored in a linear array
+*** Height to elements
+    | h |  m |
+    | 1 |  3 |
+    | 2 |  7 |
+    | 3 | 15 |
+
+    m = 2^{h+1} - 1
+* 2018 April 16
+** About heaps
+*** Benefits of Heap Sort
+   |                | T(m)      | Sort inpace |
+   | Insertion Sort | O(m^2)    | yes         |
+   | Merge Sort     | O(mlog m) | no          |
+   | Heap Sort      | O(mlog m) | yes         |
+*** Heap indexes
+    | A[i]     |                |
+    | L. child | A[2i]          |
+    | R. child | A[2i+1]        |
+    | Parent   | A[\floor{i/2}] |
+*** Height = $\floor{\lg m}$
+*** =Max-heapify=
+**** Re-order a max-heap where the root is no longer the max element
+**** Exchange the root with the max of its children recursivly
+**** T(m) \leq aT((2/3)m) + \Theta(1)
+***** a = 1
+***** l = 3/2
+***** \log_b a = 0
+***** Case 2 of master thm: T(m) = \Theta(\lg m) = O(\lg m)
+*** Creating a heap
+**** Put elements into binary tree, call max-heapify on every non-leaf element
+**** T(m) = O(m\lg m)
+**** $$\sum_{h=0}^\floor{\lg m} \ceil{\frac{m}{2^{n+1}}} O(h) = O(m\sum_{n=0}^\floor{\lg m} \frac{h}{2^h}) = O(m)$$
+*** Heap sort
+**** Build a max-heap
+**** Exchange first element with the last element
+**** Lower size of heap by one
+**** Repeat steps 2-3 until end of heap
+**** Build heap: O(m)
+**** m-1 calls to max-heapify: O(\lg m)
+**** Heap-sort T(m) = O(m\lg m)
+* 2018 April 18
+** Bound on building a heap
+   Notice: $\frac{1/2}+\frac{1}{4}+\frac{1}{8}+\ldots+\frac{1}{2^m} = 1$
+   | depth | # nodes | Max-heap work |
+   |     0 |       1 | c(h)          |
+   |     1 |       2 | c(h-1)        |
+   |     d |     2^d | c(h-d)        |
+   Work = $$\sum_{d=0}^h 2^dc(h-d) = c\sum_{d=0}^h \frac{2^h}{2^{n-d}}(h-d) = c2^h\sum_{d=0}^h\frac{h-d}{2^{h-d}} = c2^h\sum_{d=0}{h}\frac{d}{2^d} = c2^h(2-\frac{1}{2^{h-1}}-\frac{h}{2^h})\leq c2^{h+1} = \Theta(m)$$
+** Priority Queue
+*** ADT
+**** Let S be the data structure (max heap)
+**** Want:
+***** Insert(S, x) = Make room at bottom (expand heap size), put in new leak with key = -\infty, call increase key on element at the bottom (the new element) $\implies\Theta(\lg m)$
+***** Maximum(S) = Heap-Max(A) = return top of array $\implies\Theta(1)$
+***** Extract-max(S) = Take top off, return it, replace it with bottom of array, call heapify on top of array $\implies\Theta(\lg m)$
+***** Increase-key(S, x, k) = Check that k is bigger than the current one, replace A[i] with new key, bubble up element to fix heap property if neccessary $\implies\Theta(\lg m)$
+** Quicksort
+*** Avg. runtime: $\Theta(n\lg n)$
+*** Worse runtime: $\Theta(n^2)$
+*** Lower constant than heapsort
+* 2018 April 20 (MIDTERM REVIEW)
+** Know chapters: 2
+** Know sorting algorithms
+*** Merge sort
+*** Selection sort
+*** Bubble sort
+** Be able to analyze pieces of sorts with respect to runtime
+** Divide and conquer
+** Know asymptoic notation: $O,\Omega,\Theta,o,\omega$
+*** Example
+**** $\frac{m^2}{2}-2m &= \Theta(m^)$ \\
+    $0\leq c_1m^2\leq\frac{m^2}{2}-2m\leq c_2m^2$ \\
+    $0\leq c_1\leq\frac{1}{2}-\frac{2}{m}\leq c_2$
+**** $0\leq c_1m^2\leq am^2+lm\leq c_2m^2$ \\
+     $0\leq c_1\leq a+\frac{l}{m}\leq c_2$
+*** Can only use limit definition as proof for small o and omega is 0 (for o) or (infty for omega)
+*** Hint: $\lg(m!) = \lg(m)+\lg(m-1)+\lg(m-2)+\ldots+\lg(1)$
+** Solving recursion
+*** Substitution method
+**** Guess solution -> use induction to show that solution is correct
+**** Example
+***** T(1) = 1, T(m) = 2T(m-1) \\
+      Prove $T(m) = O(2^m)\implies T(m)\leq c2^m$ \\
+      Assume for all n<m T(m)\leq c2^m \\
+      IH: T(m-1)\leq c2^{m-1} \\
+      T(m) = 2T(m-1) \leq 2c2^{m-1} (using IH) \leq c2^m
+***** T(1)=1, T(m) = 2T(m-1)+c. Prove T(m) = O(2^m) \\
+      Prove T(m) \leq k2^m-j \\
+      Assume: $\forall n>m T(m)\leq k2^m-j$ \\
+      IH: T(m-1) \leq k2^{m-1} - j \\
+      T(m) = 2T(m-1)+c \leq 2(k2^{m-1} - j) + c \leq k2^m-2j + c \leq k2^m - j for all j\geq c \\
+      T(1) = 1 \leq k 2-j true k\geq\frac{j+1}{2}
+*** Master method
+**** Example
+***** T(m) = 8T(m/2)+cm^2
+      a=8, b=2, f(m)=cm^2. m^3. Case 1: f(m)=cm^2=O(m^3) -> T(m) = \Theta(m^3)
+***** T(m) = 8T(m/4) + cm^{3/2}
+      a=8, b=4, f(m)=cm^{3/2}. m^{3/2}. f(m)=cm^{3/2} = \Theta(m^{3/2}). T(m) = \Theata(m^{3/2}\lg m)
+***** T(m) = T(m/2) + cm
+      a = 1, b=2, f(m) = cm. 1. f(m)=cm = \Omega(1^{0+x}) for any x > 0. T(m) = \Theta(\lg m) (ALSO CHECK REGULARITY)
+1. analyze time of simple things (asymtotic comparison) (4 questions)
+2. Using sub method to solve exact recurrence (1 question)
+3. Master method question (1 question)
+4. qusi-messy recurrence substitution to prove upper bound (1 question)
+* 2018 April 27
+** Proof of Bucket Sort
+*** Given m buckets. Need to show normal distribution
+    $m_i$=#number of elements in bucket i. \\
+    #+BEGIN_LaTeX
+      \begin{align*}
+        &=$$T(m) = \Theta(m)+\sum_{i=0}^{m-1} O(m_i^2)$$ \\
+        &=$$E(T(m)) = E(\Theta(m)+\sum_{i=0}^{m-1} O(m_i^2))$$ \\
+        &=$$E(\Theta(m))+E(\sum_{i=0}^{m-1} O(m_i^2))$$ \\
+        &=$$\Theta(m)+\sum_{i=0}^{m-1} O(E(m_i^2))$$ \\
+        E(m_i^2) &= 2-\frac{1}{m}\text{ for all i}
+      \end{align}
+
+      Let $X_{ij} = 1$ if $A[j]$ falls in bucket $i$.
+      \begin{align*}
+        Pa(A[j])\text{ falls in i} &= \frac{1/m} \\
+        $$m_i &= \sum_{j=1}^{m-1} X_{ij}$$ \\
+        $$E(m_i^2) &= E(\sum_{j=1}^m X_{ij})^2$$ \\
+        $$&= E(\sum_{j=1}^m X_{ij}^2+2\sum_{i=1}^{m-1}\sum_{k=j+1}^m X_{ij}X_{ik})$$ \\
+        $$&= \sum_{j=1}^m E(x_{ij}^2)+2\sum_{j=1}^{m-1}\sum_{k=j+1}^m E(X_{ij}X_{ik})$$ \\
+        E(X_{ij}^2) &= 0^2*P_n(\text{A[j] does not fall in i}) + 1^2*P_n(\text{A[j] does fall in i}) \\
+        &=0*(1-\frac{1}{m})+1*\frac{1}{m}=\frac{1}{m} \\
+        E(X_{ij}X_{ik}) &= E(X_{ij})E(X_{ik}) \\
+        &= \frac{1}{m}*\frac{1}{m} \\
+        &= \frac{1}{m^2} \\
+        $$E(m_i^2) &= \sum_{i=1}^m \frac{1}{m} + 2\sum\sum \frac{1}{m^2}$$
+      \end{align*}
+    #+END_LaTeX
+* 2018 May 11 (MIDERM REVIEW)
+** Problem
+*** 1 Random variable
+*** 1 Radix sort (or possibly a different linear time sort)
+*** 1 special suprise of related to selection sort (not in book but was in lectures)
+** Hints
+*** Make a table of runtime asymptotics for all the different sorts
+*** Don't have to memorize heapify algorithm
+*** Understand how ordinary partition in Quicksort works
+*** Understand median-of-medians algorithm to pick pivot point
+** Sections
+*** Probability (5)
+*** Heapsort (6)
+*** Quicksort (7)
+*** Linear time sorting (8)
+**** Lower bounds on comparison sorts
+**** Counting sort
+**** Radix sort
+**** Bucket sort
+*** Mideans and Order statistics (9)
+**** Select
+** Don't need actual code. Be able to rework pseudocode
+** Most questions would be one word answers. Can be done in 20 minutes.
+** Expectation
+*** Indicator variable technique
+**** A function that takes an event
+**** Expectation is equal to the sum of all values multiplied by their probability of occuring
+**** Indicator random variable
+***** Equal to 1 if event occured otherwise 0
+** Binary trees
+*** Index of leaves: $\floor{\frac{m}{2}}+1,\ldots,m$
+*** $\floor{\lg n} =$ depth
+** Selection
+*** i-th lowest item
+*** Quicksort but only has to recurse on one side
+
+
+Review session Mch 3372 5:00 - 8:00 Sunday

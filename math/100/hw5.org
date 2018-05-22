@@ -1,0 +1,36 @@
+* 6.2.3
+  There are two possible solutions to this problem that maintain the requirement that $-b<r<b$. \\
+  The first one is found by multiplying both sides of the division algorithm by $-1$: $-a=(-q)b+(-r)$. \\
+  The second one is: $-a=-(q+1)b+(b-r)$, which is found by multiplying both sides by $-1$, then adding $b-b$ to the RHS and factoring.
+* 6.2.5
+  $(4\cdot 4)|8$, however $8$ does not divide $4$.
+* 6.2.14
+  #+BEGIN_LaTeX
+    \begin{proof}
+      by contradiction. \\
+      Assume that $r+s$ and $s$ are not coprime.
+      This means that there exists $d>1\in\Z$ s.t. $d|s$ and $d|(r+s)$.
+      \begin{align*}
+        &\implies \exists m,n\in\Z\ s.t.\ s=dm \land r+s=dn \\
+        (r+s)-s &= dn-dm &&\tag{subtract both equations} \\
+        r &= d(n-m) \\
+        &\implies d|r \\
+        d|r \land d|s \land d>1 &\implies \text{r and s are not co-prime} \\
+        &\rightarrow\leftarrow
+      \end{align*}
+      Which means that $d=1$ which means that $r+s$ and $s$ must be relatively prime. $\qedhere$
+    \end{proof}
+  #+END_LaTeX
+* 6.2.18
+#+BEGIN_LaTeX
+  \begin{proof}
+    by contradiction. \\
+    Assume $(a,b)$ and $(a,c)$ are not relatively prime.
+    \begin{align*}
+      &\implies \exists d\in\Z\ s.t.\ d|(a,b)\land d|(a,c) \\
+      &\implies d|a, d|b, d|c &&\tag{Since d divides their gcd} \\
+      &d>1\land d|b\land d|c \rightarrow\leftarrow &&\tag{Since b and c are co-prime} \\
+      &\implies d=1 &&\qedhere
+    \end{align*}
+  \end{proof}
+#+END_LaTeX
