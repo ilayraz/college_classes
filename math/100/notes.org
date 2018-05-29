@@ -1417,3 +1417,75 @@ MIDTERM: Friday on Week 6 (May 11)
       #+END_LaTeX
 ***** Corollary
       If $A$ is an infinite set, $\implies \exists$ a subset $B=\set{a_1,a_2,\ldots}$ s.t. $|B|=|\N| \implies |\N|\leq|A|$
+* 2018 May 23
+** =Countability=
+*** Definition
+**** $A$ is called denumerable if $|A|=|\N|$
+**** $A$ is countable if $A$ is finite or denumerable
+*** Examples
+    $\N, 2\N, 3\N, \Z, 2\Z$ are countable
+*** Theorms
+**** $A$ is countalbe $\implies$ any subset is countable
+     #+BEGIN_LaTeX
+       \begin{proof}
+         If $A$ is finite, the result is clear. \\
+         Assume $A=\set{a_1,a_2,\ldots}$ is denumerable and let $B\subseteq A$. \\
+         If $B$ is finite $\implies B$ is countable. \\
+         Otherwise, $B=\set{a_{i_1},a_{i_2},\ldots}$ where $i_1\leq i_2\leq i_3\leq\ldots$ \\
+         $\implies |B|=|\N|$ $\qedhere$
+       \end{proof}
+     #+END_LaTeX
+**** If $f: \N\mapsto A$ is onto $\implies A$ is countable
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Since $f$ is onto $\implies A=\set{f(1),f(2),f(3),\ldots}$. \\
+         Let $f(i_1), f(i_2),\ldots$ be the different elements in A. \\
+         $A=\set{f(i_1),f(i_2),\ldots}$ is countable. $\qedhere$
+       \end{proof}
+     #+END_LaTeX
+***** Examples
+****** $f: \N\mapsto 5\N$ \\
+       $f(1)=f(2)=f(3)=f(4)=f(5)=5$ \\
+       $f(6)=f(7)=f(8)=f(9)=f(10)=10$
+**** If $A,B$ are countable $\implies A\times B$ is countable
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Let $A=\set{a_1,a_2,\ldots}, B=\set{b_1,b_2,\ldots}$ \\
+         $A\times B = \set{(a_1,b_j), \ldots} i\geq 1, j\geq 1$ \\
+         \[
+         \begin{matrix}
+           (a_1,b_1) & (a_1,b_2) & (a_1,b_3) & \ldots \\
+           (a_2,b_1) & (a_2,b_2) & (a_2,b_3) & \ldots \\
+           (a_3,b_1) & (a_3,b_2) & (a_3,b_3) & \ldots \\
+           \vdots & \vdots & \vdots &\ddots
+         \end{matrix}
+         \]
+
+         Count diagonally like (example):
+         \[
+         \begin{matrix}
+           (1) & (2) & (4) \\
+           (3) & (5) & (7) \\
+           (6) & (8) & (9) \\
+         \end{matrix}
+         \]
+       \end{proof}
+     $\qedhere$
+     #+END_LaTeX
+**** If $A_i$ is countable for $i=1,2,\ldots$ $\implies \bigcup_{i=1}^\infty A_i$ is countable.
+     #+BEGIN_LaTeX
+       \begin{proof}
+         Let $A_1=\set{a_{11},a_{12},a_{13},\ldots}, A_2=\set{a_{21},a_{22},a_{23}}, \ldots$ \\
+         This is clearly a matix, therefore same idea. $\qedhere$
+       \end{proof}
+     #+END_LaTeX
+**** $\Q$ is countable (denumerable)
+     #+BEGIN_LaTeX
+       \[
+       \begin{matrix}
+         0 & \frac{1}{1} & \frac{-1}{1} & \frac{2}{1} & \frac{-2}{1} & \ldots \\
+         0 & \frac{1}{2} & \frac{-1}{2} & \frac{2}{2} & \frac{-2}{2} & \ldots \\
+         \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+       \end{matrix}
+       \]
+     #+END_LaTeX
