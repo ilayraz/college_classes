@@ -1,0 +1,139 @@
+#+OPTIONS: toc:nil
+
+* 6.4.3
+** $a|bc \implies a|c$
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Since $a$ and $b$ are relatively prime, $\exists q,v\in\Z\ s.t.\ aq+bv=1$. \\
+       Furthermore, since $a|bc \implies \exists u\in\Z\ s.t.\ bc=au$.
+       \begin{align*}
+         aq + bv &= 1 \\
+         aqc + bcv &= c \\
+         aqc + auv &= c &&\tag{substitution} \\
+         a(qc+uv) &= c \\
+         \implies a &| c &&\qedhere
+       \end{align*}
+     \end{proof}
+   #+END_LaTeX
+** $a|c \land b|c \implies ab|c$
+   #+BEGIN_LaTeX
+     \begin{proof}
+       Since $a$ and $b$ are relatively prime, $\exists q,v\in\Z\ s.t.\ aq+bv=1$. \\
+       Furthermore, $a|c \implies \exists k\in\Z\ s.t.\ ak=c$ and $b|c \implies \exists u\in\Z\ s.t.\ bu=c$.
+       \begin{align*}
+         aq+bv &= 1 \\
+         aqc + bvc &= c &&\tag{multiply by c} \\
+         aqbu + bvak &= c &&\tag{substitution} \\
+         ab(qu + ck) &= c \\
+         \implies ab &| c &&\qedhere
+       \end{align*}
+     \end{proof}
+   #+END_LaTeX
+* 6.6.4
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Statement $(1)$ says that $\exists v\in\Z\ s.t.\ a-b = vn$. \\
+      Statement $(2)$ says that $\exists q,u,r\in\Z$ with $0\leq r\leq min(q,u)$ s.t. $a=qn+r$ and $b=un+r$ \\
+      $(1)\implies(2)$
+      \begin{align*}
+        a-b &= vn \\
+        a &= vn+b \\
+        &= vn + un+r &&\tag{substitution} \\
+        &= n(v+u) + r
+      \end{align*}
+      Which is the division algorithm for $a$, which shows that the remainder for $a$ must be equal to the remainder for $b$. \\
+      $(2)\implies(1)$
+      \begin{align*}
+        a-b &= (qn+r) - (un+r) \\
+        &= qn - un \\
+        &= n(q-u) \\
+        \implies n &| (a-b)
+      \end{align*}
+      Therefore $(1)\iff(2) \qedhere$
+    \end{proof}
+  #+END_LaTeX
+* 6.6.5
+** .
+   $\bar{0}=\set{\bar{6},\overline{12},\overline{18}}$ \\
+   $\bar{1}=\set{\bar{7},\overline{13},\overline{19}}$ \\
+   $\bar{6}+\bar{7}=\overline{13}=\bar{1}$ \\
+   $\overline{12}+\overline{13}=\overline{25}=\bar{1}$ \\
+   $\overline{18}+\overline{19}=\overline{37}=\bar{1}$ \\
+   $\bar{6}\cdot\bar{7}=\overline{42}=\bar{0}$ \\
+   $\overline{12}\cdot\overline{13}=\overline{156}=\bar{0}$ \\
+   $\overline{18}\cdot\overline{19}=\overline{342}=\bar{0}$
+** .
+   $B=\set{1,2,3,\ldots,9}$ \\
+   $7+3=10\not\in B$ \\
+   $7\cdot 3 = 21\not\in B$
+* 6.7.2
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Let $n=6,a=2,b=3,c=4$
+      \begin{align*}
+        \overline{a}\cdot_n\overline{b} &= \bar{2}\cdot_6\bar{3} = \bar{6} = \bar{0} \\
+        \bar{c}\cdot_n\bar{b} &= \bar{4}\cdot_6\bar{3} = \overline{12} = \bar{0} \\
+        \implies \bar{a}\cdot_n\bar{b} &= \bar{c}\cdot_n\bar{b} \\
+        \nimplies \bar{a} &= \bar{c} &&\qedhere
+      \end{align*}
+    \end{proof}
+  #+END_LaTeX
+* 6.7.3
+  Consider all solutions in $\Z_8$:
+  | $x$ | $\bar{4}\cdot_n\bar{x}$ | class |
+  |   0 |                       0 |     0 |
+  |   1 |                       4 |     4 |
+  |   2 |                       8 |     0 |
+  |   3 |                      12 |     4 |
+  |   4 |                      16 |     0 |
+  |   5 |                      20 |     4 |
+  |   6 |                      24 |     0 |
+  |   7 |                      28 |     4 |
+  Shows that there are no solutions in $\Z_8$ \\
+  Consider all solutions in $\Z_{10}$
+  | $x$ | $\bar{4}\cdot_n\bar{x}$ | class |
+  |   0 |                       0 |     0 |
+  |   1 |                       4 |     4 |
+  |   2 |                       8 |     8 |
+  |   3 |                      12 |     2 |
+  |   4 |                      16 |     6 |
+  |   5 |                      20 |     0 |
+  |   6 |                      24 |     4 |
+  |   7 |                      28 |     8 |
+  |   8 |                      32 |     2 |
+  |   9 |                      36 |     6 |
+  Shows that there are two solutions in $\Z_{10}$ \\
+  Consider all solutions in $\Z_{15}$
+  | $x$ | $\bar{4}\cdot_n\bar{x}$ | class |
+  |   0 | 0                       | 0     |
+  |   1 | 4                       | 4     |
+  |   2 | 8                       | 8     |
+  |   3 | 12                      | 12    |
+  |   4 | 16                      | 1     |
+  |   5 | 20                      | 5     |
+  |   6 | 24                      | 9     |
+  |   7 | 28                      | 13    |
+  |   8 | 32                      | 2     |
+  |   9 | 36                      | 6     |
+  |  10 | 40                      | 10    |
+  |  11 | 44                      | 14    |
+  |  12 | 48                      | 3     |
+  |  13 | 52                      | 7     |
+  |  14 | 56                      | 11    |
+  Shows that there is one solution in $\Z_{15}$
+* 6.7.4
+  Found by checking each combination of elements.
+** $\Z_{10}$
+*** 1, 1
+*** 3, 7
+*** 9, 9
+** $\Z_{12}$
+*** 1, 1
+*** 5, 5
+*** 7, 7
+*** 11, 11
+** $\Z_7$
+*** 1, 1
+*** 2, 4
+*** 3, 5
+*** 6, 6
