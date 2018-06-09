@@ -1449,28 +1449,28 @@ MIDTERM: Friday on Week 6 (May 11)
        $f(6)=f(7)=f(8)=f(9)=f(10)=10$
 **** If $A,B$ are countable $\implies A\times B$ is countable
      #+BEGIN_LaTeX
-       \begin{proof}
-         Let $A=\set{a_1,a_2,\ldots}, B=\set{b_1,b_2,\ldots}$ \\
-         $A\times B = \set{(a_1,b_j), \ldots} i\geq 1, j\geq 1$ \\
-         \[
-         \begin{matrix}
-           (a_1,b_1) & (a_1,b_2) & (a_1,b_3) & \ldots \\
-           (a_2,b_1) & (a_2,b_2) & (a_2,b_3) & \ldots \\
-           (a_3,b_1) & (a_3,b_2) & (a_3,b_3) & \ldots \\
-           \vdots & \vdots & \vdots &\ddots
-         \end{matrix}
-         \]
+         \begin{proof}
+           Let $A=\set{a_1,a_2,\ldots}, B=\set{b_1,b_2,\ldots}$ \\
+           $A\times B = \set{(a_1,b_j), \ldots} i\geq 1, j\geq 1$ \\
+           \[
+           \begin{matrix}
+             (a_1,b_1) & (a_1,b_2) & (a_1,b_3) & \ldots \\
+             (a_2,b_1) & (a_2,b_2) & (a_2,b_3) & \ldots \\
+             (a_3,b_1) & (a_3,b_2) & (a_3,b_3) & \ldots \\
+             \vdots & \vdots & \vdots &\ddots
+           \end{matrix}
+           \]
 
-         Count diagonally like (example):
-         \[
-         \begin{matrix}
-           (1) & (2) & (4) \\
-           (3) & (5) & (7) \\
-           (6) & (8) & (9) \\
-         \end{matrix}
-         \]
-       \end{proof}
-     $\qedhere$
+           Count diagonally like (example):
+           \[
+           \begin{matrix}
+             (1) & (2) & (4) \\
+             (3) & (5) & (7) \\
+             (6) & (8) & (9) \\
+           \end{matrix}
+           \]
+         \end{proof}
+       $\qedhere$
      #+END_LaTeX
 **** If $A_i$ is countable for $i=1,2,\ldots$ $\implies \bigcup_{i=1}^\infty A_i$ is countable.
      #+BEGIN_LaTeX
@@ -1489,3 +1489,583 @@ MIDTERM: Friday on Week 6 (May 11)
        \end{matrix}
        \]
      #+END_LaTeX
+* 2018 May 30
+** =Real numbers=
+*** =Field axioms=
+**** Definition
+     $\R=(\R,+,\times,0,1)$ \\
+     Let $x,y,z \in\R$
+***** $x+y, xy \in \R$
+***** $x+y=y+x$
+***** $(x+y)+z=x+(y+z)$
+***** $0+x=x$
+***** $\forall x\in\R, \exists y\in\R\ s.t.\ x+y=0$
+***** $xy=yx$
+***** $(xy)z=x(yz)$
+***** $1x=x$
+***** $\forall x\neq 0, \exists y\ s.t.\ xy=1$
+***** $x(y+z)=xy+xz$
+***** $(x+y)z=xz+yz$
+**** =Additive inverse=:
+     Let $-x$ be called the additive inverse of $x$
+**** =multiplicative inverse=:
+     Let $x^{-1}$ be called the multiplicative inverse of $x$ if $x\neq0$
+**** Lemmas
+***** 0 is unique
+      #+BEGIN_LaTeX
+        \begin{proof}
+          Assume $x+z=x\ \forall x\in\R$. \\
+          $\implies z=z+0=0+z = 0 \qedhere$
+        \end{proof}
+      #+END_LaTeX
+***** 1 is unique
+      #+BEGIN_LaTeX
+        \begin{proof}
+          Assume $zx=x\ \forall x\in\R$ \\
+          $\implies z=z1=1 \qedhere$
+        \end{proof}
+      #+END_LaTeX
+***** $\forall x\in\R, \exists! y\in\R\ s.t.\ x+y=0$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          Assume $x+y=0$ and $x+z=0$. \\
+          \begin{align*}
+            y = y+0 &= y + (x+z) \\
+            &= (y+x)+z \\
+            &= (x+y)+z \\
+            &= 0 + z \\
+            &= z &&\qedhere
+          \end{align*}
+        \end{proof}
+      #+END_LaTeX
+***** $\forall x\neq 0, \exists! y\ s.t.\ xy=1$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          Assume $xy_1=1$ and $xy_2=1$. \\
+          \begin{align*}
+            y_1 = y_11 &= y_1(xy_2) \\
+            &= (y_1x)y_2 \\
+            &= (xy_1)y_2 \\
+            &= 1y_2 \\
+            &= y_2 &&\qedhere
+          \end{align*}
+        \end{proof}
+      #+END_LaTeX
+***** $0x=0\ \forall x\in\R$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          \begin{align*}
+            &0x = (0+0)x = 0x + 0x \\
+            &\implies 0x+(-0x) = 0x + 0x + (-0x) \\
+            \implies 0 &= 0x + x \\
+            &= 0x &&\qedhere
+          \end{align*}
+        \end{proof}
+      #+END_LaTeX
+***** $(-1)x=-x\ \forall x\in\R$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          \begin{align*}
+            x + (-1)x &= 1x+(-1)x \\
+            &= (1+(-1))x \\
+            &= 0x \\
+            &= 0 \\
+          \end{align*}
+          Since $x+(-1)x = 0$ and $x+(-x) = 0$ and the additive inverse is unique, $\implies (-1)x=-x$. $\qedhere$
+        \end{proof}
+      #+END_LaTeX
+***** $-(-x)=x$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          \begin{align*}
+            &x + (-x) = 0 \\
+            &\implies (-x)+x = 0 \\
+            &(-x)+(-(-x))=0 \\
+            &\implies x = -(-x) &&\qedhere
+          \end{align*}
+        \end{proof}
+      #+END_LaTeX
+***** If $x\neq 0, (x^{-1})^{-1}=x$
+      #+BEGIN_LaTeX
+        \begin{proof}
+          \begin{align*}
+            &xx^{-1} = 1 \\
+            &\implies x^{-1}x = 1 \\
+            &(x^{-1})(x^{-1}^{-1}) = 1 \\
+            &\implies x=(x^{-1}^{-1}) &&\qedhere
+          \end{align*}
+        \end{proof}
+      #+END_LaTeX
+*** =Order axiom=
+**** Definition
+     $\R$ has a subset, $\R_+$ satisfying:
+***** $\forall x,y\in\R_+ \implies x+y, xy\in\R_+$
+***** $\forall x\in\R$, one and only one of the following is true
+****** $x\in\R_+$
+****** $x=0$
+****** $-x\in\R_+$
+**** Compliment:
+     $\R_- = (\R_+\cup\set{0})^c$
+**** Sign
+***** $x\in\R_+$ is called a "positive number"
+***** $x\in\R_-$ is called a "negative number"
+**** Order:
+     Define $\geq$ on $\R$:
+***** $x\geq y$ if $x-y\in\set{0}\cup\R_+$
+***** $\geq$ is a total order on $\R$
+****** Reflexive: $\forall x\in\R,\ x-x=0 \implies x\geq x$
+****** Anti-symmetric:
+       #+BEGIN_EXPORT latex
+       If $x\geq y \land y\geq x \implies x-y\in\set{0}\cup\R_+ \land y-x\in\set{0}\cup\R_+$ \\
+       Proof by contradiction. Assume $x-y\neq0$:
+       \begin{align*}
+         &\implies x-y\in\R_+ \\
+         &\implies x-y+y-x\in\R_+ \\
+         &\implies 0\in\R_+ \\
+         &\rightarrow\leftarrow
+       \end{align*}
+       Therefore $\implies x-y=0 \lor x=y$
+       #+END_EXPORT
+****** Transitive
+       #+BEGIN_EXPORT latex
+       If $x\geqy \land y\geq z \implies x-y\in\set{0}\cup\R_+ \land y-z\in\set{0}\cup\R_+$ \\
+       Each value can either be in 0 or in $\R_+$ and for each one it can be shown that
+       $\implies x-y+y-z=x-z\in\set{0}\cup\R_+\implies x\geq z$
+       #+END_EXPORT
+****** Total order
+      #+BEGIN_LaTeX
+        \begin{proof}
+          $\forall x,y\in\R$: \\
+          $x-y\in\R_+ \implies x>y$ \\
+          $x-y=0 \implies x=y$ \\
+          $-(x-y)\in\R_+ \implies y > x$
+          Note: $-(x-y) = (-1)(x+(-y)) = (-1)x + (-1)(-y) = -x + -(-y) = -x+y = y-x \qedhere$
+        \end{proof}
+      #+END_LaTeX
+# * 2018 June 1
+** =Order axiom=
+*** Definition
+    $\exists \R_+\in\R\ s.t.\ \forall x\in\R$, one and only one happens:
+**** $x\in\R_+$
+**** $x=0$
+**** $-x\in\R_+$
+*** More facts
+**** $x\geq y\iff x-y\in\R_+\cup\set{0}$
+**** $x>y\iff x-y\in\R_+$
+**** $x\in\R_+\iff x>0$ (x is a positive number)
+***** Recall: $R_- = (\R_+ \cup \set{0})^c$ in $\R$
+**** $x\in\R\iff -x\in\R_+$ (follow from the axiom)
+**** $x\in\R_- \iff 0>x \land 0-x\in\R_+$
+*** Negative numbers
+    If $x\in\R_-$, x is called a negative number
+*** Lemmas
+**** If $a>b \land c\geq d \implies a+c > b+d$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       \begin{align*}
+         a+c-(b+d) &= a-b+c-d \\
+         a-b &\in\R_+\cup\set{0} \\
+         c-b &\in\R_+ \\
+         &>0 \\
+         \implies a+c&>b+d &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** If $a>b \land c > 0 \implies ac>bc$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       \begin{align*}
+         ac-bc &= (a-b)c \in\R_+ \\
+         \implies ac &> bc &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** If $a>b>0 \land c\geq d>0 \implies ac>bd$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       If $c=d$ use #2, done. \\
+       Assume c > d
+       \begin{align*}
+         \implies ac &> bc > bd &&\tag{by #2}\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+** =Absolute value=
+*** Definition
+    Let $a\in\R$ \\
+    #+BEGIN_EXPORT latex
+    |a| = \begin{cases}
+      a, &a\geq0 \\
+      -a, &a<0
+    \end{cases}
+    #+END_EXPORT
+*** Lemmas (Let $a,b\in\R$)
+**** $|a|\geq a, -a$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       by cases. \\
+       1) $a>0 \implies -a<0$ $|a|=a, a\geq a, a\geq-a$ (because $-a$ is negative) \\
+       2) $a=0 \implies |a|=0, a=-a=0$ (all = 0) \\
+       3) $|a|<0 \implies |a|-a, -a\geq-a, -a>a$ (because $a$ is negative) $\qedhere$
+     \end{proof}
+     #+END_EXPORT
+**** $|ab|=|a||b|$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       by cases. \\
+       1) $a=0 \lor b=0 \implies ab=0 \implies |ab|= 0 = |a||b|$ \\
+       2) $a>0 \land b>0 \implies ab>0 \implies |ab|=ab=|a||b|$ \\
+       3) $a<0 \land b<0 \implies -a>0 \land -b>0$
+       \begin{align*}
+         |a| &= -a \\
+         |b| &= -b \\
+         (-a)(-b) &= (-1)a(-1)b \\
+         &=(-1)(-1)ab \\
+         &= -(-ab) \\
+         &= ab \\
+         \implies |ab| &= ab = (-a)(-b) = |a||b|
+       \end{align*}
+       4) $a>0 \land b<0$ (also works by symmetry the other way around)
+       \begin{align*}
+         \implies |a| &= a \\
+         |b| &= -b \\
+         \implies a(-b) &= a(-1)b - (-1)ab = -ab > 0 \\
+         \iff ab &< 0 \\
+         \implies |ab| &= -ab = a(-b) = |a||b| &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** $|a+b|\leq|a|+|b|$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       by cases. \\
+       If $a+b\geq0$
+       \begin{align*}
+         \implies |a+b| &= a+b \leq |a|+|b| &&\tag{since $a\leq|a|$}
+       \end{align*}
+       If $a+b<0$
+       \begin{align*}
+         |a+b| &= -(a+b) \\
+         &= (-1)(a+b) \\
+         &=(-1)a+(-1)b \\
+         &= (-a)+(-b) \\
+         &\leq |a|+|b| &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** $|a-b|\geq|a|-|b|$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       \begin{align*}
+         |a| &= |a-b+b| \\
+         &\leq |a-b|+|b| &&\tag{by #3} \\
+         \iff |b|+|a-b| - |a| &\geq 0 \\
+         \implies |a-b| -(|a|-|b|)&\geq0 \\
+         \iff |a-b|\geq|a|-|b| &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** $\forall \epsilon>0,\ |a-b|<\epsilon \iff b-\epsilon<a<b+\epsilon$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       by cases. \\
+       If $a-b<\epsilon$
+       \begin{align*}
+         a-b<\epsilon &\iff \epsilon-(a-b)>0 \\
+         &\iff \epsilon + b-a > 0 \\
+         &\iff a<b+\epsilon
+       \end{align*}
+       If $-(a-b)<\epsilon$
+       \begin{align*}
+         &\iff b-a<\epsilon \\
+         &\iff b-\epsilon < a \\
+         &\iff b-\epsilon < a < b+\epsilon &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+** $\Z\subseteq\R$
+*** Closed under addition
+    $1+1=2\in\R$ \\
+    $1+1+1=3\in\R$ \\
+    In general, $1+1+\ldots+1=n\in\R$
+*** $\forall n\in\N\cup{0}$
+    $-n\in\R \implies \Z\subseteq\R$
+* 2018 June 1
+** =Order axiom=
+*** Definition
+    $\exists \R_+\in\R\ s.t.\ \forall x\in\R$, one and only one happens:
+**** $x\in\R_+$
+**** $x=0$
+**** $-x\in\R_+$
+*** More facts
+**** $x\geq y\iff x-y\in\R_+\cup\set{0}$
+**** $x>y\iff x-y\in\R_+$
+**** $x\in\R_+\iff x>0$ (x is a positive number)
+***** Recall: $R_- = (\R_+ \cup \set{0})^c$ in $\R$
+**** $x\in\R\iff -x\in\R_+$ (follow from the axiom)
+**** $x\in\R_- \iff 0>x \land 0-x\in\R_+$
+*** Negative numbers
+    If $x\in\R_-$, x is called a negative number
+*** Lemmas
+**** If $a>b \land c\geq d \implies a+c > b+d$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       \begin{align*}
+         a+c-(b+d) &= a-b+c-d \\
+         a-b &\in\R_+\cup\set{0} \\
+         c-b &\in\R_+ \\
+         &>0 \\
+         \implies a+c&>b+d &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** If $a>b \land c > 0 \implies ac>bc$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       \begin{align*}
+         ac-bc &= (a-b)c \in\R_+ \\
+         \implies ac &> bc &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** If $a>b>0 \land c\geq d>0 \implies ac>bd$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       If $c=d$ use #2, done. \\
+       Assume c > d
+       \begin{align*}
+         \implies ac &> bc > bd &&\tag{by #2}\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+** =Absolute value=
+*** Definition
+    Let $a\in\R$ \\
+    #+BEGIN_EXPORT latex
+    |a| = \begin{cases}
+      a, &a\geq0 \\
+      -a, &a<0
+    \end{cases}
+    #+END_EXPORT
+*** Lemmas (Let $a,b\in\R$)
+**** $|a|\geq a, -a$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       by cases. \\
+       1) $a>0 \implies -a<0$ $|a|=a, a\geq a, a\geq-a$ (because $-a$ is negative) \\
+       2) $a=0 \implies |a|=0, a=-a=0$ (all = 0) \\
+       3) $|a|<0 \implies |a|-a, -a\geq-a, -a>a$ (because $a$ is negative) $\qedhere$
+     \end{proof}
+     #+END_EXPORT
+**** $|ab|=|a||b|$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       by cases. \\
+       1) $a=0 \lor b=0 \implies ab=0 \implies |ab|= 0 = |a||b|$ \\
+       2) $a>0 \land b>0 \implies ab>0 \implies |ab|=ab=|a||b|$ \\
+       3) $a<0 \land b<0 \implies -a>0 \land -b>0$
+       \begin{align*}
+         |a| &= -a \\
+         |b| &= -b \\
+         (-a)(-b) &= (-1)a(-1)b \\
+         &=(-1)(-1)ab \\
+         &= -(-ab) \\
+         &= ab \\
+         \implies |ab| &= ab = (-a)(-b) = |a||b|
+       \end{align*}
+       4) $a>0 \land b<0$ (also works by symmetry the other way around)
+       \begin{align*}
+         \implies |a| &= a \\
+         |b| &= -b \\
+         \implies a(-b) &= a(-1)b - (-1)ab = -ab > 0 \\
+         \iff ab &< 0 \\
+         \implies |ab| &= -ab = a(-b) = |a||b| &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** $|a+b|\leq|a|+|b|$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       by cases. \\
+       If $a+b\geq0$
+       \begin{align*}
+         \implies |a+b| &= a+b \leq |a|+|b| &&\tag{since $a\leq|a|$}
+       \end{align*}
+       If $a+b<0$
+       \begin{align*}
+         |a+b| &= -(a+b) \\
+         &= (-1)(a+b) \\
+         &=(-1)a+(-1)b \\
+         &= (-a)+(-b) \\
+         &\leq |a|+|b| &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** $|a-b|\geq|a|-|b|$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       \begin{align*}
+         |a| &= |a-b+b| \\
+         &\leq |a-b|+|b| &&\tag{by #3} \\
+         \iff |b|+|a-b| - |a| &\geq 0 \\
+         \implies |a-b| -(|a|-|b|)&\geq0 \\
+         \iff |a-b|\geq|a|-|b| &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+**** $\forall \epsilon>0,\ |a-b|<\epsilon \iff b-\epsilon<a<b+\epsilon$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       by cases. \\
+       If $a-b<\epsilon$
+       \begin{align*}
+         a-b<\epsilon &\iff \epsilon-(a-b)>0 \\
+         &\iff \epsilon + b-a > 0 \\
+         &\iff a<b+\epsilon
+       \end{align*}
+       If $-(a-b)<\epsilon$
+       \begin{align*}
+         &\iff b-a<\epsilon \\
+         &\iff b-\epsilon < a \\
+         &\iff b-\epsilon < a < b+\epsilon &&\qedhere
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+** $\Z\subseteq\R$
+*** Closed under addition
+    $1+1=2\in\R$ \\
+    $1+1+1=3\in\R$ \\
+    In general, $1+1+\ldots+1=n\in\R$
+*** $\forall n\in\N\cup{0}$
+    $-n\in\R \implies \Z\subseteq\R$
+* 2018 June 4
+** $\Z\subseteq\R$
+*** First prove $1\in\R_+$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Want to show: $a\in\R, a\neq= \implies a^2\in\R_+ \iff 1=1^2\in\R_+$
+      \begin{align*}
+        &a\in\R \land a\neq 0 \\
+        &\implies a\in\R_+ \lor a\in\R_- \\
+      \end{align*}
+      If $a\in\R_+ \implies a^2\in\R_+$ \\
+      If $a\in\R_- \implies -a\in\R_+$
+      \begin{align*}
+        &\implies (-a)(-a)\in\R_+ \\
+        &(-a)(-a) = -(-a^2) = a^2 \in\R_+
+      \end{align*}
+    \end{proof}
+    #+END_EXPORT
+*** Set $na=a+\ldots+a$ (a times) $\in\R_+$ (since $\R_+$ is closed under addition)
+*** If $m>n\geq 1 \implies ma\neq na$ where $a\in\R_+$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      \begin{align*}
+        ma - na &= a+\ldots+a\text{(n times)} + (-a)+\ldots+(-a)\text{(n times)} \\
+        &= a+\ldots+a\text{(m-n times)} + a +\ldots+a\text{(n times)} + (-a)+\ldots+(-a)\text{(n times)} \\
+        &= (m-n)a \in\R_+ &&\qedhere
+      \end{align*}
+    \end{proof}
+    #+END_EXPORT
+*** $n=1+1+\ldots+1$ (n times) $\in\R_+$
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      &\implies -n\in\R_- \\
+      &\implies \Z\subseteq\R &&\qedhere
+    \end{align*}
+    #+END_EXPORT
+*** $\Q\subseteq\R$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      $\frac{m}{n} = m\cdot\frac{1}{n}\in\R$ \\
+      $m,n\in\Z, n\neq0$ \\
+      $\forall x,y\in\R, x+y, xy\in\R$ \\
+      Therefore $\Q$ is closed under addition and multiplication. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+** =Least upper bound=
+*** =Upper bound=
+**** Definition \newline
+     Let $S$ be a subset of $\R$. \\
+     $x\in\R$ is called the =upper bound= of $S$ if $\forall s\in S \implies s\leq x$
+**** If $S$ has an upper bound $\iff$ $S$ is bounded above
+**** Lower bounded and bounded below can be defined as expected
+*** Definition
+    Let $S\subseteq\R \land S\neq\emptyset$ be bounded above. \\
+    $x\in\R$ is called a =least upper bound= of $S$ if:
+**** $x$ is an upper bound of $S$
+**** $y\in\R$ is any upper bound $\implies x\leq y$
+*** The =Least Upper Bound Axiom=
+    Any nonempty bounded above subset of $\R$ has a least upper bound.
+*** if $S\subseteq\R$ has a least upper bound, it has to be unique
+*** Let $S$ be a subset of $\R$ which is bounded above, then the following are equivalent:
+**** $a$ is the least upper bound of $S$
+**** $a$ is an upper bound of $S$ and satisfies $\forall \epsilon>0, \exists s\in S\ s.t.\ a-\epsilon<s$
+**** Proof
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       Let $a$ be the least upper bound. \\
+       $1\implies 2$: \\
+       $\forall \epsilon>0, a-\epsilon$ is not an upper bound of $S$ since $a-\epsilon\leq a$ \\
+       $\implies \exists s\in S\ s.t.\ s>a-\epsilon$ \\
+       $2\implies1$: \\
+       Assume $a$ is not the least upper bound. \\
+       $\implies \exists$ upper bound $b$ of $S$ s.t. $b<a$ \\
+       Let $\epsilon=a-b>0$ \\
+       $\implies \exists s\in S\ s.t.\ a-\epsilon<s$ (assumption) \\
+       $a-\epsilon=a-(a-b)=b \implies b<s \rightarrow\leftarrow$ Since this shows that $b$ is not an upper bound. \\
+       Therefore $a$ must be the least upper bound. $\qedhere$
+     \end{proof}
+     #+END_EXPORT
+* 2018 June 6
+** HW problems
+*** 8.3.8 (3)
+    Let $0\neq a, b\in\R$ either $a,b$ both positive, both negative. \\
+    If $a\leq b \implies \frac{1}{a}\geq\frac{1}{b}$ (what happens if $a<0, b>0$)
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Two cases. \\
+      Case 1: $0<b\leq b$ \\
+      By contradiction: assume $\frac{1}{a}<\frac{1}{b}$
+      \begin{align*}
+        &\implies \frac{ab}{a}<\frac{ab}{b} \\
+        &\implies b < a \\
+        &\rightarrow\leftarrow
+      \end{align*}
+      Case 2: $a\leq b\<0 \implies ab>0$ same proof... $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+* 2018 June 8 (Final Review)
+** 11 problems (10 normal + 1 extra credit)
+** Number Theory (3 problems, 30 points)
+*** Congruence
+*** GCD
+**** $d=(a,b) \implies d=sa+tb$ for some $s,t\in\Z$
+**** $d=1\iff \exists s,t\in\Z\ s.t.\ 1=sa+tb$
+*** Division
+**** $a|b, a|c \implies a|(sb+tc) \forall s,t\in\Z$
+**** $a|bc, (a,b)=1 \implies a|c$
+**** $a|c, b|c, (a,b)=1 \implies ab|c$
+*** Division algorithm ?
+** Cardinality (3 problems, 30 points)
+*** Functions
+*** Definition of cardinality
+**** $|A|=|B| \implies \exists$ a bijection $f: A\mapsto B$
+*** Countable = finite + denumerable
+**** $A$ is denumerable $\iff |A|=|\N|$
+*** Properties
+**** $|A|\leq|B| \implies \exists$ 1-1 $f: A\mapsto B$
+** Real numbers (3 problems, 30 points)
+*** Field axiom: 0,1 are unique
+**** $\forall a, \exists! b\ s.t.\ a+b=0$
+**** $\forall 0\neq a \exists! b\ s.t.\ ab=1$
+*** Order axiom
+**** $\R_+ \subseteq \R$ s.t. $\forall a\in\R$, one and only one of the following holds:
+***** $a\in\R_+$
+***** $a=0$
+***** $-a\in\R_+$
+**** $\R_- = (\R_+\cup\set{0})^c$
+**** $\R_+$ is closed under addition and multiplication
+**** $(a^{-1})^{-1}=a$
+**** $-(-a)=a$
+** 5 truth or false questions (2 points each)
