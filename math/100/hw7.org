@@ -1,0 +1,91 @@
+#+OPTIONS: toc:nil
+
+* 7.1.6
+  $A=\Z,\ B=2\Z$ (only even integers). \\
+  $f: A a\mapsto B = 4a$ \\
+  This function is clearly one-to-one, however it is also not onto since
+  since every other element in $B$ is skipped (since it is not a multiple of 4).
+* P176: 1
+  #+BEGIN_LaTeX
+    \begin{proof}
+      let $f: (A, B)\ x\mapsto(\frac{-\pi}{2}, \frac{\pi}{2}) = \pi(\frac{x-A}{B-A})-\frac{\pi}{2}$
+      be a bijective function that maps any real number on the range of $(A,B)$
+      to the range of $(\frac{-\pi}{2}, \frac{\pi}{2})$. \\
+      The function $g: (\frac{-\pi}{2}, \frac{\pi}{2})\mapsto \R = \tan(x)$ be a bijective function that maps from that range to the real numbers. \\
+      Therefore, there exists a bijective function $g\circ f$ that maps from the range $(A, B)$ to $\R$ which means that $|(A,B)=|\R|$. $\qedhere$
+    \end{proof}
+  #+END_LaTeX
+* P176: 2
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Since $|A|\leq|B|,\ \exists f: A\mapsto B$ where $f$ is an injective function. \\
+      Define $C=\setc{b\in B}{\exists a\in A\ s.t.\ f(a)=b}\subseteq B$. \\
+      In other words, Let $C$ be the image of $A$ under $f$. \\
+      This means that $f: A\mapsto C$ is clearly injective (since $f$ is injective by definition), and also clearly surjective (since every element in $C$ has a pre-image in $A$ by the definition of $C$). \\
+      This means that $\exists C\subseteq B\ s.t.\ |A|=|C| \qedhere$
+    \end{proof}
+  #+END_LaTeX
+* P176: 3
+  #+BEGIN_LaTeX
+    \begin{proof}
+      $|A|<|B| \implies \exists f: A\mapsto B$ that is injective. \\
+      $|A|=|C| \implies \exists g: A\mapsto C$ that is bijective. \\
+      Let $j: C\mapsto B = g^{-1}\circ f$. This function $j$ is clearly injective since both $f$ and $g^{-1}$ are injective ($g^{-1}$ is injective since $g$ is bijective). \\
+      Since there exists a function from $C$ to $B$ that is injective, $|C|<|B|. \qedhere$
+    \end{proof}
+  #+END_LaTeX
+* P176: 4
+  #+BEGIN_LaTeX
+    \begin{proof}
+      $|A|<|B| \implies \exists f: A\mapsto B$ that is injective and furthermore that
+      there exists no function from $A$ to $B$ that is bijective.\\
+      $|B|\leq|C| \implies \exists g: B\mapsto C$ that is injective. \\
+      Let $l: A\mapsto C = f\circ g$ \\
+      $l$ is clearly injective since both of its composing functions are, however,
+      $l$ can never be onto since $f$ can never be onto and $g$ must be one to one. \\
+      Therefore, $|A|<|C|. \qedhere$
+    \end{proof}
+  #+END_LaTeX
+* 7.3.9
+  #+BEGIN_LaTeX
+    \begin{proof}
+      Let $A,B$ be two countable sets. \\
+      This means that $\exists f: \N\mapsto A, g: \N\mapsto B$ where both $f$ and $g$ are bijective.
+      Let $l: \N \mapsto (A\cup B)$.
+      $$
+      l(n)=
+      \begin{cases}
+        f(\floor{\frac{n}{2}}), &n\text{ is even} \\
+        g(\floor{\frac{n}{2}}), &n\text{ is odd}
+      \end{cases}
+      $$
+      This function is clearly surjective, since every element in both $A$ and $B$ is mapped under it, and if $A$ and $B$ are disjoint sets, $l$ is also injective. \\
+      Therefore, $|(A\cup B)|=|\N| \implies (A\cup B)$ is countable. $\qedhere$
+    \end{proof}
+  #+END_LaTeX
+* 7.3.11 1
+#+BEGIN_LaTeX
+  \begin{proof}
+    Since $A$ and $B$ are countable, let $A=\set{a_1,a_2,a_3,\ldots}, B=\set{b_1,b_2,b_3,\ldots}$. \\
+    $A\times B$ can be written as:
+    \[
+    \begin{matrix}
+      (a_1, b_1) & (a_1, b_2) & (a_1, b_3) & \ldots \\
+      (a_2, b_1) & (a_2, b_2) & (a_2, b_3) & \ldots \\
+      (a_3, b_1) & (a_3, b_2) & (a_3, b_3) & \ldots \\
+      \vdots & \vdots & \vdots & \ddots
+    \end{matrix}
+    \]
+    Clearly, each row of this matrix is countable, since $B$ is countable, and also every column of it as countable, since $A$ is countable, therefore, it can be thought of as the countable union of countable sets, which is countable. $\qedhere$
+  \end{proof}
+#+END_LaTeX
+* 7.4.6
+  #+BEGIN_LaTeX
+    \begin{proof}
+      by contradiction. \\
+      Assume that the set of irrational numbers, $\mathbb{I}$, is countable. \\
+      By definition, $\R=\Q\cup\mathbb{I}$. Furthermore, it is known that $\Q$ is countable. \\
+      This would imply that since $\Q$ is countable, and $\mathbb{I}$ is countable, $\R$ is also countable, which is a contradiction. \\
+      Therefore, $\mathbb{I}$ must be uncountable. $\qedhere$
+    \end{proof}
+  #+END_LaTeX
