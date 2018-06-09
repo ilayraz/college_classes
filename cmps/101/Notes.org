@@ -314,7 +314,7 @@
         $$E(m_i^2) &= \sum_{i=1}^m \frac{1}{m} + 2\sum\sum \frac{1}{m^2}$$
       \end{align*}
     #+END_LaTeX
-* 2018 May 11 (MIDERM REVIEW)
+* 2018 May 11p (MIDERM REVIEW)
 ** Problem
 *** 1 Random variable
 *** 1 Radix sort (or possibly a different linear time sort)
@@ -352,3 +352,19 @@
 
 
 Review session Mch 3372 5:00 - 8:00 Sunday
+* 2018 June 0
+** Repeat of midterm questions (or similar)
+** know Floyd-Warsaw/multi-end
+** Technique for all pairs won't be on exam
+** For Djikstra problem be sure to explain what you are doing
+** Know what an ADT is
+*** Set of things with common attributes
+*** Operations that can be done with the things
+*** Independent of implementation
+*** Independent of representation
+*** Examples
+**** Integers
+**** Real numbers
+**** Vector
+**** Aint
+**** Anagram
