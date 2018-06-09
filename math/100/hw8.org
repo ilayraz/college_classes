@@ -1,0 +1,110 @@
+#+OPTIONS: toc:nil
+
+* 8.2.3
+** $-(-x)=x$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Note that $x+(-x)=0 \implies (-x)+x=0$ and also that $(-x)+(-(-x))=0$ Therefore, since the additive inverse of $-x$ is unique, $-(-x)=x$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** $(x^{-1})^{-1}$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Note that $x\cdot(x)^{-1} = 1 \implies (x)^{-1}\cdot x = 1$ by definition of the multplicative inverse. Also note that $(x^{-1})^{-1}\cdot(x)^{-1} = 1$. Therefore, since the multiplicative inverse of $(x)^{-1}$ is unique, $\implies (x^{-1})^{-1} = x$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+* 8.3.2
+** $a,b\in\R_- \implies a+b\in\R_-$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     \begin{align*}
+       &a, b \in\R_- \\
+       &\implies -a,-b\in\R_+ \\
+       &\implies (-a)+(-b) \in\R_+ &&\tag{since $\R_+$ is closed under addition} \\
+       &\implies (-1)((-a)+(-b)) \in\R_- \\
+       &\implies (-1)(-a) + (-1)(-b) \in \R_- \\
+       &\implies a + b \in\R_- &&\qedhere
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT
+** $a,b\in\R_- \implies a\cdot b\in\R_+$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     \begin{align*}
+       &a,b\in\R_- \\
+       &\implies -a,-b \in\R_+ \\
+       &(-a)\cdot(-b) \in\R_+ &&\tag{since $\R_+$ is closed under multiplication} \\
+       &\implies (-1)(a)(-1)(b) \in \R_+ \\
+       &\implies (-1)(-1)ab \in \R_+ \\
+       &\implies -(-(a\cdot b)) \in\R_+ \\
+       &\implies a\cdot b \in\R_+ &&\qedhere
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT
+** $a\in\R_+ \land b\in\R_- \implies a\cdot b \in\R_-$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     \begin{align*}
+       &b\in\R_- \implies -b\in\R_+ \\
+       &\implies a(-b) \in \R_+ &&\tag{$\R_+$ is closed under multiplication} \\
+       &\implies (-1)ab \in \R_+ \\
+       &\implies (-1)(-1)ab \in \R_- \\
+       &\implies a\cdot b \in \R_- &&\qedhere
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT
+* 8.3.3
+** $1\in\R_+\land -1\in\R_-$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Note that $1\neq0$ and that -1 is the multiplicative inverse of 1.
+     Therefore, either $1\in\R_+ \land -1\in\R_-$ or $-1\in\R_+ \land 1\in\R_-$. \\
+     Recall that $\R_+$ is closed under multiplication. \\
+     Let $x\in\R_+$. $(-1)x=-x$ which if $x\in\R_+ \implies -x\in\R_-$. \\
+     Therefore, if multiplication with -1 is not closed under mulitplication, -1 must not be in $\R_+$. \\
+     Therefore, $1\in\R_+ \land -1\in\R_-$ by elimination. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** two subproblems
+*** $a\in\R_+\implies\frac{1}{a}\in\R_+$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Recall that an element in $\R_+$ multiplied by an element in $\R_-$ results in an element in $\R_-$. \\
+      Note that given that $a\in\R_+$, $a\cdot\frac{1}{a}=1\in\R_+$ by definition of multiplicative inverse. \\
+      Therefore, since $1\in\R_+$ and $a\in\R_+$, $\frac{1}{a}\in\R_+$. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+*** $a\in\R_-\implies\frac{1}{a}\in\R_-$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Recall that an element in $\R_-$ multiplied by an element in $\R_+$ results in an element in $\R_-$ and an element in $\R_-$ multiplied by an element in $\R_-$ results in an element in $\R_+$. \\
+      Given that $a\in\R_+$ and that $a\cdot\frac{1}{a}=1$ by definition of the multiplicative inverse, and that furthermore, $1\in\R_+$, therefore, $\frac{1}{a}$ must be in $\R_-$ for the multiplication to result in a positive element.
+    \end{proof}
+    #+END_EXPORT
+* 8.3.8
+** Let $x$ be a real number. $x>1\implies x^2>1$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Using theorem 8.3.7-2: let $a=x,b=1,c=x \implies ac>bc \implies x^2>x \qedhere$
+   \end{proof}
+   #+END_EXPORT
+** Let $x$ be a positive real number. $x<1 \implies x^2<1$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Using theorem 8.3.7-3: let $a=1,b=x,c=1,d=x \implies ac>bc \implies 1>x^2$
+   \end{proof}
+   #+END_EXPORT
+** $a,b$ both non-zero real number both negative or both positive. $a\leq b\implies \frac{1}{a}\geq\frac{1}{b}$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     by contradiction. \\
+     Assume $a\leq b \implies \frac{1}{a}<\frac{1}{b}$
+     \begin{align*}
+       \frac{1}{a} &< \frac{1}{b} \\
+       \frac{ab}{a} &< \frac{ab}{b} &&\tag{multiply both sides by $ab$} \\
+       b &< a \\
+       \rightarrow&\leftarrow
+     \end{align*}
+     Therefore, $\frac{1}{a}\geq\frac{1}{b}$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
