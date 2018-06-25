@@ -1,0 +1,35 @@
+* 1
+  Which integers divide zero?
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    $\forall x\in\Z, 0x=0 \implies x|0 \implies$ all integers divide zero $\qedhere$
+  \end{proof}
+  #+END_EXPORT
+* 2
+  Show that $a|b \land b|c \implies a|c$
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    \begin{align*}
+      a|b \implies aq &= b &&\tag{$\exists q\in\Z$} \\
+      b|c \implies bp &= c &&\tag{$\exists p\in\Z$} \\
+      \implies (aq)p &= c \\
+      \implies a(qp) &= c \\
+      \implies a &| c &&\qedhere
+    \end{align*}
+  \end{proof}
+  #+END_EXPORT
+* 3
+  $d|a \implies d|ca\ \forall c\in\Z$
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    \begin{align*}
+      d|a \implies dq &= a &&\tag{$\exists q\in\Z$} \\
+      \implies cdq &= ca &&\tag{$\forall c\in\Z$} \\
+      \implies d(cq) &= ca \\
+      \implies d &| ca &&\qedhere
+    \end{align*}
+  \end{proof}
+  #+END_EXPORT
+* 6
+* 11
+* 15
