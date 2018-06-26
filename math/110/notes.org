@@ -1,0 +1,143 @@
+#+OPTIONS: toc:2
+* June 25: The Basics
+** The number
+*** $\N=\set{1,2,3,4,5,6,7,8,\ldots}$
+*** $\Z=\set{\ldots,-2,-1,0,1,2,\ldots}$
+*** $\Z^+=\N\cup\set{0}$
+** Arithmatic
+*** Assume addition and multiplication works as assumed
+** Order
+*** $< (\leq)$
+** Arithmatic and order work together
+*** $a>b \implies a+c > b+c$
+*** $a>b \land c>0 \impliejs ac>bc$
+** $\N (\Z^+)$ is well ordered
+*** $A\subseteq\N \land A\neq\emptyset \implies \exists a\in A\ s.t.\ \forall b\in A, b\geq a$
+*** Equivalent to the principle of mathematical induction
+**** Type 1
+***** $S\subseteq\N$. If $1\in S \land (n\in S \implies n+1\in S) \implies S=\N$
+***** Can start with $a<0$
+**** Type 2
+***** $1\in S \land (\set{1,\ldots,n}\subseteq S \implies n+1\in S) \implies S=\N$
+**** Example
+***** For all $n\in\N,\ 2^n\leq\binom{2n}{n}<4^n$ \newline
+      Note: $\binom{2n}{n} = \frac{(2n)!}{n!\cdot n!}$
+      #+BEGIN_EXPORT latex
+      \begin{proof}
+        Base case: $n=1$: $\binom{2}{1}=2 \rightarrow 2^1\leq\binom{2}{1}\leq 4^1$ \\
+        Inductive case: Suppose that $n\geq 1$ and that $2^n\leq\binom{2n}{n}<4^n$ \\
+        Want to show: $2^{n+1}\le\binom{2(n+1)}{n+1}<4^{n+1}$
+        \begin{align*}
+          \binom{2(n+1)}{n+1} &= \frac{(2n+2)!}{(n+1)!(n+1)!} \\
+          &= \frac{(2n+2)(2n+1)}{(n+1)(n+1)}\binom{2n}{n} &&\tag{show binom between 2 and 4} \\
+          \frac{(2n+2)(4n+1)}{(n+1)(n+1)} &= 2\cdot\frac{2n+1}{n+1} \\
+          2 &< \frac{(2n+2)(4n+1)}{(n+1)(n+1)} < 4
+        \end{align*}
+        because $1<\frac{2n+1}{n+1}<2$ \\
+        Therefore, $2\cdot2^n \leq \binom{2n+2}{n+1} < 4\cdot4^n \qedhere$
+      \end{proof}
+      #+END_EXPORT
+** Divisibility in $\Z$
+*** Definition
+    $a,b\in\Z$. $a$ divides $b$ if $\exists c\in\Z\ s.t.\ b=a\cdot c$
+**** "$a$ divides $b$" $\equiv$ $a|b$
+**** If $b=a\cdot c$, write $b/a=c$
+*** Properties
+**** $1|a\ \forall a\in\Z$
+**** $a|a$
+**** $a|0$ for all $a\in\Z, a\neq0$
+**** $a|b \land a|c \implies a|(bx+cy)\ \forall x,y\in\Z$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       By assumption, $b=a\cdot k \land c=a\cdot l (k,l\in\Z)$ \\
+       So, $bx+cy=akx + aly = a(kx + ly)$ \\
+       and since $kx+ly\in\Z,\ a|(bk+cl)$. $\qedhere$
+     \end{proof}
+     #+END_EXPORT
+**** If $a|b \land b\neq0 \implies |a|\geq|b|$
+** The Division Algorithm (Theorm)
+*** Definition
+    $a,b\in\Z \land b\geq 1 \implies \exists! q,r\in\Z\ s.t.\ a=bq+r \land 0\leq r\leq b-1$ \\
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Existance using well-ordering principle. \\
+      \begin{align*}
+        R &= \setc{a-bq}{q\in\Z} \\
+        R^+ &= R\cap\Z^+
+      \end{align*}
+      Cases: $a\geq0 \implies 0 = 0-b\cdot0\in\R^+$ \\
+      $a<0$ choose $q=a-1 \implies a-bq = a-b(a-1) = a+b(1-a) = a-ba+b = a(1-b)+b \geq b$ \\
+      because $1-b\leq0$ so $a(1-b)\leq0$ since $a<0$ So $a-b(a-1)\inR^+$ \\
+      $\implies R^+\neq\emptyset \implies \R^+$ contains a least element $r_0$. \\
+      Let $q_0$ be such that $a-bq_0=r_0\geq0$ \\
+      Next need to show $r_0<b$: \\
+      Contradiction: Assume $r_0\eq b$
+      \begin{align*}
+        r_1 = a-bq_0-b &= r_0-b \geq 0 \\
+        &= a-b(q_0+1)\in R^+ \\
+        r_1 = r_0 - b &< r_0
+      \end{align*}
+      This contradicts the fact that $r_0$ is the least element in $R^+ \implies$ existance. $\qedhere$
+    \end{proof}
+
+    \begin{proof}
+      Uniqueness. \\
+      Suppose that $a=bq_1+r_1$ with $0\leq r_1\leq b-1$ then:
+      \begin{align*}
+        bq_1 + r_1 &= bq_0 + r_0 \\
+        \text{Without loss of generality, assume: } r_0 &\leq r_1 \\
+        \implies 0\leq r_1-r_0 &= bq_0 - bq_1 = b(q_0-q_1) \\
+        b\geq1 &\implies q_0-q_1\geq0 \\
+        0 \leq r_0 \leq r_1 &\leq b-1 \\
+        \implies 0\leqr_1-r_0 &\leq r_1 \leq b-1 \\
+        \implies 0\leq &b(q_0-q_1)\leq b-1 \\
+        \implies q_0 - q_1 &= 0 \\
+        \implies r_1 - r_0 &= 0 &&\qedhere
+      \end{align*}
+    \end{proof}
+    #+END_EXPORT
+** Greatest Common Divisor
+*** The GCD of $a,b\in\Z$ is the greatest integer $l$ such that $l|a \land l|b$
+*** Facts
+**** If $a=b=0 \implies$ no GCD
+**** If $a\neq0 \implies$ GCD(a,b)$\leq|a|$
+*** If $a\neq0\lor b\neq0 \implies \exists k\in\N\ s.t.\ k|a \land k|b \implies k|d$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $D=\setc{ax+by}{x,y\in\Z}$ and $D^+=D\cap\N$. \\
+      $D^+\neq\emptyset$ since $a^2+b^2\geq0\in D^+$ \\
+      Let $d\in D^+$ be the least element. \\
+      Since $d\in D^+\subseteq D,\ \exists x,y\in\Z\ s.t.\ d=ax+by$ \\
+      So if $k|a \land k|b \implies k|d$ \\
+      Claim: $d|a$ \\
+      By division algorithm:
+      \begin{align*}
+        a &= dq+r &&\tag{$d,q\in\Z,\ 0\leq r<b$} \\
+        r &= a-qd \\
+        &= a-q(ax+by) \\
+        &= a(1-qx) + b(-qy) \\
+        \implies r &\in D \\
+        r < d \implies r\notin D^+ \land r>0 \\
+        \implies r &= 0 \\
+        \implies d &| a &&\qedhere
+      \end{align*}
+    \end{proof}
+    #+END_EXPORT
+*** Lemma about primes
+    If $d|a\cdot b \land (d,b)=1 \implies d|a$
+*** Questions
+**** If $a\neq 0 \lor b\neq0$ does $(a,b)$ exist?
+**** If so, how do we find it?
+** Exercises
+*** Every non-empty set of integers that is bounded above, contains a greatest element
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $S\subseteq\Z$ be bounded above by $s\in S$. \\
+      Assume $\exists z\in S\ s.t.\ z
+    \end{proof}
+    #+END_EXPORT
+*** Show that if
+    $a|b_1, a|b_2, \ldots, a|b_n \implies a|\sum_{i=1}^n x_ib_i\ \forall \set{x_1,\ldots, x_n}\subseteq\Z$
+*** If $a,b>0 \land a|b \implies b\geq a$
+**** Want to prove $a,l\in\N \implies al\geq a$
+*** Prove runtime of Euclid's algorithm
