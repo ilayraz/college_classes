@@ -1,35 +1,103 @@
-* 1
-  Which integers divide zero?
-  #+BEGIN_EXPORT latex
-  \begin{proof}
-    $\forall x\in\Z, 0x=0 \implies x|0 \implies$ all integers divide zero $\qedhere$
-  \end{proof}
-  #+END_EXPORT
-* 2
-  Show that $a|b \land b|c \implies a|c$
-  #+BEGIN_EXPORT latex
-  \begin{proof}
-    \begin{align*}
-      a|b \implies aq &= b &&\tag{$\exists q\in\Z$} \\
-      b|c \implies bp &= c &&\tag{$\exists p\in\Z$} \\
-      \implies (aq)p &= c \\
-      \implies a(qp) &= c \\
-      \implies a &| c &&\qedhere
-    \end{align*}
-  \end{proof}
-  #+END_EXPORT
-* 3
-  $d|a \implies d|ca\ \forall c\in\Z$
-  #+BEGIN_EXPORT latex
-  \begin{proof}
-    \begin{align*}
-      d|a \implies dq &= a &&\tag{$\exists q\in\Z$} \\
-      \implies cdq &= ca &&\tag{$\forall c\in\Z$} \\
-      \implies d(cq) &= ca \\
-      \implies d &| ca &&\qedhere
-    \end{align*}
-  \end{proof}
-  #+END_EXPORT
-* 6
-* 11
-* 15
+#+OPTIONS: toc:nil
+
+* Excercises
+** 1
+   Which integers divide zero?
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     $\forall x\in\Z, 0x=0 \implies x|0 \implies$ all integers divide zero $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 2
+   Show that $a|b \land b|c \implies a|c$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     \begin{align*}
+       a|b \implies aq &= b &&\tag{$\exists q\in\Z$} \\
+       b|c \implies bp &= c &&\tag{$\exists p\in\Z$} \\
+       \implies (aq)p &= c \\
+       \implies a(qp) &= c \\
+       \implies a &| c &&\qedhere
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT
+** 3
+   $d|a \implies d|ca\ \forall c\in\Z$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     \begin{align*}
+       d|a \implies dq &= a &&\tag{$\exists q\in\Z$} \\
+       \implies cdq &= ca &&\tag{$\forall c\in\Z$} \\
+       \implies d(cq) &= ca \\
+       \implies d &| ca &&\qedhere
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT
+** 4
+*** $(4,14) = 2$
+*** $(5,15) = 5$
+*** $(6,16) = 2$
+** 5
+***   What is $(n,1)$, where $n$ is any positive integer?
+    1, since 1 is the only integer that divides 1, and 1 trivially divides $n$.
+*** (n,0)
+    n, since $n|n$ and $n|0$ and $n$ is the greatest divisor of $n$.
+** 6
+   $d\in\N.\ (d, nd)=d$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Trivially, $d$ is a common divisor of both $d$ and $nd$. \\
+     Let $j=(d,nd)$ and assume $j>d$. However since $j$ is the GCD of $(d,nd) \implies j\leq d$ which is a contradiction, therefore $j\leq d \implies$ $d$ is the GCD of $(d,nd)$. $ \qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 7
+***   What are $q,r$ if $a=75,b=24$?
+    $q=3,r=3$
+*** $a=75,b=25$
+    $q=3,r=0$
+
+* Problems
+
+** 1
+*** (314,159) = 1
+    |   a |   b |
+    | 315 | 159 |
+    | 159 | 155 |
+    | 155 |   4 |
+    |   4 |   3 |
+    |   3 |   1 |
+    |   1 | 0   |
+*** (4144,7696) = 592
+    |    a |    b |
+    | 7696 | 4144 |
+    | 4144 | 3552 |
+    | 3552 |  592 |
+** 2
+*** (3141,1592) = 1
+    | 3141 | 1592 |
+    | 1592 | 1549 |
+    | 1549 |   43 |
+    |   43 |    1 |
+    |    1 | 0    |
+*** (10001,100083) = 73
+    | 100083 | 10001 |
+    |  10001 |    73 |
+    |     73 | 0     |
+
+** 3
+   $x = -40, y=79$
+** 6
+   $(x,y) = (-14,17), (5,-6)$
+** 11
+*** Prove that $(k, n+k) = 1 \iff (k,n)=1$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $c=(k,n)$ and $d=(k, n+k)$. \\
+      Note that by definition of the GCD, $c|k \land c|n \implies c|(k+n)$. \\
+      Using the definition of the GCD again, $d|k \land d|(n+k) \implies d|(n+k-k) \implies d|n$. \\
+      Now since $d|k \land d|n \implies d|c$. \\
+      Conversely, $c|(k+n) \land c|k \implies c|d$. \\
+      Therefore, $c|d \land d|c \implies c=d \implies (k,n)=(k,n+k) \qedhere$
+    \end{proof}
+    #+END_EXPORT
+** 15
