@@ -88,6 +88,20 @@
    $x = -40, y=79$
 ** 6
    $(x,y) = (-14,17), (5,-6)$
+** 7
+   Prove that if $a|b$ and $b|a$, then $a=b$ or $a=-b$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     \begin{align*}
+       a|b &\implies \exists n\in\Z\ s.t.\ b=an \\
+       b|a &\implies \exists k\in\Z\ s.t.\ a=bk \\
+       b &= (bk)n \\
+       1 &= kn \\
+       &\implies k = \pm1 \land n=\pm1 \\
+       &\implies a = \pm b &&\qedhere
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT
 ** 11
 *** Prove that $(k, n+k) = 1 \iff (k,n)=1$
     #+BEGIN_EXPORT latex
