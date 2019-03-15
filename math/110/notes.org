@@ -1,6 +1,6 @@
 #+OPTIONS: toc:2
 * June 25: The Basics
-** The number
+** The numbers
 *** $\N=\set{1,2,3,4,5,6,7,8,\ldots}$
 *** $\Z=\set{\ldots,-2,-1,0,1,2,\ldots}$
 *** $\Z^+=\N\cup\set{0}$
@@ -10,7 +10,7 @@
 *** $< (\leq)$
 ** Arithmatic and order work together
 *** $a>b \implies a+c > b+c$
-*** $a>b \land c>0 \impliejs ac>bc$
+*** $a>b \land c>0 \implies ac>bc$
 ** $\N (\Z^+)$ is well ordered
 *** $A\subseteq\N \land A\neq\emptyset \implies \exists a\in A\ s.t.\ \forall b\in A, b\geq a$
 *** Equivalent to the principle of mathematical induction
@@ -65,17 +65,18 @@
         R &= \setc{a-bq}{q\in\Z} \\
         R^+ &= R\cap\Z^+
       \end{align*}
+      Now to show $R^+ \neq\emptyset$:
       Cases: $a\geq0 \implies 0 = 0-b\cdot0\in\R^+$ \\
       $a<0$ choose $q=a-1 \implies a-bq = a-b(a-1) = a+b(1-a) = a-ba+b = a(1-b)+b \geq b$ \\
-      because $1-b\leq0$ so $a(1-b)\leq0$ since $a<0$ So $a-b(a-1)\inR^+$ \\
+      because $1-b\leq0$ so $a(1-b)\geq0$ since $a<0$ So $a-b(a-1)\in R^+$ \\
       $\implies R^+\neq\emptyset \implies \R^+$ contains a least element $r_0$. \\
       Let $q_0$ be such that $a-bq_0=r_0\geq0$ \\
       Next need to show $r_0<b$: \\
-      Contradiction: Assume $r_0\eq b$
+      Contradiction: Assume $r_0\geq b$
       \begin{align*}
         r_1 = a-bq_0-b &= r_0-b \geq 0 \\
         &= a-b(q_0+1)\in R^+ \\
-        r_1 = r_0 - b &< r_0
+        r_1 &= r_0 - b < r_0
       \end{align*}
       This contradicts the fact that $r_0$ is the least element in $R^+ \implies$ existance. $\qedhere$
     \end{proof}
@@ -87,10 +88,10 @@
         bq_1 + r_1 &= bq_0 + r_0 \\
         \text{Without loss of generality, assume: } r_0 &\leq r_1 \\
         \implies 0\leq r_1-r_0 &= bq_0 - bq_1 = b(q_0-q_1) \\
-        b\geq1 &\implies q_0-q_1\geq0 \\
+        b\geq1 \implies q_0-q_1 &\geq0 \\
         0 \leq r_0 \leq r_1 &\leq b-1 \\
-        \implies 0\leqr_1-r_0 &\leq r_1 \leq b-1 \\
-        \implies 0\leq &b(q_0-q_1)\leq b-1 \\
+        \implies 0\leq r_1-r_0 &\leq r_1 \leq b-1 \\
+        \implies 0\leq b(q_0-q_1) &\leq b-1 \\
         \implies q_0 - q_1 &= 0 \\
         \implies r_1 - r_0 &= 0 &&\qedhere
       \end{align*}
@@ -112,12 +113,12 @@
       Claim: $d|a$ \\
       By division algorithm:
       \begin{align*}
-        a &= dq+r &&\tag{$d,q\in\Z,\ 0\leq r<b$} \\
+        a &= dq+r &&\tag{$d,q\in\Z,\ 0\leq r<d$} \\
         r &= a-qd \\
         &= a-q(ax+by) \\
         &= a(1-qx) + b(-qy) \\
         \implies r &\in D \\
-        r < d \implies r\notin D^+ \land r>0 \\
+        r < d \implies r\notin D^+ \land r\geq0 \\
         \implies r &= 0 \\
         \implies d &| a &&\qedhere
       \end{align*}
@@ -133,11 +134,25 @@
     #+BEGIN_EXPORT latex
     \begin{proof}
       Let $S\subseteq\Z$ be bounded above by $s\in S$. \\
-      Assume $\exists z\in S\ s.t.\ z
+      $s$ must be the greatest integer in $S$ because any $x>s \in S$ would be greater than the bound of $S$ and therefore must not be in $S$. $\qedhere$
     \end{proof}
     #+END_EXPORT
 *** Show that if
     $a|b_1, a|b_2, \ldots, a|b_n \implies a|\sum_{i=1}^n x_ib_i\ \forall \set{x_1,\ldots, x_n}\subseteq\Z$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      By induction. \\
+      Base case: assume $a|b_1 \implies a|x_1b_1\ \forall x_1\in\Z$ by definition. \\
+      Inductive hypothesis: assume $a|b_1, \ldots, a|b_n \implies a|\sum_{i=1}^n x_ib_i\ \forall\set{x_1,\ldots,x_n}\subseteq\Z$ \\
+      Want to prove: $a|b_1, \ldots, a|b_{n+1} \implies a|\sum_{i=1}^{n+1} x_ib_i\ \forall\set{x_1,\ldots,x_{n+1}}\subseteq\Z$
+      \begin{align*}
+        a|b_1,\ldots a|b_n &\implies a|\sum_{i=1}^n x_ib_i &&\tag{by inductive hypothesis} \\
+        a|b_{n+1} &\implies a|x_{n+1}b_{n+1}\ \forall x_{i+1}\in\Z \\
+        a|\sum_{i=1}^n x_ib_i \land a|x_{n+1}b_{n+1} &\implies a|\sum_{i=1}^n x_ib_i + x_{n+1}b_{n+1} \\
+        &\implies a|\sum_{i=1}^{n+1} x_ib_i &&\qedhere
+      \end{align*}
+    \end{proof}
+    #+END_EXPORT
 *** If $a,b>0 \land a|b \implies b\geq a$
 **** Want to prove $a,l\in\N \implies al\geq a$
 *** Prove runtime of Euclid's algorithm
