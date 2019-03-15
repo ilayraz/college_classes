@@ -1,0 +1,137 @@
+#+TITLE: Homework 1
+#+DATE: October 5, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+* 1
+  Write a computer program that uses the Euclidean Algorithm to compute the GCD $d$ of two natural numbers $a$ and $b$ and also integers $u$ and $v$ such that
+  $d=ua+vb$. Use the program to computer $d,u,v$ for $(a,b)=(2458437443,903827662)$
+  #+BEGIN_SRC python
+    def euclid(a, b):
+        a, b = abs(max(a,b)), abs(min(a,b))
+        values = []
+        while b != 0:
+            div, rem = divmod(a,b)
+            values.append((div,rem))
+            a,b = b, rem
+
+        print(f'The GCD is {a}')
+
+        us, vs = [0], [1]
+        for div, rem in values:
+            if len(us) == 1:
+                us.append(1)
+                vs.append(-1*div)
+            else:
+                us.append(us[-2] - div*us[-1])
+                vs.append(vs[-2] - div*vs[-1])
+
+        print(f'u={us[-2]}, v={vs[-2]}')
+  #+END_SRC
+  $d=1, v=725916819, u=-26687339$
+
+* 2
+  |      a |     b | div |   rem |      u |      v |
+  |    n/a |   n/a | n/a |   n/a |      0 |      1 |
+  | 153680 | 79269 |   1 | 74411 |      1 |     -1 |
+  |  79269 | 74411 |   1 |  4858 |     -1 |      2 |
+  |  74411 |  4858 |  15 |  1541 |     16 |    -31 |
+  |   4858 |  1541 |   3 |   235 |    -49 |     95 |
+  |   1541 |   235 |   6 |   131 |    310 |   -601 |
+  |    235 |   131 |   1 |   104 |   -359 |    696 |
+  |    131 |   104 |   1 |    27 |    669 |  -1297 |
+  |    104 |    27 |   3 |    23 |  -2366 |   4587 |
+  |     27 |    23 |   1 |     4 |   3035 |  -5884 |
+  |     23 |     4 |   5 |     3 | -17541 |  34007 |
+  |      4 |     3 |   1 |     1 |  20576 | -39891 |
+* 3
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Let $a,b,d\in\N$. \\
+    $\implies$ $d=\GCD(a,b)$ \\
+    This means that $d$ is the greatest common divisor of $a$ and $b$. \\
+    Let $x\in\N$ be any other common divisor of $a$ and $b$. \\
+    By definition of division, $a=xu$ and $b=xp$ for some $u,p\in\N$. \\
+    By definition of the GCD, $d=aq+bv$ for some $q,v\in\N$.
+    \begin{align*}
+      aq+bv &= d \\
+      xuq+xpv &= d \\
+      x(uq+pv) &= d
+    \end{align*}
+    Which means that $x|d$ \\
+    $\impliedby$ $d$ divides any other common divisor of $a$ and $b$. \\
+    By definition of positive division, if any number divides $d$, it is less than $d$. Therefore, $d$ is the greatest common divisor of $a$ and $b$. $\qedhere$
+  \end{proof}
+  #+END_EXPORT
+* 4
+  Lemma 1: $\GCD(a,b)=d \implies \GCD(a/d, b/d) = 1$
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Let $\GCD(a/d, b/d)=c$. Then $c|(a/d) \implies cq=a/d$ and $c|(b/d)\implies cv=b/d$ for some $q,v\in\Z$. \\
+    Then $cdq=a$ and $cdv=b$, note $cd|a$ and $cd|b$, therefore $cd$ is a common divisor of $a$ and $b$ and $cd\leq d$, since d is positive, $c\leq 1$, but since
+    $c=\GCD(a/d, b/d)$, it must be greater than or equal to 1, therefore $c=1$. $\qedhere$
+  \end{proof}
+  #+END_EXPORT
+
+  Lemma 2: If $d|ab$ and $\GCD(d,a)=1$, then $d|b$.
+#+BEGIN_EXPORT latex
+\begin{proof}
+  Since $\GCD(d,a)=1$, it can be written as $dq+av=1$ for some $q,v\in\Z$. \\
+  By scaling both sides by $b$, $dqb+avb=b$. Clearly, $d|dqb$ and $d|ab\implies d|avb$, therefore, $d|b$. $\qedhere$
+\end{proof}
+#+END_EXPORT
+
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Let $A=\setc{(u_0+tr, v_0-ts)}{t\in\Z}$ and
+    $B=\setc{(u,v)}{d=ua+vb}$, where $d=\GCD(a,b), r=\frac{b}{d}, s=\frac{a}{d}$ \\
+    To show $A\subset B$: \\
+    WTS: $(u_0+tr)a+(v_0-ts)b = d$
+    \begin{align*}
+      &= (u_0+tr)a + (v_0-ts)b \\
+      &= (u_0+t\frac{b}{d})a+(v_0-t\frac{a}{d})b \\
+      &= u_0a+\frac{tab}{d}+v_0b-\frac{tab}{d} \\
+      d &= u_0a+v_0b
+    \end{align*}
+    Which is known to be true and shows that $(u_0+tr, v_0-ts)\in B$. \\
+    To show $B\subset A$: \\
+    WTS: For any $(u,v)\in B, \exists t\in\Z$ such that $(u,v)=(u_0+tr, v_0-ts)$ \\
+    Note: $d = ua+vb = u_0a+v_0b$
+    \begin{align*}
+    d - d &= (u_0a+v_0b)-(ua+vb) \\
+    0 &= a(u_0-u)+b(v_0-v) \\
+    &= \frac{a}{d}(u_0-u)+\frac{b}{d}(v_0-v) &&\tag{Since $d$ divides $a,b,0$, $\frac{a}{d},\frac{b}{d}\in\Z$} \\
+    \end{align*}
+    Note that $\frac{a}{d}|0, \frac{a}{d}|\frac{a}{d}(u_0-u)$, therefore, $\frac{a}{d}|\frac{b}{d}(v_0-v)$. \\
+    By lemma 1 and 2, this means that $\frac{a}{d}|(v_0-v)$, therefore for some $t\in\Z$, $t\frac{a}{d}=ts=v_0-v$. \\
+    Note that by transforming this equation,
+    \begin{equation}
+    v = v_0 - ts
+    \end{equation}
+    Now substituting $t\frac{a}{d}$ into the original equation:
+    \begin{align*}
+      0 &= \frac{a}{d}(u_0-u)+t\frac{b}{d}\frac{a}{d} \\
+      &= u_0-u+t\frac{b}{d} &&\tag{$\frac{a}{d}\neq0$ and can therefore be cancelled out} \\
+      &= u_0-u+tr \\
+      u &= u_0+tr
+    \end{align*}
+    Using this and equation (1):
+    \begin{align*}
+    v &= v_0-ts \\
+    u &= u_0+tr
+    \end{align*}
+    Which shows that $B\subset A$. Therefore $A=B$. $\qedhere$
+  \end{proof}
+  #+END_EXPORT
+* 5
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Let $p$ be a prime number and $a_1,\ldots,a_n\in\Z$. \\
+    By induction on $n$: \\
+    Base case: $n=1$: $p|a_1 \implies$ done. \\
+    Assume for $k\leq n$, if $p|a_1\ldots a_k$, then $p|a_i$ for $1\leq i\leq k$. \\
+    Let $k=n+1$: \\
+    If $p|a_1\ldots a_na_{n+1}$, then either $p|(a_1\ldots a_n)$ or $p|a_{n+1}$. \\
+    If $p|(a_1\ldots a_n)$, then done. \\
+    If $p|a_{n+1}$, then $i=n+1$. $\qedhere$
+  \end{proof}
+  #+END_EXPORT

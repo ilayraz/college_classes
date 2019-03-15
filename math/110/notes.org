@@ -155,4 +155,141 @@
     #+END_EXPORT
 *** If $a,b>0 \land a|b \implies b\geq a$
 **** Want to prove $a,l\in\N \implies al\geq a$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       \begin{align*}
+         a|b &\implies \exists k\in\Z\ s.t.\ b=ak \\
+         k &= \frac{b}{a} \geq 1 \\
+         ak &\geq a \\
+         \implies b &\geq a
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
 *** Prove runtime of Euclid's algorithm
+* June 27
+** Prime numbers
+*** $p\in\N$ is a prime if:
+**** $p>1$
+**** $a|p \implies a=1\lor a=\pm p$
+*** Lemmas
+**** $p\in\N$ is prime $\iff \forall a,b\in\Z\ p|ab \implies p|a \lor p|b$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       $\implies$ \newline
+       Assume $a,b>1$. Assume $p$ is prime and $p|ab$. \\
+       If $p|a$: done. \\
+       If $p\nmid a \implies (a,p)=1$ because if $d|p \land d|a \implies d=1 \lor d=p$ by definition of a prime number. \\
+       However, since $p\nmid a \implies d\neq p \implies d=1$ (Corollary 1, pg. 8, $p|ab \land (a,p)=1 \implies p|b$). \\
+       \newline
+       $\impliedby$ \newline
+       Suppose $p>1 \land \forall a,b\in\Z\ p|ab \implies p|a \lor p|b$. \\
+       Suppose that $c|p$ \\
+       \begin{align*}
+         &\implies p|c\cdot d \\
+         &p|c \lor p|d \\
+         &\implies |p|\geq|c|,|d| \\
+         p|c \land |p|\geq|c| &\implies p = |c| \\
+         p|d \land |p|\geq|d| &\implies p = |d|
+       \end{align*}
+     \end{proof}
+     #+END_EXPORT
+** Unique factorization
+*** If $n\in\N \land n>1 \implies$ there is a unique set of primes $p_1,p_2,\ldots,p_k\ s.t.\ n=p_1\cdot p_2\cdot\ldot\cdot p_k$
+*** Every $n>1$ is divisible by a prime
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $S\subseteq\N$ for which the statement fails. \\
+      Want to show $S=\emptyset$ \\
+      If $S\neq\emptyset \implies S$ contains a least element $n_0$ \\
+      Know that $n_0$ is not divisible by a prime, and $\forall n<n_0, n\notin S \implies n=1 \lor n$ is divisible by a prime. \\
+      Furthermore $n_0 > 2$. Lastly, $n_0\in S \implies n_0$ is not prime. So $\exists a\in\N, a>1\ s.t.\ a|n_0 \land a<n_0$. \\
+      $1<a<n_0 \implies a\notin S \implies \exists p\ s.t.\ p|a$. \\
+      $p|a \land a|n_0 \implies p|n_0 \rightarrow\leftarrow \qedhere$
+    \end{proof}
+    #+END_EXPORT
+*** The set of primes is infinite
+*** Every $n>1$ is a product of prime factors
+*** Euler's theorm (kinda)
+    $$\sum_{p\leq N} \frac{1}{p} > \lg(\lgN) - 1$$
+**** Corollary: the set of primes is infinite
+**** Harmonic series
+     $$\log N + 1 > \sum{n=1}^N \frac{1}{n} > \log N$$ \\
+     $$\lo N = \int_1^N \frac{1}{x} dx < \sum_{n=1}^N \frac{1}{n}$$
+** Excercises
+*** If $p$ is prime and $p|(a_1\cdot a_2\cdot\ldot\cdot a_n)$ then $p|a_i$ for some $1\leq i\leq n$
+* June 29
+** Section 1 HW problem (15b)
+   $f(x)=s^2+ax+b=0. a,b\in\Z$ \\
+   If $r\in\Q \land f(r)=0 \implies r\in\Z$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Note: $d|ab \land (d,a) \implies d|b$
+     \begin{align*}
+       r\in\Q &\implies r=n/m \land(n.m)=1 \\
+       f(r)=0 &\implies \frac{n^2}{m^2} + a\frac{n}{m}+b=0 \\
+       &\implies n^2+anm+bm^2 = 0 \\
+       n^2 &= -(anm+bm^2) \\
+       &\implies m|n^2 \implies m|n \\
+       (m,n)=1 \land m|n &\implies m=\pm1 \\
+       &\implies r\in\Z &&\qedhere
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT
+*** Proposition
+    If $n\in\N$, then $\sqrt{n}\in\Q \iff \sqrt{n}\in\N$ ($n$ is a perfect square)
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      $\sqrt{n}$ is a solution of $x^2-n=0$. \\
+      If $r\in\Q$ and $r^2-n=0 \implies r\in\Z$
+    \end{proof}
+    #+END_EXPORT
+** Diophatine equations
+*** Definition
+**** Polynomial equation in 1 or more variables with integer coefficients.
+**** Want to find rational/integer solutions
+** Linear diophantine equations in 2 variables
+*** $ax+by=c$ where $a,b,c\in\Z$
+*** Integer solutions
+**** The equation $ax+by=c$ has no solutions $(x,y)\in\Z^2$ if (a,b)\nmid c$
+     Because $(a,b)|(ax+by) \forall x,y\in\Z$
+*** If (a,b)|c \implies \exists x,y\in\Z\ s.t.\ ax+by=c$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      $\exists x,y\in\Z\ s.t.\ ax+by=d=gcd(a,b)$ \\
+      If $d|c \implies c=kd (k\in\Z)$ \\
+      Therefore $(ax+by)k=c$ \\
+      So $a(xk)+b(yk)=c$. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+*** If $a,b,c\in\Z \implies ax+by=c$ has solutions $x,y\in\Z \iff gcd(a,b)|c$
+*** If $ax_0+by_0=c \implies \forall k\in\Z,\ a(x_0+bk)+b(y_0-ak)=c$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      \begin{align*}
+        c &= a(x_0+bk) + b(y_0-ak) \\
+        &= ax_0+abk + by_0 - abk \\
+        &= ax_0+by_0 &&\qedhere
+      \end{align*}
+    \end{proof}
+    #+END_EXPORT
+*** The equation $ax+by=c$ has solutions $x,y\in\Z \iff (a,b)|c$
+    If $x_0,y_0\in\Z$ is one solution then the set of all solutions is given by
+    $\setc{(x,y)}{x=x_0-\frac{b}{gcd(a,b)}\cdot k, y=y_0+\frac{a}{gcd(a,b)}\cdot k \forall k\in\Z}$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      If $x_0-k\cdot\frac{b}{gcd(a,b)}, y=y_0+k\cdot\frac{a}{gcd(a,b)}$,
+      then $x,y\in\Z$ and $ax+by=\ldots=c$.
+    \end{proof}
+    #+END_EXPORT
+** Sum of two squares
+*** For which integers does $a^2+b^2=c$ have a solution?
+    Pattern? $n=3+4k \implies n$ is not a sum of two squares
+** Excerices
+*** Suppose that $n\geq2$, and $f(x)=a_nx^n+a_{n-1}x^{n-1}+\ldots+a_0$
+    With $a_i\in\Z$ $0\leq i\leq n$ and $a_n\neq0$
+    If there exists a prime $p$ s.t.
+**** $p\nmid a_n$
+**** $p|a_i$ $\forall i, 0\leq i\leq n$
+**** $p^2\nmid a_0$
+     then $f(x)=0$ has no verified solutions
+*** If $a\equiv b\pmod{m} \land c\equiv d\pmod{m} \implies a\cdot c\equiv b\cdot d\pmod{m}$

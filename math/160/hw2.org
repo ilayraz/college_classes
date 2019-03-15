@@ -1,0 +1,192 @@
+#+TITLE: Homework 1
+#+DATE: Febuary 1, 2019
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+* 1.3
+** 1
+*** $A\land(B\lor C)\iff (A\land B)\lor (A\land C)$
+*** $A\lor(B\land C) \iff (A\lor B)\land (A\lor C)$
+*** $\neg\neg A\iff A$
+*** $\neg(A\implies B) \iff A\land\neg B$
+*** $\neg(A\iff B) \iff (A\land\neg B)\lor (\neg A\land B)$
+*** $\neg(A\land B)\iff \neg A\lor\neg B$
+*** $\neg(A\lor B)\iff \neg A\land\neg B$
+*** $A\lor\neg A$
+*** $\neg(A\land\neg A)$
+*** $(A\implies B)\iff (\neg B\implies \neg A)$
+*** $(A\land B\implies C)\iff (A\implies B\implies C)$
+** 2
+   Let $\alpha=A_1,\beta=A_2\lor A_3,\gamma=A_2\lor A_3, \delta=A_1$.
+   Now note that $(\alpha\land\beta)=(A_1\land (A_2\lor A_3))=(\gamma\land\delta)=((A_2\lor A_3)\land A_1)$,
+   However $\alpha=A_1\neq\gamma=A_2\lor A_3$.
+** 3
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     By induction. $\newline$
+     Base case: Let $A$ be some sentence symbol, note that all proper initial segments
+     of $\epsilon_\neg$ are left parentheses heavy: $(., (\neg., (\neg A.$ are all left parentheses heavy. $\newline$
+     Assume that all proper initial segments of a wff of size less than $n$ are left parentheses heavy, and furthermore that all proper wffs are balanced in their parenthesis count. Let $\alpha$ be a proper wff of size $n-1$, then note that all the following are left parentheses heavy: $(., (\neg., (\neg\alpha_0.$ where $\alpha_0$ is any proper initial segment of $\alpha$ which is left parentheses heavy by our induction hypothesis. $(\neg\alpha.$ where $\alpha$ is parenthesis balanced so there is one excess left parentheses. Therefore, all proper initial segments of $\epsilon_\neg$ are left parentheses heavy. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 7
+   Yes. Note that in our grammer, an opening parenthesis can only occur
+   after some operator, while a closing parenthesis could only occur after some sentence symbol (if all variables are fully expanded, otherwise a closing parenthesis
+   could only occur after a sentence symbol or variable). Therefore, the replacing symbol occurs directly after an operator, it acts as an opening parenthesis,
+   and the subexpression should be recursivly evaluated, while if it occurs directly after a variable/sentence symbol, it acts as a closing parenthesis, and the subexpression
+   is complete. So even if there is only one symbol to express both the opening and closing parenthesis, the syntax of the language
+   will not change.
+* 1.5
+** 1
+*** a
+    #+BEGIN_EXPORT latex
+    \begin{equation*}
+      G(\alpha,\beta,\gamma) = (\neg\alpha\land\neg\beta\land\neg\gamma)\lor(\neg\alpha\land\neg\beta\land\gamma)\lor(\neg\alpha\land\beta\land\neg\gamma)\lor(\alpha\land\neg\beta\land\neg\gamma)
+    \end{equation*}
+    #+END_EXPORT
+*** b
+    #+BEGIN_EXPORT latex
+    \begin{equation*}
+      G(\alpha,\beta,\gamma)=(\neg\alpha\land\neg\beta)\lor(\neg\alpha\land\neg\gamma)\lor(\neg\beta\land\neg\gamma)
+    \end{equation*}
+    #+END_EXPORT
+** 4
+*** a
+    Note that the following truth table:
+    | A | B | $M(\perp,A,B)$ |
+    | T | T | F              |
+    | T | F | T              |
+    | F | T | T              |
+    | F | F | T              |
+    This truth table is equivalent to $A|B$ (A NAND B),
+    which is complete, and therefore $\set{M,\perp}$ is complete.
+*** b
+    Note that there is only one possible (up to symmetry) combination of inputs for M on two sentence symbols, and one possible combination for M on one sentence symbol.
+    Their truth tables are as follows:
+    | A | B | M(A,A,A) | M(A,A,B) | M(M(A,A,A),A,B) |
+    | T | T | F        | F        | F               |
+    | T | F | F        | F        | T               |
+    | F | T | T        | T        | F               |
+    | F | F | T        | T        | T               |
+
+    Note that the first two are simply equivalent to $\neg A$, while the third one is not equivalent to any defined operator. Therefore, there exists no combination
+    of inputs for $M$ on two sentence symbols that emulates the NAND or NOR operators, which by excercise (2) are the only sentence symbols that are by themselves complete,
+    and therefore $M$ by itself is not complete.
+
+** 9
+*** a
+    #+BEGIN_EXPORT latex
+    \begin{equation*}
+      (\neg A\lor\neg B\lor C)\land(\neg A\lor B\lor\neg C)\land(A\lor\neg B\lor\neg C)\land(A\lor B\lor C)
+    \end{equation*}
+    #+END_EXPORT
+*** b
+    Recall that for any formula, there exists a truth table which exactly represents that formula.
+    An algorithm can be designed to convert any truth table to a wff in CNF form: \\
+    For every row in the truth table for which the expression is true, take every sentence symbol
+    and take itself if it's assigned a value of T or its negation if it's assigned a value of F, and take the disjunction of all of those.
+    Now take the conjunction of all of the disjunctions just created. This expression in CNF is one equivalent to the one shown in the truth table,
+    and hence every expression can be represented in CNF.
+** Extra Credit 10
+*** a
+    If there exists some truth assigment $\mu$ such that $\bar{\mu}(\varphi)=T$, then this $\mu$ assigns $A$ a value of either true or false.
+    If it assigns $A$ a value of true, then $\varphi_\tang^A$ is true, otherwise $\varphi_\perp^A$ is true. Hence $\varphi_\perp^A\lor\varphi_\tang^A$ is always true when $\bar{\mu}(\varphi)$ is true, so $\varphi\vDash(\varphi_\perp^A\lor\varphi_\tang^A)$.
+*** b
+    If $\varphi\vDash\psi$ and $A$ is not in $\psi$, then the truth assignment of $A$ does not affect the value of $\psi$, meaning that we can replace $A$ with a tautology or a contradiction
+    and the value of $\psi$ will not change, so we will do exactly that, and it should still be that it implies $\psi$ since $\psi$ should not be affected by the truth assignment of $A$.
+    Otherwise stated as, $(\varphi_\tang^A\lor\varphi_\perp^A)\vDash\psi$.
+*** c
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      $\implies\newline$
+      Assume that $\varphi$ is satisfiable, then there exists some truth assignment $\mu$ under which $\varphi$ is satisfies. Now this truth assignment assigns $A$ the value of either true or false. If it assigns $A$ a value of true, $\bar{\mu}(\varphi_\tang^A)$ must also be true and hence satisfiable. Otherwise the same is true for $\varphi_\perp^A$.
+      From this we can conclude that under $\mu$ either $\varphi_\tang^A$ or $\varphi_\perp^A$ is satisfiable, and therefore $\varphi_*^A = (\varphi_\tang^A\lor\varphi_\perp^A)$ is also satisfiable. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      $\impliedby\newline$
+      Assume that $\varphi_*^A$ is satisfiable. Then either $\varphi_\perp^A$ or $\varphi_\tang^A$ is satisfiable. Assume without loss of generality that $\varphi_\tang^A$ is satisfiable.
+      This means that there exists some truth assignemtn $\mu$ such that $\bar{\mu}(\varphi_\tang^A)$ is satisfiable. Now under this truth assignment, the value of $A$ is irrelevant,
+      since $A$ was replaced by a tautology. This means that we can take $\mu$ with the assignment of $A=T$ called $\mu^*$ and $\varphi_\tang^A$ would still be true.
+      Therefore, since $\mu^*\vdash\varphi_\tang^A$, and in both of these $A$ is true, then we can replace the tautology by $A$ itself and the expression would still be true.
+      Hence, $\mu^*\vdash\varphi$, so $\varphi_*^A$ being satisfiable implies $\varphi$ being satisfiable. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+** Extra Credit 11
+   Let the set of all sentence symbols in $\alpha$ be $S_\alpha$, and similarly
+   all the sentence symbols in $\beta$ be $S_\beta$. Now let $S=S_\alpha\setminus S_\beta$.
+   That is, all the sentence symbols in $\alpha$ that are not also in $\beta$.
+   In a similar way to problem (10), let $\gamma = \alpha^S_*$. That is, $\gamma = (\alpha^S_\perp\lor\alpha^S_\tang)$.
+   Hence, $\gamma$ is composed of only sentence symbols that are in both $\alpha$ and $\beta$, and furthermore, by part (a) of problem 10,
+   $\alpha\vDash\gamma$, and since $\alpha\vDash\beta$ also, $\gamma\vDash\beta$, by part (b) of problem 10,
+   since all of $S$ is explictily defined to be the sentence symbols that do not appear in $\beta$.
+   Therefore, $\alpha\vDash\gamma\vDash\beta$. $\qed$
+* 1.7
+** 1
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     $\newline$ Let $\Sigma$ be a finite satisfiable set, and let $\alpha$ be some wff.
+     If  neither $\Sigma;\alpha$ nor $\Sigma;\neg\alpha$ are satisfiable,
+     then there must exists some finite $\Sigma_1,\Sigma_2\subseteq\Sigma$ such that both $\Sigma_1;\alpha$ and $\Sigma_2;\neg\alpha$ are unsatisfiable.
+     Now consider $\Sigma_x=\Sigma_1\cup\Sigma_2\subseteq\Sigma$, and note that it is a finite satisfiable set. Further note that $\Sigma_x;\alpha$ and $\Sigma_x;\neg\alpha$ are both unsatisfiable.
+     However, that is impossible, because if under some truth assignment, $\alpha$ is false and the rest of $\Sigma_x$ is true, then $\neg\alpha$ must be true,
+     and therefore $\Sigma_x;\neg\alpha$ must be satisfiable. Therefore, either $\Sigma_1;\alpha$ or $\Sigma_2;\neg\alpha$ must be satisfiable, and hence either $\Sigma;\alpha$ or $\Sigma;\neg\alpha$ must also be
+     satisfiable. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+
+** 3
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     $\implies\newline$
+     Assume that the set $\Sigma$ is satisfiable, then every finite subset of $\Sigma$ is also trivially satisfiable. $\newline$
+     $\impliedby\newline$
+     Assume that every finite subset of $\Sigma$ is satisfiable. Now assume to the contrary that $\Sigma$ itself is unsatisfiable.
+     That means that $\Sigma\vDash\perp$, and by our corollary, there exists some finite subset $\Sigma'\subseteq\Sigma$ such that $\Sigma'\vDash\perp$.
+     However, that would mean that $\Sigma'$ must always be false. That is that $\Sigma'$ is unsatisfiable. However, every finite subset
+     of $\Sigma$ is satisfiable, and $\Sigma'$ is a finite subset of $\Sigma$, then we have a contradiction. Therefore, $\Sigma$ itself must be satisfiable. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 8
+   Given a set that is has the property that both it and its complement is effectively enumerable, there exists two algorithms that
+   each enumerate all elements in the set, as well as the ones in its complement. A set is called decidable if there exists an algorithm that halts with the correct answer
+   both in the case where the element is in the set, as well as the case where the element is not in the set.
+   Define a new algorithm as one which runs both of the two previous given algorithms interleaved. If the algorithm enumerates the element we want to decide on,
+   then it was either enumerated by the algorithm enumerating the set, or the one enumerating its complement. If it was enumerated by the enumeration of the elements in the set,
+   then it is in the set, so the algorithm returns "YES" and halts. If it was enumerating as being in the complement of the set, then it is clearly not in the set, so the algorithm
+   returns "NO" and halts. Either way, the algorithm will eventually find the element, and halt on it with the correct response.
+   So if both a set and its complement are both effectively enumerable, then the set is decidable. $\qed$
+** 11
+*** a
+    If you have two effectively enumerable sets, then there exists two algorithms
+    that enumerate exactly every member of each one of those sets.
+    Define a new algorithm to be both of the previous algorithms running interleaved.
+    This new algorithm will generate in turn a member of one set, and then the other, contiunally generating every member of those sets.
+    This new algorithm is exactly the algorithm enumerating every member of both of the given sets. That is, their union. Hence the union
+    of two effectively enumerable sets is also effectively enumerable.
+*** b
+    Like in the previous part, there exists two algorithms that each enumerate all of the elements in both sets. Like in the previous part,
+    define a new algorithm that executes both of the given algorithms interleaved, except this time, instead of returning them right away,
+    it keeps all of the elements enumerated by the it's two sub-algorithms in a data structure. Since each algorithm shall only enumerate each
+    of its elements once, if one algorithm enumerates an element that is already in the data structure, it must have also been enumerated by the
+    other algorithm, and hence is in both sets, and is also in their intersection, so let the new algorithm enumerate that element.
+    If an element is enumerated by one of the two algorithms that is not in the data structure, insert it, and don't return it until it is seen again,
+    since only then will it be confirmed to be in their intersection.
+
+** 12
+*** a
+    $\Gamma=\set{\alpha,\neg\alpha}$
+*** b
+    $\Gamma=\set{\neg\alpha,\neg\beta,\alpha\lor\beta}$
+*** c
+    $\Gamma=\set{\neg\alpha,\neg\beta,\neg\gamma,\alpha\lor\beta\lor\gamma}$
+** Extra Credit 4
+   Let $C_{i,j}$ be a sentence symbol that says that "Country $i$ is of color $j$" With $i\in\N$ and $1\leq j\leq 4$.
+   Now let $\Sigma_1=\setc{C_{i,j}}{\forall i\in\N, \forall 1\leq j\leq 4}$. That is, the set of all possible colorings of all possible countries.
+   Let $\Sigma_2=\setc{C_{i,1}\oplus C_{i,2}\oplus C_{i,3}\oplus C_{i,4}}{\forall i\in\N}$ (where $\oplus$ represents the XOR binary operator).
+   That is, the set of wffs that says that each country has exactly one coloring attached to it.
+   Lastly, let $\Sigma_3=\setc{A_{i,j}}{\forall i,j\in\N}$ where $A_{i,j}$ is the sentence symbol that says that
+   "If country $i$ is adjacent to country $j$, then they are not the same color".
+   Now Consider the set $\Sigma=\Sigma_1\cup\Sigma_2\cup\Sigma_3$. That is, the set that is only satisfiable if there exists some specific coloring for each country
+   that is not the same color as any of its adjacent countries. We know that by the Four Coloring Theorem, any finite subset of $\Sigma$ is satisfiable, and therefore,
+   by the compactness thorem, $\Sigma$ itself is satisfiable. $\qed$

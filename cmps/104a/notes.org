@@ -1,0 +1,19 @@
+* Oct. 1
+** =Token=: any string with a significance
+** =identifier=: token with no constant meaning (ex variables)
+** =Lexical analysis=: splitting a string into tokens
+** =Flex=: regular expression language (scanner generators) (based on lex from Bell Labs)
+** =Bison=: parser generator (based on yacc - yet another compiler compiler)
+** =Symbol table=: a map from a string to an identifier
+** Projects
+   1) pipes
+   2) scanner
+   3) parser
+   4) symbol+type generator
+   5) code generator
+* Oct. 3
+** Forms of Intermediate code generators
+   - high :: HIR - Abstract Syntax Tree (AST)
+   - medium :: MIR - 3 Adress Code (3AC)
+   - low :: LIR - machine idioms
+* Oct. 10

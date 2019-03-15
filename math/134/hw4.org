@@ -1,0 +1,126 @@
+#+TITLE: Homework 4
+#+DATE: October 26, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* 3.7
+** $m=121=11^2, a=289, n=3812$
+
+** $\phi(121) = 11(10)=110$
+
+** $e=\LCM(11(10), 1) = 110$
+
+** $3812 \equiv 72 \mod{110}$
+
+** $289 \equiv 47 \mod{121}$
+
+*** $(47+121\Z)^2 = 2209+121\Z = 31+121\Z$
+*** $47^4 \equiv 31^2 \equiv 961 \equiv 114 \mod{121}$
+*** $47^8 \equiv 114^2 \equiv 12996 \equiv 49 \mod{121}$
+*** $47^{16} \equiv 49^2 \equiv 2401 \equiv 102 \mod{121}$
+*** $47^{32} \equiv 102^2 \equiv 10404 \equiv 119 \mod{121}$
+*** $47^{64} \equiv 119^2 \equiv 14161 \equiv 4 \mod{121}$
+*** $47^{128} \equiv 4^2 \equiv 16 \mod{121}$
+*** $47^{72} \equiv 47^{64}47^8 \equiv 4\cdot 49 \equiv 196 \equiv 75 \mod{121}$
+
+$289^{3812}\equiv 75 \mod{121}$
+
+* 3.8
+** a
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Let $p=2^n+1$ be a prime. Assume to the contrary that $n$ is not a power of 2, but still positive.
+     Therefore, $n$ must have an odd prime factor, $k$, such that $n=kc$ for some $1\leq c\in\N \leq k$.
+     Now:
+     \begin{align*}
+       2^n+1 &\equiv 2^{kc}+1 \pmod{2^c+1} \\
+       &\equiv (2^c)^k+1 \pmod{2^c+1} \\
+       &\equiv (-1)^k+1 \pmod{2^c+1} &&\tag{$2^c\equiv-1\mod{2^c+1}$} \\
+       &\equiv (-1)+1 \pmod{2^c+1} &&\tag{$k$ is odd} \\
+       &\equiv 0 \pmod{2^c+1} \\
+       &\implies (2^c+1)|(2^n+1)
+     \end{align*}
+     Note that $1\leq c\leq n$, and therefore $2^c+1 \leq 2^n+1$, so if $(2^c+1)|(2^n+1)$, $2^n+1$ must not be a prime.
+     Hence, $n$ must be a power of 2. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** b
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Assume that there exists a prime number $p=2^n-1$ where n is not prime. This means that $n=kc$ for some $1\leq k,c\in\N\leq n$.
+     Now by (3.22), $p = 2^n-1 = 2^{kc} - 1 = (2^k-1)(a^{(c-1)k}+a^{(c-2)d}+\cdots+a^d+1)$ meaning that $(2^k-1)|p$. Hence $p$ must not be a prime.
+     Which is a contradiction. Therefore, $n$ must be a prime number. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+* 3.9
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    $\implies$ Assume that $n$ is a product of Fermat primes where each prime occurs at most once in $n$. Such that $n=(2^{2^e_1}+1)(2^{2^e_2}+1)\ldots(2^{2^e_k}+1)$.
+    Now by induction on $k$: \\
+    Base case: If $k=1$, $n=2^{2^e_1}$ and $\phi(n) = \phi(2^{2^e_1}+1) = (2^{2^e_1}+1)-1 = 2^{2^e_1}$ which is clearly a power of 2. \\
+    Now assume the assumption is true up to $k=c$. To prove this for $k=c+1$: \\
+    $\phi(n)=\phi((2^{2^e_1}+1)(2^{2^e_2}+1)\ldots(2^{2^e_{c+1}}+1))$ and since $\phi$ is multiplicitive this is equal to $\phi((2^{2^e_1}+1)(2^{2^e_2}+1)\ldots(2^{2^e_{c}}+1))\phi(2^{2^e_{c+1}}+1)$.
+    Now by the inductive assumption, $\phi((2^{2^e_1}+1)(2^{2^e_2}+1)\ldots(2^{2^e_{c}}+1))$ is a power of 2, and by the base case, $\phi(2^{2^e_{c+1}}+1)$ is a power of two,
+    and the product of two powers of two is clearly another power of two. Therefore $\phi(n)$ is a power of 2. \\
+
+    $\impliedby$ Assume that $\phi(n)$ is a power of 2. Let $n=p_1^{e_1}p_2^{e_2}\ldots p_k^{e_k}$.
+    Now by induction on $k$: \\
+    Base case: If $k=1$, $n=p_1^{e_1}$ and $\phi(n)$ is:
+    \begin{align*}
+      &= \phi(p_1^{e_1}) = p_1^{e_1-1}(p_1-1) = 2^k &&k\in\N \\
+      &= p_1-1 = \frac{2^k}{p_1^{e_1-1}}
+    \end{align*}
+    Now there are two cases to make $\frac{2^k}{p_1^{e_1-1}}$ an integer: either $e_1=1$, or $p_1=2$. \\
+    If $e_1=1$, $p_1 = 2^k+1$ and hence $p_1$ is a Fermat prime. \\
+    If $p_1=2$, then $p=2^{k+1}$, but then $p$ is not a prime, so this is impossible. \\
+    Hence $p_1$ must be a Fermat prime. \\
+    Now assume that if $n$ has $c$ prime powers, and $\phi(n)$ is a power of 2, all those primes are Fermat primes and occur at most once in $n$.
+    Let $n=p_1^{e_1}p_2^{e_2}\ldots p_c^{e_c}p_{c+1}^{e_{c+1}}$. Now $\phi(n)$ is:
+    \begin{align*}
+      &= \phi(p_1^{e_1}p_2^{e_2}\ldots p_c^{e_c}p_{c+1}^{e_{c+1}}) \\
+      &= \phi(p_1^{e_1}p_2^{e_2}\ldots p_c^{e_c})\phi(p_{c+1}^{e_{c+1}}) &&\tag{$\phi$ is a multiplicitive function and all prime numbers are co-prime}
+    \end{align*}
+    Since $\phi(n)$ is a power of 2, $\phi(p_1^{e_1}p_2^{e_2}\ldots p_c^{e_c})$ must be a power of two (since only the product of powers of two can form another power of two) and all primes are Fermat primes with a single power, and since $\phi(p_{c+1}^{e_{c+1}})$ must also be a power of two, it must be a Fermat prime with $e_{c+1}=1$ by the base case.
+    Therefore, if $\phi(n)$ is a power of 2, all of its prime factors must be Fermat primes with a power of at most 1. $\qedhere$
+  \end{proof}
+  #+END_EXPORT
+* 4.1
+  Using python program:
+  #+BEGIN_SRC python
+    def encrypt (char):
+        val = ord(char) - ord('a')
+        return chr(ord('a') + ((val*8+13) % 27))
+
+    spacechr = chr(ord('a') + 26) # space equivalent character.
+
+    print(''.join(map(encrypt, "everything" + spacechr + "is" + spacechr + "ok")))
+    # ->stsoqdpxjhfxwfrm
+  #+END_SRC
+
+  "everything is ok" -> "stsoqdpxjhfxwfrm"
+
+* 4.2
+  Assuming that the most freuqent number is the space character and the second most
+  frequent number is the letter "e". The frequency analysis shows: \\
+  1: 22, 17: 15, 11: 12, 15: 11, 19: 11, 8: 8, 22: 7, 24: 7, 10: 6, 9: 5,
+  7: 5, 26: 5, 21: 4, 3: 4, 2: 3, 12: 2, 25: 2, 5: 2, 16: 2, 13: 1, 23: 1,
+  18: 1, 0: 1. \\
+  Hence, if $f$ is the encryption function, $f(26)\mapsto 1$ and $(4)\mapsto 17$.
+  Since the system is an affine system, this gives two equations in two variables: $1 = 26x+y \mod{27}$ and $17=4x+y \mod{17}$
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    26x+y &\equiv 1 \mod{27} &&\tag{Eq.1}\\
+    4x+y &\equiv 17 \mod{27} &&\tag{Eq.2}\\
+    y &\equiv 1 - 26x \mod{27} &&\tag{Using Eq.1} \\
+    4x+1-26x &\equiv 17 \mod{27} &&\tag{Substituting into Eq.2} \\
+    22x &\equiv -16 \equiv 308 \mod{27} \\
+    x &\equiv 14 \mod{27} \\
+    4(14)+y &\equiv 17 &&\tag{Substitnuting into Eq.2} \\
+    56+y &\equiv 17 \mod{27} \\
+    y &\equiv -39 \equiv 15 \mod{27}
+  \end{align*}
+  #+END_EXPORT
+
+  Hence the transformation uses the keys (14, 15). The inverse of 14 mod 27 is 2. Therefore the inverse transformation key is: (2, -30).
+  Executing the transformation gives us the string:
+  "an expert problem solver must be endowed with two incompatible qualities  a restless imagination and a patient pertinacity  howard w eves"

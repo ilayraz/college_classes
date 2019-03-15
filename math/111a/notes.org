@@ -1,0 +1,208 @@
+* Oct. 2
+** Theorem: If $S$ and $T$ are subgroups of $(\Z,+)$, then $S\cap T$ is a subgroup of $(\Z,+)$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     By (SG1), $0\in S$ and $0\in T$, therefore $0\in S\cap T$. So $S\cap T$ satisfies (SG1). \\
+     If $x\in S\cap T$, then $x\in S$ and $x\in T$. By (SG2), $-x\in S$ and $-x\in T$, therefore $-x\in S\cap T$. So $S\cap T$ satisfies (SG2). \\
+     If $x,y\in S\cap T$, then $x,y\in S$ and $x,y\in T$. By (SG3), $x+y\in S$ and $x+y\in T$, therefore $x+y\in S\cap T$. So $S\cap T$ satisfies (SG3). $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** If $m,n\in\N$, then $m\Z\cap n\Z = l\Z$, where $l=LCM(m,n)$.
+   $l$ is the "least common multiple".
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Since $l\in l\Z$, $l\in m\Z\cap n\Z$. Hence $l\in m\Z$ and $l\in n\Z$. So $l$ is a multiple of both $m$ and $n$. \\
+     Claim: $l$ is the least common multiple. \\
+     Suppose $x$ is a common multiple of both $m$ and $n$, then $x\in m\Z$ and $x\in n\Z$, so $x\in m\Z\cap n\Z=l\Z$. \\
+     Therefore, $x$ is a multiple of $l$.
+   \end{proof}
+   #+END_EXPORT
+** Let $S$ and $T$ be subgroups of $(\Z,+)$.
+   Define $S+T=\setc{s+t}{s\in S\text{ and } t\in T}$
+*** Example
+    $\set{0,3}+\set{-1,2,5}=\set{-1,2,5,8}$
+*** Fact
+    If $S,T$ are subgroups of $(\Z,+)$, then $S+T$ is a subgroup of $(\Z,+)$
+** Consider $\ps(\Z)$
+   Is $(\ps(\Z),+)$ a group?
+   1) $\set{0}+S=S$ and $S+\set{0}=S$
+   2) fail
+   3) ok
+** =Cosets= in $\Z$
+*** Definition
+    Consider a subgroup $m\Z\subset\Z$. \\
+    A _coset_ of $m\Z$ is a set of the form $a+m\Z = \setc{a+mx}{x\in\Z}$
+*** Examples
+    Cosets of $3\Z$:
+    - $0+3\Z=\set{\ldots,-9,-6,-3,0,3,6,9,\ldots}=3\Z$
+    - $1+3\Z=\set{\ldots,-8,-5,-2,1,4,7,10,\ldots}$
+    - $-1+3\Z=2+3\Z=\set{\ldots,-7,-4,-1,2,5,8,11,\ldots}$
+    - $3+3\Z=\set{\ldots,-6,-3,0,3,6,9,12,\ldots}=3\Z$
+
+    There are three cosests of $3\Z$ in $(\Z,+)$
+*** There are $m$ cosests of $m\Z$ in $(\Z,+)$
+*** For $m\in\Z$
+    Claim: The sum of two cosets of $m\Z$ in $\Z$ is a coset of $m\Z$ in $\Z$ \\
+    Example: $(1+3\Z)+(1+3\Z)=2+3\Z$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $a+m\Z$ and $b+m\Z$ be two cosets of $m\Z$ in $(\Z,+)$.
+      Claim: $(a+m\Z)+(b+m\Z)=(a+b)+m\Z$ \\
+      For all $x,y\in\Z$, $a+mx+b+my=a+b+m(x+y)$ \\
+      That proves LEFT $\subset$ RIGHT.\\
+      For all $z\in\Z$, $a+b+m\Z=a+m\Z+b+m\Z$,
+      so RIGHT $\subset$ LEFT. \\
+      So LEFT=RIGHT. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+*** Theorm
+    Cosets of $m\Z$ in $\Z$ form a group, called $(\Z/m\Z,+)$ "Zee mod emm zee"
+**** Example
+     - $\Z/3\Z=\set{0+3\Z,1+3\Z,2+3\Z}$
+***** $\Id=0+3\Z$
+***** $\Inv(1+3\Z)=2+3\Z$
+* Oct. 4
+** The _group_ $(\Z/m\Z, +)$
+*** Definition
+    For $m\in\N$, $\Z/m\Z$ is the set of cosets of $m\Z$ in $\Z$. \\
+    Examples:
+    - $3\Z = \set{\ldots,-9,-6,-3,0,3,6,9,\ldots}$
+    - $1+3\Z = \set{\ldots,-8,-5,-2,1,4,7,10,\ldots}$
+    - $2+3\Z = \set{\ldots,-7,-4,-1,2,5,8,11,\ldots}$
+*** How addition works
+    Two ways to think about it:
+    1) Add the shifts:
+       $(2+3\Z)+(3+3\Z) = (4+3\Z)=(1+3\Z)$
+    2) Add the sets:
+       $S+T=\setc{s+t}{s\in S, t\in T}$
+*** $(Z/m\Z, +)$ is a group
+    1) $\Id = m\Z$
+    2) $\Inv (a+m\Z) = (-a + m\Z)$
+    3) Addition is associative
+*** Subgroups of $(Z/m\Z, +)$
+**** if $m$ is prime, only subgroups are $\set{m\Z}$ and and $(\Z/m\Z)$
+**** Subgroups of $(\Z/6\Z, +)$:
+     - $\set{\bar{0}}$
+     - $\set{\bar{0},\bar{1},\bar{2},\bar{3},\bar{4},\bar{5}}4
+     - $\set{\bar{0},\bar{2},\bar{4}} = $2\Z/6\Z$
+     - $\set{\bar{0},\bar{3}} = 3\Z/6\Z$
+**** The subgroups of $(\Z/m\Z, +)$ are $(d\Z/m\Z)$ for all divisors $d$ of m.
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       Let $T$ be a subgroup of $\Z/m\Z$. Consider the premise $S=\varphi^{-1}(T)\subset\Z$. \\
+       $S$ is a subgroup of $\Z$, so $S=d\Z$ for some $d\in\N$. \\
+       Note that $\varphi(mx)=mx+m\Z=m\Z=\bar{0}\in T$. \\
+       So $m\Z\subset\varphi^{-1}(T)=S$. Hence $m\Z\subset d\Z$, so $d|m$. \\
+       Since $\varphi$ is surjective, $T=\varphi(\varphi^{-1}(T))=\varphi(d\Z)=d\Z/m\Z=\set{\bar{0},\bar{d},\bar{2d},\bar{3d},\ldots}$. $\qedhere$
+     \end{proof}
+     #+END_EXPORT
+** =Homomorphism=
+*** Definition
+    Let $\varphi: \Z \to \Z/m\Z$ be the function $\varphi(a) = a + m\Z$. \\
+    This function is called a _homomorphis_ from the _group_ $(\Z,+)$ to the group $(\Z/m\Z, +)$. \\
+    This satisfies property (H): $\varphi(a+b) = \varphi(a) + \varphi(b)$
+*** Properties
+    - $\varphi(\Id) = \Id$
+    - $\varphi(\Inv x) = \Inv(\phi(x))$
+    - $\varphi(0) = 0 + m\Z$
+    - $\varphi(-x) = -x+m\Z$
+    - $\varphi$ is _surjective_
+    - If $T$ is a subgroup of $(\Z/m\Z,+)$, then $\varphi^{-1}(T) = \setc{x\in\Z}{\varphi(x)\in T} is a subgroup of $\Z$.
+**** If $S$ is a subgroup of $(\Z,+)$, then $\varphi(S)$ is a subgroup of $(\Z/m\Z, +)$ \\
+     Ex: $S=4\Z = \set{\ldots,-8,-4,0,4,8,\ldots}$. \\
+     $\varphi(S) = \set{\ldots, \bar{-4},\bar{0},\bar{4},\ldots} = \set{\bar{0}, \bar{2}, \bar{4}}$
+     #+BEGIN_EXPORT latex
+     \begin{proof}
+       Need to satisfy 3 properties of a subgroup: \\
+       (SG1) since $\Id=0\in S$ and $\varphi(0)=\bar{0}\in\varphi(s)$, this holds. \\
+       (SG2) If $x\in\varphi(S)$, then $\exists s\in S$ such that $x=\varphi(s)$. Since $S$ is a subgroup, $-s\in S$, therefore $\varphi(-s)=-\varphi(s)=-x\in\varphi(S)$. \\
+     \end{proof}
+     #+END_EXPORT
+* Oct. 11
+** Transpositions
+   A permutation that _switches_ two elements and _fixes_ the rest.
+** Permutations
+*** $|S_n|=n!$ and every element of $S_n$ can be expressed as the composite of no more than $n-1$ transpositions
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      By induction. \\
+      BC: $n=1$, $S_n=\set{\text{permutations of }\set{1}}$. $|S_1|=1, 1!=1$.
+      $\Id$ is the compositions of zero transpositions. \\
+      IC: Suppose $n\geq1$ and the theorm has been proven for $S_n$. \\
+      Break up $S_{n+1}$ into a disjoint union $S_{n+1}=T_1\sqcup T_2\sqcup T_3\sqcup\ldots\sqcup T_{n+1}$ \\
+      Where $T_k=\set{f\in S_{n+1} \text{ such that } f(n+1)=k}.
+      If $f\in T_k$ and $T_k=(k n+1)$, the transposition switching $k$ and $n+1$, then  $T_k\circ f(n+1) = n+1$.
+      This gives a bijection between $T_k$ and $S_n$.
+      Hence $|T_k|=n!$, and $|S_{n+1}=(n+1)\cdot n!=(n+1)!$.
+      Also, for $f\in T_k$, then $T_k\circ f\in S_n$, so $f=T_k\circ g$ for some $g\in S_n$.
+      since $g$ is a composite of at most $n-1$ transpositions, $f=T_k\circ g$ is a compositions of at most $n$ transpositions. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+** =Kernel=
+*** Definition
+    The _Kernel_ of a homomorphism is the pre-image of the identity element.
+*** $\Ker(\sgn) = \setc{f\in S_n}{\sgn(f)=1} = A_n$, the "alternating group$.
+*** $A_n$ is a subgroup of $S_n$
+* Oct. 16
+** Conjugacy (in $S_n$)
+*** Definition
+    Two permutations $x$ and $y$ are called _conjugate_ via $g$ if $x=g\circ y\circ g^{-1}$
+*** Example
+    $(st)s(st)^{-1} = stst^{-1}s^{-1} = ststs = sstss = t$ \\
+    Meaning $s$ is conjugate to $t$ via $st$.
+*** Conjugacy is an equivalence relation in $S_n$
+**** Reflexive
+     For all $x\in S_n$, $x=\Id\circ x \cird \Id^{-1}$ \\
+     Meaning $x$ is conjugate to $x$.
+**** Symmetric
+     If $x,y \in S_n$ and $g^{-1}\circ x\circ g^{-1}^{-1} = x = g\circ y\circ g^{-1}$, then $g^{-1}\circ x\circ g = g^{-1}\circ g\circ y\circ g^{-1}\circ g = y$ \\
+     So $y$ is conjugate to $x$ via $g^{-1}$.
+**** Transitive
+     ...
+** Quaternions
+*** Real numbers
+**** $\R$ = the set of real numbers
+**** $\C$ = the set of complex numbers
+**** $\H$ = the set of quaternions
+**** $(\R,+)$ is the additive _group_ of real numbers
+***** $\Id=0$
+***** $\Inv(x)=-x$
+***** $+$ is associative
+**** $(\R\setminus\set{0},\cdot)$ is the multiplicitve _group_ of _non-zero_ real numbers, abbriviated $\R^x$
+***** $\Id=1$
+      $1\cdot x = x = x\cdot 1$ for all $x\in\R\setminus\set{0}$
+***** If $x\in\R\setminus\set{0}$, $\Inv(x)=\frac{1}{x}$ and $\Inv(x)\cdot x = \Id = x\cdot \Inv(x)$
+***** Associativity of $\cdot$
+***** $\mu_2=\set{\pm1}$ is a subgroup of $\R^x$
+***** $\R_{pos}^x = \setc{x\in R^x}{x > 0}$ is a subgroup of $\R^x$
+***** $\R^x$ is _isomorphic_ to $\mu_2\times\R_{pos}^x$ \newline
+      Define $\varphi: \mu_2\times\R_{pos}^x\mapsto\R^x$ by $\varphi(\pm1, x) = \pm x$ \\
+      Then $\varphi$ is surjective, and if $\pm x = \pm y$, then signs are equal and $x=y$.
+      So $\varphi$ is bijective. \\
+      Finally, $\varphi$ is a homomorphism since: $\varphi((\epsilon_1, x_1) \cdot (\epsilon_2, x_2)) = \varphi(\epsilon_1\epsilon_2, x_1x_2) = \epsilon_1\epsilon_2 x_1x_2 = \epsilon_1 x_1 \cdot \epsilon_2 x_2 = \varphi(\epsilon_1, x_1)\cdot\varphi(\epsilon_2, x_2)$
+**** $\R_{pos}^x$ is isomorphic to $(\R,+)$ \newline
+     $\log: \R_{pos}^x\mapsto\R$ \\
+     $\log(x\cdot y) = \log(x)+\log(y)$ \\
+     $\exp: \R\mapsto\R_{pos}^x$, $\exp(x)=e^x$ \\
+     $\exp(x+y) = \exp(x)\exp(y)$
+*** Complex numbers
+**** Definition
+     $\C=\setc{x+yi}{x,y\in\R}
+***** Addition
+      $x+yi+u+vi = x+y+(y+v)i$
+***** $(\C,+)$
+****** $\Id=0+0i$ called 0
+****** $\Inv(x+yi) = -x-yi$
+****** Associativity of $+$
+***** Multipliction in $\C$
+****** Rule:
+       $i^2=-1$
+****** $(x+yi)(u+vi)=xu-yv+(xv+yu)i$
+****** Fact: $1\cdot z = z\cdot 1$ for all $z\in\C$
+******* $1=1+0i$
+****** Every _non-zero_ complex number has a _multiplicative_ inverse
+******* Complex Conjugacy
+        If $z=x+yi$, define the _complex conjugate_ of $z$ by $\bar{z} = x-yi$ \\
+        $z\bar{z} = (x+yi)(x-yi) = x^2+y^2 \in\R$ and if $z\neq0, z\bar{z}>0$ \\
+        Define $z^{-1} = \frac{1}{x^2+y^2}\cdot\bar{z}$. Then $z^{-1}z=1$.2
+****** $\C^x = (\C\setminus\set{0}, \cdot)$ is a group

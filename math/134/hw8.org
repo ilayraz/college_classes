@@ -1,0 +1,36 @@
+#+TITLE: Homework 8
+#+DATE: December 7, 2018
+#+OPTIONS: TOC:nil
+* Chapter 10
+** 1
+   The field $\F_{31}[X]/(x^2+1)$ is isomorphic to the field $\F_{31}$
+   with the complex numbers with the mapping where $X^2 = -1$.
+   $g = 4 + i, a = 209, g^b = 1 + 19i$.
+*** a
+    The common enciphering key is $g^{ab} = (g^b)^a = (1+19i)^{209} \equiv -5 - 3i\mod{31}$.
+*** b
+    $g^a = (4+i)^{209} \equiv -11 + 13i \mod{31}$.
+*** c
+    $(a,b) = g^{ab} = (1+19i)^{209} \equiv -5 - 3i\mod{31} = (26,28)$.
+*** d
+    $a^{-1} = 6\mod{31}$, so the deciphering key is $(a,b) = (6, 18)$.
+    So the deciphered message is: "you-re joking!z".
+** 2
+   $p=65537, F=\Z/p\Z, g=5+p\Z\in F^\times, a=13908$.
+   Using the clue $29095$, compute $29095^{65537 - 1 - 13908} \equiv 31543\mod{31}$.
+   and $31543\cdot 23846 \equiv 273439\mod{65537}$.
+   $273439 \equiv 19\mod{31}$ and $(2734839-19)/31 = 8820$. letter is "R". \\
+   $8820 \equiv 16\mod{31}$ and $(8820-16)/31 = 284$. Letter is "O". \\
+   $284 \equiv 5\mod{31}$. Letter is "D".
+   Secret message is "ROD".
+* Chapter 11
+** 1
+   $V=(3,4,10,19,40), m=100, a=19, b=79, aV = (57,76,90,61,60)$.
+*** a
+    Publsh $aV = (57,76,90,61,60)$.
+*** b
+    "yesterday" = $11000, 00100, 10010, 10100, 00100, 10001, 00011, 00000, 11000$.
+    Summing these with $aV$, the resulting tuple is $(133, 90, 118, 147, 117, 121, 0, 133)$.
+*** c
+    $b(166,227,227,133) = (14, 33, 33, 7) \mod{100}$.
+    Solving the knapsack for these with $V$: $(00110, 01110, 01110, 00011) = (8, 14, 14, 3) =$ "GMMB".

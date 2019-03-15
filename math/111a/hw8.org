@@ -1,0 +1,67 @@
+#+TITLE: Homework 8
+#+DATE: December 7, 2018
+#+OPTIONS: TOC:nil
+* Chapter 7
+** 11
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Recall $\SO_2(\R) = \setc*{\Matrix{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}}{0\leq\theta\in\R< 2\pi}$.
+     Now consider the orbital of a point $\begin{pmatrix}a \\ b\end{pmatrix} \in S$:
+       $\Orb_{\SO_2(\R)}\begin{pmatrix}a \\ b\end{pmatrix} = \setc*{g\begin{pmatrix}a \\ b\end{pmatrix}}{g\in \SO_2(\R)}$.
+     An element in this orbital is going to be of the form $\begin{pmatrix}a\cos\theta - b\sin\theta \\ a\sin\theta + b\cos\theta\end{pmatrix}$,
+       which is a point on a circle. Now given that this orbital includes all values of $\theta$, it includes all points on the circle.
+       Now since $S$ is a circle, any reflection acting on $S$ is valid, so $\Symm(S) = \O_2(\R)$.
+   \end{proof}
+   #+END_EXPORT
+** 14
+*** a
+    A cubeoctahedron has 14 faces, and 12 vertices.
+*** b
+    Let $e$ be an edge connected two vertices such that $e=\set{1,2}$. Since the group of automorphisms on a cubeoctohedron is isomorphic to $S_4$, there are
+    $4! = 24$ possible automorphisms that can act on this edge.
+    Now consider $\Stab_G(e)$, these are all the permutations which fix 1 and 2. This only leaves 2 other elements for possible permutations, which is the
+    subgroup $#S_2 = 2$. So $\#\Stab_G(e) = 2$.
+    Now consider all possible axis of rotation a cube could go under. There are three such axis and each one maps the edge into one of 4 possible edges.
+    This means that $\#\Orb_G(e) = 4\cdot 3 = 12$. Now the number of edges is by the orbit-stabilizer theorm: $\#\Stab_G(e)\cdot\#\Orb_G(e) = 2\cdot 12 = 24$.
+* Chapter 8
+** 4
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Let $g\in G$, then $gHg^{-1} = K\subseteq G$, now since $K$ and $H$ are conjugate subgroups,
+     $\#K = \#H$, and since $\#H$ is unique, $H=K$, so $gHg^{-1} = H,\ \forall g\in G$, hence $H$ is a normal subgroup in $G$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 6
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Since $G$ is a p-group, every subgroup of it must also be a p-group, so $Z(G)$ is a p-group,
+     also $\#Z(G)|\#G$, and lastly, $\#Z(G)\geq p$. This gives the order of $Z(G)$ the following possibilites: $p, p^2, p^3$.
+     Since $G$ is non-abelian, the order of the center can't be $p^3$, since that would include the entire group. \\
+     Now assume to the contrary that $\#Z(G) = p^2$, and consider an element $g\in G$ and $g \notin Z(G)$.
+     Note that $Z(G)\subset Z_G(g)$ and that their symmetric difference is non-empty (since it includes atlesat $g$).
+     Now since $G$ is non-abelian, this gives a bound on the size of the centralizer: $p^2 < \#Z_G(g) < p^3$.
+     However, since $Z_G(g)$ is a subgroup of a p-group, it is also a p-group, and muts have an order that is a power of $p$,
+     but there are non integer powers of $p$ between 2 and 3, so the order of $Z(G)$ must not be equal to $p^2$,
+     which leaves that $\#Z(G) = p$ as the only option left. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 7
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Note that $A\subseteq N_{D_8}(A)$ and $B\subseteq N_{D_8}(B)$.
+     This gives us that $N_{D_8}(B) = D_8, B, K$ and $N_{D_8}(A) = D_8, A, J$.
+     If either of of them was to be equal to $D_8$, then they would be normal subgroups,
+     which is impossible because $A$ conjugates to $C$ and $B$ is conjugate to $D$.
+     The normalizers of each can also not be equilvalent to the subgroup itself,
+     because it must also at least include $\rho^2$, so the only possibilities left
+     are that $N_{D_8}(B) =K$ and $N_{D_8}(A) = J$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 9
+*** a
+*** b
+    By defintion of $Q_{4n}$, $\#Q_{4n} = 2^2n$ where $n$ is odd, so $val_2(4n) = 4$, so it is isomorphic to $\Z/4\Z$ or $\Z/2\Z\times\Z/2\Z$.
+*** c
+    As has been proven, $Q_{4n}$ has an element of order 4, however, the sign of a permutation of order 4 would be negative, so $A_4$ can not have
+    an element of order 4, therefore they can't be isomorphic.
+    Likewise, $D_{12}$ has no element of order 4, and therefore the two can't be isomorphic.

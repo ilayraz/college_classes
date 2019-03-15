@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #+OPTIONS: toc:nil
 
 * Excercises
@@ -115,3 +116,52 @@
     \end{proof}
     #+END_EXPORT
 ** 15
+=======
+* 1
+  Which integers divide zero?
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    $\forall x\in\Z, 0x=0 \implies x|0 \implies$ all integers divide zero $\qedhere$
+  \end{proof}
+  #+END_EXPORT
+* 2
+  Show that $a|b \land b|c \implies a|c$
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    \begin{align*}
+      a|b \implies aq &= b &&\tag{$\exists q\in\Z$} \\
+      b|c \implies bp &= c &&\tag{$\exists p\in\Z$} \\
+      \implies (aq)p &= c \\
+      \implies a(qp) &= c \\
+      \implies a &| c &&\qedhere
+    \end{align*}
+  \end{proof}
+  #+END_EXPORT
+* 3
+  $d|a \implies d|ca\ \forall c\in\Z$
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    \begin{align*}
+      d|a \implies dq &= a &&\tag{$\exists q\in\Z$} \\
+      \implies cdq &= ca &&\tag{$\forall c\in\Z$} \\
+      \implies d(cq) &= ca \\
+      \implies d &| ca &&\qedhere
+    \end{align*}
+  \end{proof}
+  #+END_EXPORT
+* 6
+  $299x+247y=13$
+* 11
+* 15
+Integer solution $n_0 \implies n_0|b$
+$n_0^2 + an + b = 0 \implies n_0^2 + an = -b$
+$n_0(n_0+a) = -b$
+
+$x^2+ax+b$
+$r$ is a rational solutions $\implies r\in\Z$
+$r=\frac{n}{m} \land (n,m)=1$
+$\frac{n}{m}^2 + a\frac{n}{m} + b = 0$
+$n^2+anm+bm^2 = 0$
+$n^2=-(anm+bm^2) = m(-an-bm)$
+$\implies m|n^2 \implies
+>>>>>>> Stashed changes

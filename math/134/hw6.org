@@ -1,0 +1,57 @@
+#+TITLE: Homework 6
+#+DATE: November 16, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* 7.1
+  Let $p=1031, q=727, n=pq=749537, \phi(n)=(p-1)(q-1)=747780, e=2833, d=674137$. \\
+  email adress: =ilraz@ucsc.edu= with key $(749537, 2833)$.
+* 7.2
+  $(n,e) = (11247661, 268729)$ and $a^{7169e}\equiv a\mod{n}$.
+  Let $m=7169e-1$, then $a^m\equiv 1\mod{n} \forall a\in\Z \land \GCD(a,n)=1$.
+  Note $m$ must be even since $(-1)^m\equiv 1$ if and only if $m$ is even.
+  Now to test this for $m/2$: $ 3^{m/2}\equiv 8745824\mod{n}$ which is not congruent to 1.
+  So $m/2$ must divide either $p$ or $q$, but not both with a probability of 50%.
+  Now, $3^{m/2}-1\equiv 8745823\mod{n}$ and $\GCD(8745823,n)=1061$ which is one of the primes,
+  and $n/1061=10601$ which is the other prime. So the prime decomposition of $n=1061\cdot10601$.
+  This allows us to easily compute $\phi(n)=(1061-1)(10601-1)=11236000$ and
+  $e^{-1} \equiv 3579369\mod{\phi(n)}$. So the decrypting key $(n,d)=(11247661, 3579369)$.
+* 8.1
+** $f(1_G)=1_H$
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Let $f: G\mapsto H$ be a group homomorphism. Then:
+    \begin{align*}
+      f(1\star 1) &= f(1)f(1) \\
+      f(1\star 1) &= f(1) \\
+      f(1) &= f(1)f(1) \\
+      f(1)^{-1}f(1) &= f(1)^{-1}f(1)f(1) \\
+      1 &= f(1) \\
+      f(1_G) &= 1_H &&\qedhere
+    \end{align*}
+  \end{proof}
+  #+END_EXPORT
+** $f(g^{-1})=f(g)^{-1}$
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Let $f: G\mapsto H$ be a group homomorphism and let $g$ be some element of $G$.
+     \begin{align*}
+       f(gg^{-1}) &= f(g)f(g^{-1}) \\
+       f(gg^{-1}) &= f(1) = 1 \\
+       f(g)f(g^{-1}) &= 1 \\
+       f(g)^{-1}f(g)f(g^{-1}) &= f(g)^{-1} \\
+       f(g^{-1}) &= f(g)^{-1} &&\qedhere
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT
+* 8.2
+  Let $(R,+,\cdot)$ be a ring and let $G=(R^x,\cdot)$ be the group formed by the invertible elements in $R$ under multiplication.
+** $G$ is associative
+   Since $\cdot$ is one of the operations of the ring $R$, and the operations of a ring must be associative, this operation must also be associative under $G$.
+** $G$ has an identity element
+   Since $R$ has an identity element under multiplication, so would $G$ as long as that element $e$ is in $R^x$. Since the definition of $R^x = \setc{a\in R}{\exists b\in R\ s.t.\ ab=e}$,
+   and $ee=e$, $e\in R^x$, so $G$ has an identity element.
+** $G$ has inverse elements.
+   By definition of $R^x$, an element $a$ is only in $R^x$ if it has an inverse under multiplication. Likewise, the inverse of $a$ has an inverse, $a$, and is therefore
+   also in $R^x$. Therefore, since $G$ only include elements in $R^x$, which are elements that have an inverse under multiplication, every element in $G$ has
+   an inverse under multiplication.

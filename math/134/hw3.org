@@ -1,0 +1,154 @@
+#+TITLE: Homework 3
+#+DATE: October 19, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* 1
+** a
+   $a\equiv b\pmod{m} \implies m|(a-b)$ and $c\equiv d\pmod{m} \implies m|(c-d)$.
+   Therefore, by the division algorithm, $a-b=mk_1$ and $c-d=mk_2$ for some $k_1,k_2\in\Z$.
+   Now, $(a-b)-(c-d)=mk_1-mk_2 \implies (a-c)-(b-d) = m(k_1-k_2) \implies m|[(a-c)-(b-d)] \implies a-c\equiv b-d \pmod{m}$
+** b
+   Let $(a+m\Z) = a+mk_1$ and $(b+m\Z) = b+mk_2$ for any $k_1,k_2\in\Z$. \newline
+   Then, (a+m\Z)+(b+m\Z) = (a+mk_1)+(b+mk_2) = (a+b)+m(k_1+k_2)$ by the associativity and commutitivity of addition of integers.
+   Now since $k_1+k_2\in\Z$, $(a+b)+m(k_1+k_2) = (a+b) + m\Z$. $\qed$ \newline
+   Now $(a+m\Z)\cdot(b+m\Z) = (a+mk_1)(b+mk_2) = ab+amk_2+bmk_1+m^2k_1k_2 = (ab)+m(ak_2+bk_1+mk_1k_2)$.
+   Now note that $ak_2+bk_1+mk_1k_2\in\Z$. Therefore, $(ab)+m(ak_2+bk_1+mk_1k_2) = (ab)+m\Z$.
+** c
+   If $a\equiv b \pmod{m}$ then $a-b = mx$ for some $x\in\Z$. Now since $d|m$, $m=dy$ for some $y\in\Z$.
+   Therefore, $a-b = dyx = d(yx)$ which means that $d|(a-b) \implies a\equiv b \pmod{d}$
+** d
+   If $\GCD(m,n)=1$, then $mx+ny=1$ for some $x,y\in\Z$, and $a\equiv b\pmod{m} \implies a-b=mk_1$ and $a\equiv b\pmod{n} \implies a-b=nk_2$ for some $k_1,k_2\in\Z$.
+** e
+   Let $c=a-b$
+   $a\equiv b\pmod{m} \iff m|(c) \iff c=mk_1, k_1\in\Z$ \\
+   $a\equiv b\pmod{n} \iff n|(c) \iff c=nk_2, k_2\in\Z$ \\
+   $\GCD(m,n)=1 \iff mx+ny=1, x,y\in\Z$
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     mx+ny &= 1 \\
+     cmx + cny &= c \\
+     mnxk_2 + mnyk_1 &= c \\
+     mn|mnxk_2 \land mn|mnyk_1 \implies mn|c &&\qedhere
+   \end{align*}
+   #+END_EXPORT
+* 2
+  By proposition 3.5, the only units in the ring $\Z/30\Z$ are $a+30\Z$ where $\GCD(30,a)=1$.
+  By inspection, those elements are: $\set{1, 7, 11, 13, 17, 19, 23, 29}$ \\
+  Now, by checking, the elements and their inverses are given as pairs: $\set{(1,1), (7,13), (11,11), (17 ,23), (19, 19), (29, 29)}$
+* 3
+  Recall that an element is invertible mod 12001 if and only if its gcd with 12001 is 1.
+  Note that assuming the GCD is 1, there exists numbers $n,m$ such that $12001n+am = 1$, meaning that $12001n+am\equiv am \equiv 1 \pmod{12001}$,
+  meaning that the inverse of $a$ is $m$ mod 12001$.
+  Using the program designed in homework 1 as well as its capacity to find numbers such that $12001n + am = 1$ if the GCD is 1, first check the GCD and then use the number it provides as the inverse. \\
+  $\GCD(-286, 12001) = 11 \implies$ not invertible. \\
+  $\GCD(12, 12001) = 1$ and $12^{-1} \equiv 11001 \mod{12001}$. \\
+  $\GCD(-5690, 12001) = 1$ and $(-5690)^{-1} \equiv 3208 \mod{12001}$. \\
+* 4
+  Firstly, check if the matix is invertible in $\Z/1001\Z$ by checking its determinant.
+  Note that $\Det(\Matrix{3+1001\Z}{120+1001\Z}{14+1001\Z}{73+1001\Z}) = (3\cdot 73 - 14\cdot 120) + 1001\Z = 541$.
+  Now $\GCD(541, 1001) = 1$. Hence the matrix is invertible.
+  Let $B=\Matrix{\bar{73}}{-\bar{120}}{-\bar{14}}{\bar{3}}$ and note that $\Inv(541) = 655 \mod{1001}$.
+  Now using the formula for inversion of a 2x2 matrix, $A^{-1} = \frac{1}{\Det(A)}B = \Inv(\Det(A))B = 655B = \Matrix{47815}{78600}{-9170}{1965} = \Matrix{768+1001\Z}{479+1001\Z}{840+1001\Z}{964+1001\Z}$
+* 5
+  Note that 119, 11, and 13 are all co-prime in pairs.
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    x &\equiv 3\pmod{119} \implies x=119k_1+3 &&k_1\in\Z \\
+    x &\equiv-2\equiv 9 \pmod{11} \\
+    119k_1+3 &\equiv 9\pmod{11} \\
+    119k_1 &\equiv 6\equiv 17\pmod{11} \\
+    7k_1 &\equiv 1\equiv 56\pmod{11} \\
+    k_1 &\equiv8\pmod{11} \\
+    x &= 119(11k_2+8)+3 = 1309k_2+955 &&k_2\in\Z
+    x &\equiv 8\pmod{13} \\
+    1309k_2+955 &\equiv 8\pmod{13} \\
+    1309k_2 &\equiv -947\equiv \equiv 119 \pmod{13} \\
+    11k_2 &\equiv1 \equiv 66\pmod{13} \\
+    k_2 &\equiv 6\pmod{13} \\
+    x &= 1309(13k_3+6) + 955 = 17017 + 8809
+  \end{align*}
+  #+END_EXPORT
+
+  So $x=8809$.
+* 6
+** a
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     n &\equiv n_k10^k+\ldots+n_110+n_0 \pmod{9} \\
+     &\equiv n_k1^k+\ldots+n_1\cdot1+n_0 \pmod{9} \\
+     &= n_0+n_1+n_2+\ldots+n_k\pmod{9} &&\qed
+   \end{align*}
+   #+END_EXPORT
+** b
+   #+BEGIN_EXPORT latex
+   $\implies 3|n$
+   \begin{align*}
+     n &\equiv 0\pmod{3} \\
+     &\equiv n_k10^k+\ldots+n_0 \pmod{3} \\
+     &\equiv n^k(3^2+1)^k+\ldots+n_0 \pmod{3} \\
+     &\equiv n^k(1)^k+\ldots+n_0 \pmod{3} \\
+     &\equiv n^k+\ldots+n_0 \pmod{3} \\
+     &\implies 3|(n_0|n_1+\ldots+n^k)
+   \end{align*}
+
+   $\impliedby 3|n_0+n_1+\ldots+n_k$
+   \begin{align*}
+     0 &\equiv n_0+n_1+\ldots+n_k \pmod{3} \\
+     &\equiv n_0(1+0)+n_1(1+0)+\ldots+n_k(1+0) \pmod{3} \\
+     &\equiv n_0(1+0)^0+n_1(1+0)^1+\ldots+n_k(1+0)^k \pmod{3} \\
+     &\equiv n\pmod{3} \\
+     &\implies 3|n &&\qed
+   \end{align*}
+   #+END_EXPORT
+** c
+   #+BEGIN_EXPORT latex
+   $\implies 9|n$
+   \begin{align*}
+     0 &\equiv n\pmod{9} \\
+     &\equiv n_0+\ldots+n_k10^k\pmod{9} \\
+     &\equiv n_0+\ldots+n_k(9+1)^k\pmod{9} \\
+     &\equiv n_0+\ldots+n_k(0+1)^k\pmod{9} \\
+     &\equiv n_0+\ldots+n_k\pmod{9} \\
+     &\implies 0|n_0+\ldots+n_k
+   \end{align*}
+
+   $\impliedby 9|n_0+\ldots+n_k$
+   \begin{align*}
+     0 &\equiv n_0+\ldots+n_k\pmod{9} \\
+     &\equiv n_0(1+0)+\ldots+n_k(1+0)\pmod{9} \\
+     &\equiv n_0(1+9)+\ldots+n_k(1+9)\pmod{9} \\
+     &\equiv n_0(10)+\ldots+n_k(10)\pmod{9} \\
+     &\equiv n_0(10)^0+\ldots+n_k(10)^k\pmod{9} \\
+     &\equiv n \pmod{9} \\
+     &\implies 9|n
+   \end{align*}
+   #+END_EXPORT
+** d
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     n &\equiv n_010^0 + n_110^1 + \ldots + n_k10^k \pmod{11} \\
+     &\equiv n_0(11-1)^0 + n_1(11 - 1)^1 + \ldots + n_k(11-1)^k \pmod{11} \\
+     &\equiv n_0(-1)^0 + n_1(-1)^1 + \ldots + n_k(-1)^k \pmod{11} \\
+     &\equiv n_0 - n_1 - + \ldots \pmod{11}
+   \end{align*}
+   #+END_EXPORT
+** e
+   #+BEGIN_EXPORT latex
+   $\implies 11|n$
+   \begin{align*}
+     0 &\equiv n \pmod{11} \\
+     &\equiv n_0-n_1-+\ldots \pmod{11} &&\tag{By part (d)} \\
+     &\implies 11|n_0-n_1+n_2-+\ldots
+   \end{align*}
+
+   $\impliedby 11|n_0-n_1+n_2-+\ldots$
+   \begin{align*}
+     0 &\equiv n_0-n_1+n_2-+\ldots \pmod{11} \\
+     &\equiv n_0(0-1)^0+n_1(0-1)^1+n_2(0-1)^2+\ldots+n_k(0-1)^k \pmod{11} \\
+     &\equiv n_0(11-1)^0+n_1(11-1)^1+n_2(11-1)^2+\ldots+n_k(11-1)^k \pmod{11} \\
+     &\equiv n_0(10)^0+n_1(10)^1+n_2(10)^2+\ldots+n_k(10)^k \pmod{11} \\
+     &\equiv n \pmod{11} \\
+     &\implies 11|n
+   \end{align*}
+   #+END_EXPORT

@@ -1,0 +1,93 @@
+#+TITLE: Homework 7
+#+DATE: November 29, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{positioning}
+* Chapter 6
+** 15
+*** a
+    $\Ord(5)=4$, and is the only vector of order 4, so it must remain fixed. All other elements have order of 1 and their only edge is with 5, so they are all
+    interchangable. This group is therefore isomorphic ot $S_4$.
+*** b
+    This graph can be redrawn as $P_5$: \newline\newline
+    #+BEGIN_EXPORT latex
+    \begin{tikzpicture}
+      [main node/.style={circle,fill=blue!20,draw,minimum size=1cm,inner sep=0pt}]
+      \node[main node] (1) {$1$};
+      \node[main node] (3) [below right = 2.3cm and 2.3cm of 1] {$3$};
+      \node[main node] (5) [below left = 2.3cm and 0.5cm of 3] {$5$};
+      \node[main node] (2) [left = 2.3cm of 5] {$2$};
+      \node[main node] (4) [below left = 2.3cm and 2.3cm of 1] {$4$};
+
+      \path[draw,thick]
+      (1) edge node {} (3)
+      (3) edge node {} (5)
+      (5) edge node {} (2)
+      (2) edge node {} (4)
+      (4) edge node {} (1)
+      ;
+    \end{tikzpicture}
+    #+END_EXPORT
+    \newline\newline So its automorphism group is $D_{10}$.
+*** c
+    The complement of this graph forms a 3-cycle cycle with $(1-2-3)$ and
+    a 2-cycle with $(4-5)$, so the complement, and therefore the graph itself,
+    has an automorphism group isomorphic to $D_6\times S_2$.
+** 17
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Let $G$ is a group of prime order $p$ and acting on a finite set $X$ with $\#X$ not a multiple of $p$.
+     Now by the orbit-stabilizer theorem, for any given element $x\in X$, $\#Orb_G(x)\cdot \#Stab_G(x) = #G = p$.
+     Now since $p$ is a prime, each of the orbit and stabilizer must each be equal to either 1 or $p$.
+     If the order of the orbital is 1, then we are done, but if the orbit of the stabilizer is $p$ for any $x$,
+     and $\#X$ is equal to the sum of the orbitals, then the order of $X$ divides $p$, which is a contradiction.
+     Therefore, a fixed point must exist. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 22
+*** a
+    Consider the order fine automorphism on the right: $g_1=(04387)(15296)$.
+    This means that the orbital of 0 must at least include $\set{0,4,3,8,7}$
+    since 0 can permute to any of them. \\
+    Now consider the evident order-three automorphism on the right: $g_2=(147)$.
+    Since the orbital of 0 forms a subgroup, it must maintain closure, hence
+    $g_2(g_1(0)^4)=1$ must also be in the orbital of 0, and therefore so must
+    $g_1(g_2(g_1(0)^4))=5$, and by extension so are $2,9,6$, and so since the orbital
+    of $0$ is the entire graph, $G$ acts transitively on the vertices of the graph.
+*** b
+**** $\phi$ is surjective
+     By checking all elements in $S_3$:
+     By checking all elements in $S_3$, it can be shown that they all form
+     valid automorphisms that fix 0 while also permuting $\set{1,4,7}$.
+**** $\Ker(\phi)$
+     The identity in $S_3 = (1)(4)(7)$, so the kernel of the stabilizer of 0
+     are all valid automorphisms that fix those elements. That is they start with
+     $(0)(1)(4)(7)$. The trivial automorphism that maintains this property is the identity
+     automorphism. The second and last one is $(0)(1)(4)(7)(29)(38)(56)$, and so
+     the size of the kernel of the stabilizer of 0 is 2.
+*** c
+    By the second isomorphism law $G/\Ker(\phi)\cong \Im(\phi)$, so $\#G = \#\Im(\phi)\#\Ker(\phi)$
+    Now since the stabilizer is surjective, it has order of $\#S_3=6$ with a kernel of size 2,
+    so $\#G = 2\cdot 6 = 12$.
+* Chapter 7
+** 2
+   A matrix $g\in \GL_2(\R)$ is in the stabilizer of $\vec{e_2}=(0,1)$
+   if and only if $\Matrix{a}{c}{b}{d}\begin{pmatrix}0 \\ 1\end{pmatrix} = \begin{pmatrix}c \\ d\end{pmatrix} = \begin{pmatrix}0 \\ 1\end{pmatrix}$.
+   That is, $g=\Matrix{a}{0}{b}{1}$, so for this matrix to have a non-zero determinant, $a\neq 0$.
+   So $g = \Matrix{a}{0}{b}{1}$ with $b\in\R, a\in\R^\times$.
+** 6
+   Prove that for all angles $\theta$, $s_\theta = r_{\theta/2}\cdot s_0\cdot r_{-\theta/2}$
+   Using proposition 7.7: $r_\theta\cdot s_0 = s_0\cdot r_{-\theta}$.
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     \begin{align*}
+       r_{\theta/2}\cdot (s_0\cdot r_{-\theta/2}) &= r_{\theta/2}\cdot r_{\theta/2}\cdot s_0 &&\tag{proposition 7.7} \\
+       &= r_\theta\cdot s_0 &&\tag{proposition 7.6}
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT
+** 8
+   This rectangle has 2 rotations: by 0 and 180 degrees, and likewise
+   two rotations: along the x axis and y axis, so
+   $\text{Symm}(R) = \left\lbrace\Matrix{1}{0}{0}{1}, \Matrix{-1}{0}{0}{1}, \Matrix{1}{0}{0}{-1}, \Matrix{-1}{0}{0}{-1} \right\rbrace$.

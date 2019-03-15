@@ -1,0 +1,167 @@
+#+TITLE: Homework 2
+#+DATE: October 12, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* Lemma 1. Let $d,a,b\in\Z$ and $d|a, d|b$, then $d|(a+b)$.
+#+BEGIN_EXPORT latex
+\begin{proof}
+  If $d|a$, then $a=dk_1$ for $k_1\in\Z$ and $d|b \implies b=dk_2$ for $k_2\in\Z$.
+  Hence, $a+b=dk_1+dk_2=d(k_1+k_2)$, then clearly $d|d(k_1+k_2)$, therefore $d|(a+b)$. $\qedhere$
+\end{proof}
+#+END_EXPORT
+
+* Section 1
+** 6
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Let $a,b\in\Z$ not both equal to 0 and let $d=\GCD(a,b)$. \\
+     Let $S=\setc{ua+vb}{u,v\in\Z}$ and $T=\setc{qd}{d\in\Z}$. \\
+     WTS $S\subset T$: \\
+     Let $s\in S = u_1a+v_1b$. By definition of the GCD, $d|u_1a$ and $d|v_1b$.
+     Therefore by Lemma 1, $d|s$, then $s=dq$ for some $q\in\Z$.
+     Which means that $s\in T$. Hence $S\subset T$. \\
+     WTS $T\subset S$: \\
+     Let $t\in T = qd_1$, and $u_2a+v_2b=d$ for some $u_2,v_2\in\Z$. \\
+     Then $qd_1=q(u_2a+v_2b) = (qu_2)a+(qv_2)b$ and $qu_2,qv_2\in\Z$.
+     Therefore, $qd_1\in S$ and $T\subset S$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 7
+   $\varphi(4) = (2-1)2^1 = 2$ \\
+   $\varphi(9) = (3-1)3^1 = 6$ \\
+   Conjecture: The $\varphi$ of a number is equal to the $\varphi$ of every prime power in it's prime power composition. \\
+   $36 = 2^2\cdot 3^2 \implies \varphi(36)=\varphi(2^2)\varphi(3^2)=[(2-1)2^{2-1}][(3-1)3^{2-1}]=2\cdot 6 = 12$
+* Section 2
+** 1
+*** a
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      0\cdot r &= (0+0)\cdot r &&\tag{given} \\
+      0\cdot r &= r\cdot0 + r\cdot 0 &&\tag{distributive} \\
+      0\cdot r + (-(0\cdot r)) &= r\cdot 0 + r\cdot 0 + (-(0\cdot r)) &&\tag{definition of equality} \\
+      0 &= r\cdot 0 &&\tag{additive inverse}
+    \end{align*}
+    #+END_EXPORT
+    By symmetry, $r\cdot 0 = 0$, therefore $r\cdot 0 = 0 = 0\cdot r$. $\qed$
+*** b
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      -(r+s) &= (-r)-s &&\tag{given} \\
+      -(r+s) &= (-r)+(-s) \\
+      -(r+s)+(r+s) &= (r+s)+((-r)+(-s)) \\
+      0 &= (r+s)+((-r)+(-s)) &&\tag{additive inverse} \\
+      &= ((r+s)+(-s))+(-r) &&\tag{associativity} \\
+      &= (r+(s+(-s)))+(-r) &&\tag{associativity} \\
+      &= (r+0)+(-r) &&\tag{additive inverse} \\
+      &= (r+(-r))+0 &&\tag{associativity} \\
+      &= 0+0 &&\tag{additive inverse} \\
+      0 &= 0
+    \end{align*}
+    #+END_EXPORT
+    Therefore, since $0=0$ is true, $-(r+s) = (-r)-s$ is true.
+*** c
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      (-r)s &= -(rs) &&\tag{given} \\
+      -(rs) &= (-r)s \\
+      -(rs)+rs &= (-r)s+rs \\
+      0 &= (-r)s+rs &&\tag{additive inverse} \\
+      &= (-r+r)s &&\tag{distributive} \\
+      &= 0s &&\tag{additive inverse} \\
+      0 &= 0 &&\tag{multiplication by zero}
+    \end{align*}
+    #+END_EXPORT
+    Therefore, since $0=0$ is true, $(-r)s=-(rs)$ is true and $-(rs)=r(-s)$ is true by symmetry.
+*** d
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      (-1)\cdot(-1) &= 1 &&\tag{given} \\
+      ((-1)\cdot(-1))\cdot(1)\cdot(1) &= 1\cdot1\cdot1 \\
+      ((-1)\cdot(-1))\cdot(1)\cdot(1) &= 1 &&\tag{multiplicitive identity} \\
+      (-1)\cdot((-1)\cdot(1))\cdot(1) &= 1 &&\tag{associativity} \\
+      (-1)\cdot(1)\cdot(1) &= 1 &&\tag{multiplicitive inverse} \\
+      ((-1)\cdot(1))\cdot(1) &= 1 &&\tag{associativity} \\
+      (1)\cdot(1) &= 1 &&\tag{multiplicitive inverse} \\
+      1 &= 1 &&\tag{multiplicitive identity}
+    \end{align*}
+    #+END_EXPORT
+    Therefore, since $1=1$ is true, $(-1)\cdot(-1) = 1$ is true.
+*** e
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      -r &= (-1)\cdot r &&\tag{given} \\
+      (-1)r &= -r \\
+      ((-1)r)-((-1)r) &= -r-((-1)r) \\
+      0 &= -(r+(-1)r) &&\tag{additive inverse} \\
+      &= -(1r+(-1)r) &&\tag{multiplicitive identity} \\
+      &= -((1-1)r) &&\tag{distributive} \\
+      &= -(0r) &&\tag{additive inverse} \\
+      0 &= 0 &&\tag{multiplication by zero}
+    \end{align*}
+    #+END_EXPORT
+    Therefore, since $0=0$ is true, $-r = (-1)r$ is true.
+** 2
+*** a
+    Let the 0 element of $R$ be $(0_S,0_T)$ such that $(s_1,t_1)+(0_S,0_T)=(s_1+0_S,t_1+0_T)=(s_1,t_1)$
+    By definition of the 0 elements of the rings $S$ and $T$. \\
+    Let the one element of $R$ be $(1_S,1_T)$ such that $(s_1,t_1)(1_S,1_T)=(s_1\cdot 1_S, t_1\cdot 1_T) = (s_1,t_1)$ \\
+    By definition of the 1 element of the rings $S$ and $T$. \\
+    The same case also applies by symmetry to $(0,0)+(s_1,t_1)$ and $(1,1)(s_1,t_1)$
+*** b
+    By definition $S^x\times T^x = \setc{(s,t)}{s\in S^x, t\in T^x}$. \\
+    Let $(s,t)\in S^x\times T^x$, then by definition, $(s^{-1},t^{-1})\in S^x\times T^x$
+    and $(s,t)(s^{-1},t^{-1}) = (ss^{-1}, tt^{-1}) = (1,1)$, hence $S^x\times T^x \subset R^x$. \\
+    Furthermore, since $R = S\times T$, every element $(r_1,r_2)\in R^x$ must be such that (r_1^{-1},r_2^{-1})(r_1,r_2) = (r_1^{-1}r_1, r_2^{-1}r_2) = (1,1)$
+    and since e $r_1^{-1}r_1 = 1, r_1,r_1^{-1}\in S^x$ by definition, therefore $r^x\subset S^x\times T^x$, hence $R^x=S^x\times T^x$. $\qed$
+** 3
+*** a
+    Let $r\in R$ and $s\in S$ such that $f(r)=s$ \\
+    $f(0) = f(r+(-r)) = f(r) + f(-r) = s + (-s) = 0$ \\
+    $f(\Inv(r)) = \Inv(s) = \Inv(f(r))$
+*** b
+    Let $u\in R^x$. Recall $f(1_R)=1_S$ \\
+    $f(1_R)=f(uu^{-1})=f(u)f(u^{-1})=1_S \implies f(u)\in S^x$ \\
+    $1_S = f(u)f(u)^{-1} = f(1) = f(u)f(u^{-1})$ \\
+    $\implies f(u)f(u)^{-1} = f(u)f(u^{-1}) \implies f(u)^{-1} = f(u^{-1})$
+** 4
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     let $A,B\in M_2(R)$. \\
+     Let $A=\Matrix{a_a}{b_a}{c_a}{d_a}, B=\Matrix{a_b}{b_b}{c_b}{d_b}$. \\
+     $AB = \Matrix{a_aa_b+b_ac_b}{a_ab_b+b_ad_b}{a_bc_a+c_bd_a}{b_bc_a+d_ad_b}$ \\
+     $\Det{AB} = a_aa_bd_ad_b-a_ab_bc_bd_a-a_bb_ac_ad_b-b_ab_bc_ac_b$ \\
+     $\Det{A}\Det{B} = (a_ad_a-b_bc_b)(a_bd_b-b_bc_b) = a_aa_bd_ad_b-a_ab_bc_bd_a-a_bb_ac_ad_b-b_ab_bc_ac_b$ \\
+     Therefore, $\Det{AB}=\Det{A}\Det{B}$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 5
+*** a
+    1 is self-inverting by definition and $-1$ has been proven to be self-inverting. \\
+    There exist no other solutions since the multiplicitive inverse of any number $a\in\Z$ is $\frac{1}{a}$ which is only in $\Z$ if $a=\pm 1$.
+*** b
+    The identity element of $\R[X]$ is 1, and as shown before, $-1$ must also therefore be a unit. \\
+    Consider two polynomials $a=a_0+a_1x+a_2x^2\ldots a_nx^n, b=b_0+b_1x+\ldots b_nx^n$ With at least one non-zero $a_n$ or $b_n$ with $n\geq 1$.
+    The coefficients of the product of $a$ and $b$ will be a product of some of their coefficients, at least some of which are non-zero, times some non-zero power of $x$.
+    And since the powers of $x$ are added when two polynomials are multiplied, it clearly cannot decrease.
+    Therefore, it is impossible for the product of any two polynomials with at lesat one having a non-zero coefficient for some power of $x\geq 1$ to equal to $1$,
+    meaning no such polynomial can be a unit. \\
+    Now consider the product of two polynomials of the form $(a\cdot x^0)(b\cdot x^0)$. That is, the product of two polynomials with only one non-zero coefficient
+    as the coefficient of $x^0$. Clearly, for any real number $a$, there exists some real number $b$, such that $ab=1$.
+    Therefore, all polynomials of the form $ax^0$ are units of $\R[x]$ and no other polynomial is.
+*** c
+    Let any unit of $\Z[i]$ be of the form $a+bi$. That means that there exists some $c+di \in \Z[i]$ such that $(a+bi)(c+di)=1$. \\
+    Multiplying the result, we get that $(a+bi)(c+di)=(ab-bd) + i(bc+ad) = 1$. \\
+
+    Now assume that $b\neq 0$. This means that $ac-bd = 1$ and $bc+ad=0$. From the second equation we get that $bc=-ad$.
+    Now by multiplying both sides of the first equation by $-b$, we get that $-abc+b^2d = -b$, and by substituting $bc=-ad$ into that we get:
+    $a^2d+b^2d = -b \implies d(a^2+b^2)=-b$. Note that since $a^2+b^2$ is always positive, $d$ must be negative. Now there are two cases:
+
+    Case 1: Let $d=-1$, which means that $a^2+b&^2=b$, which clearly has no integral solutions.
+
+    Case 2: Let $d=-b$, which means that $a^2+b^2=1$, which is only true if either $a$ or $b$ is $\pm 1$ and the other is 0.
+    Furthermore, using $d=-b$ and the first two equations to solve for $c$: $ac+b^2=1$, and $bc-ba=0$.
+    If we let $c=a$, then the first one becomes $a^2+b^2=1$ which we defined as true previously, and $ba-ba=0$ which is true by the additive inverse. \\
+
+    Lastly, if $b=0$, then $a+bi$ reduces to $a$, which only has an inverse in $\Z$ if $a=\pm 1$.
+    Therefore, the only units in $\Z[i]$ are $\pm 1, \pm i$. $\qed$

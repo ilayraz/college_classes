@@ -1,0 +1,152 @@
+#+TITLE: Homework 1
+#+DATE: October 2, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* Pre-chapter warmups
+** 1
+   Describe the following sets of integers in a clear and
+   simple fashion.  Avoid using set-theoretic jargon,
+   quantifiers, etc.. Draw a diagram if needed.
+*** a) $\setc{x\in\N}{x+x>x}$
+    All natural numbers (excluding 0).
+*** b) $\setc{x\in\Z}{x^2>x}$
+    All integers except 0 and 1.
+*** c) $\setc{x\in\N}{\forall y\in\N, y>x}$
+    The empty set.
+*** d) $\setc{x\in\Z}{\exists y\in\Z, x=2y+1}$
+    All odd integers.
+*** e) $\setc{x\in\Z}{\forall y\in\Z, x\neq y^2}$
+    All integers which are not squares.
+*** f) $\setc{x\in\Z}{\forall y\in\Z,\exists z\in\Z, x=yz}$
+    The set including only 0.
+*** g) $\setc{x\in\Z}{\exists y\in\Z,y<x<y+2}$
+    All integers.
+** 2
+   Are the following sentences true or false?
+*** a) Every nonempty set of Integers has a smallest element.
+    False ($\Z$ has no smallest integer).
+*** b) Every nonempty set of natural numbers has a smallest element.
+    True ($\N$ is bounded below by 0, so every subset of $\N$ has a least element greater than or equal to 0).
+*** c) Every nonempty set of natural numbers has a largest element.
+    False ($\N$ has no largest element).
+*** d) Every nonempty finite set of real numbers has a smallest element.
+    True (Every non-empty finite set of $\R$ is bounded above and below and therefore has a smallest element).
+*** e) 0 is a multiple of every integer.
+    True (For every integer $x$, there exists an integer $z$ such that $x\cdot z = 0$, namely, $z=0$).
+*** f) Every integer is a multiple of 0.
+    False (For any given non-zero integer $x$, there does not exist another integer $z$ such that $z\cdot0=x$ because every integer times 0 is 0).
+*** g) 1 is a multiple of every integer.
+    True (For every integer $x\cdot1=x$).
+* Post-chapter exercises
+** 1
+   Which containments are true, and which are false?
+*** a) $2\Z\subset3\Z$
+    False ($2\in2\Z$, but $2\notin3\Z$).
+*** b) $4\Z\subset2\Z$
+    False ($3\in3\Z$, but $3\notin2\Z$).
+*** c) $4\Z\subset12\Z$
+    False ($8\in4\Z$, but $8\notin12\Z$).
+*** d) $8\Z\subset4\Z$
+    True ($8\Z$ includes every other element from $4\Z$)
+*** e) $5\Z\subset0\Z$
+    False ($0\Z$ is the set containing only the element 0).
+*** f) $0\Z\subset7\Z$
+    True ($0\Z=\set{0}\subset\set{\ldots,-7,0,7,\ldots}$).
+*** g) $6\Z\subset-6\Z$
+    True ($6\Z=\setc{6x}{x\in\Z}=-6\Z=\setc{-6x}{x\in\Z}$).
+*** h) $-6\Z\subset6\Z$
+    True ($6\Z=\setc{6x}{x\in\Z}=-6\Z=\setc{-6x}{x\in\Z}$).
+** 2
+   Prove that if $y\in\Z$ and $y+y=y$, then $y=0$.
+   Refer to the axioms explicitly throughout. Use this to prove
+   the /absorbing property of zero/: If $x\in\Z$, then $x\cdot0=0$.
+*** Part 1
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $y$ be any integer. Assume $y+y=y$, then:
+      \begin{align*}
+        y+y &= y &&\tag{given} \\
+        y+y+(-y) &= y+(-y) &&\tag{Perservation of $=$ by addition} \\
+        y &= 0 &&\tag{Additive inverse}
+      \end{align*}\qedhere
+    \end{proof}
+    #+END_EXPORT
+*** Part 2
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $x$ be any integer. Note: $0+0=0$, then:
+      \begin{align*}
+        0+0 &= 0 &&\tag{given} \\
+        x(0+0) &= 0x &&\tag{Perservation of $=$ by scaling} \\
+        0x+0x &= 0x &&\tag{Commutativity of $\cdot$} \\
+        0x+0x+(-0x) &= 0x+(-0x) &&\tag{Preservation of $=$ by addition} \\
+        0x &= 0 &&\tag{Additive inverses}
+      \end{align*} \qedhere
+    \end{proof}
+    #+END_EXPORT
+** 5
+   Use the axioms of arithmetic to prove that if
+   $a,b\in\Z$ and $ab=0$, then $a=0$ or $b=0$.
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Proof of the contrapositive: If $a\neq0$ and $b\neq0$, then $ab\neq0$. \\
+     There are four cases: \\
+     1) $a>0$ and $b>0$, then $a>0 \implies ab>0b=0$ by Preservation of > by positive scaling. \\
+     2) $a>0$ and $b<0$, then $a>0 \implies ab<0b$ by negation of > and preservation of it. \\
+     3) $a<0$ and $b>0$, then $a<0 \implies ab<0b$ by preservation of < by positive scaling. \\
+     4) $a<0$ and $b<0$, then $a<0 \implies ab>0b$ by negation of < and preservation of it. \\
+     In all four cases, $ab\neq0$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** 8
+   Find a subset $S\subset\Z$ such that $S$ satisfies Property (SG2) and Property
+   (SG3) of subgroups, but does not satisfy Property (SG1). Similarly,
+   find a subset satisfying (SG1) and (SG3), but not (SG2). Similarly,
+   find a subset satisfying (SG1) and (SG2), but not (SG3).
+*** Part 1
+    $S=\emptyset$
+*** Part 2
+    $S=\setc{2x}{x\in\N}$
+*** Part 3
+    $S=\set{-1,0,1}$
+** 9
+   Prove that a $S\subset\Z$ is a subgroup if and only if the following two conditions hold:
+   1) $S$ is nonempty
+   2) For all $x,y\in S, x-y\in S$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $S$ be a subset of $\Z$. \\
+      $\implies$
+      Assume $S$ is a subgroup. \\
+      By (SG1), $S$ must have $\Id$ in it, therefore it must be non-empty, which proves (1). \\
+      Let $x,y$ be any elements of $S$.
+      By (SG2), $-y\in S$, therefore by (SG3), $x+(-y)=x-y\in S$, which proves (2). \\
+      $\impliedby$
+      Assume $S$ is non-empty and for all $x,y\in S, x-y\in S$. \\
+      To show (SG1), let $x=y$, then $x-y=0\in S$, which shows that $\Id$ is in $S$. \\
+      To show (SG2), let $x=0$ and $y$ be any element in $S$, then $0-y=-y\in S$. \\
+      To show (SG3), let $x=x$ and $y=-y$ (since $-y\in S$ by (SG2)), then $x-(-y)=x+y\in S$, which is equivalent to (SG3). $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+** 13
+   Let $S_1$ and $S_2$ be subgroups of $(\Z,+)$.
+   Prove that $S_1\cup S_2$ is a subgroup of $(\Z,+)$ if and only if $S_1\subset S_2$
+   or $S_2\subset S_1$.
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Let $S_1$ and $S_2$ be a subgroup of $(\Z,+)$. \\
+     $\implies$ By contraposative ($S_1$ not a subset of $S_2$ and $S_2$ not a subset of $S_1 \implies S_1\cup S_2$ is not a subgroup.) \\
+     Since $S_1$ and $S_2$ are not subsets of each other, they each must have at least
+     one element in one set that is not in the other. \\
+     Let $s_1\in S_1$ be an element not in $S_2$ and $s_2\in S_2$ be an element not in $S_1$. \\
+     Recall that as has been shown, every subgroup of $(\Z,+)$ is formed from a set of multiple of some natural. \\
+     Let two such numbers $x,y\in\N$ be such that $S_1=x\Z$ and $S_2=y\Z$. \\
+     By definition of $S_1$, $x|s_1$ and $x\nmid s_2$, since $s_2\notin S_1$, therefore $x\nmid s_1+s_2$, since a multiple of $x$ added to a number not a multiple of $x$ can not be another multiple of $x$, which means $s_1+s_2\notin S_1$. \\
+     The same logic applies by symmetry to $S_2$, meaning $s_1+s_2\notin S_2$. \\
+     Therefore, since $s_1+s_2\notin S_1\cup S_2$, but $s_1,s_2\in S_1\cup S_2$, it violates property (SG3) of subgroups, therefore, $S_1\cup S_2$ is not a subgroup. \\
+     $\impliedby$ \\
+     Assume $S_1\subset S_2$, therefore $S_1\cup S_2 = S_2$, which is a subgroup of $(\Z,+)$. \\
+     The same logic applies if $S_2\subset S_1$ by symmetry. $\qedhere$
+   \end{proof}
+   #+END_EXPORT

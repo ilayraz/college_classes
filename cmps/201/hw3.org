@@ -1,0 +1,161 @@
+#+TITLE: Homework 3
+#+DATE: January 29, 2019
+#+OPTIONS: TOC:nil AUTHOR:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* 1
+  Let $n\geq 2$. Iterating through $T$ $k$ times:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    T(n) &= n + T(n-1) \\
+    &= n + (n-1) + T(n-2) = 2n - 1 + T(n-2) \\
+    &= 2n-1 + (n - 2) + T(n-3) = 3n-3 + T(n-3) \\
+    &= 3n-3 + (n-3) + T(n-4) = 4n-6 + T(n-4) \\
+    &= \vdots \\
+    &= kn-\frac{k(k-1)}{2} + T(n-k)
+  \end{align*}
+  #+END_EXPORT
+  After $k$ iterations. This process terminates when $n-k=1$. That is, when $k = n-1$.
+  Where $T(n-k) = T(1) = 1$. Now to find a bound on $T$:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    T(n) &= kn-\frac{k(k-1)}{2} + T(n-k) \\
+    &= (n-1)n-\frac{(n-1)((n-1)-1)}{2} + 1 \\
+    &= n^2-n-\frac{n^2-3n+2}{2} + 1 \\
+    &= \frac{(2n^2-2n)-(n^2-3n+2)+2}{2} \\
+    &= \frac{n^2+n}{2} \\
+    &= \Theta(\frac{n^2+n}{2}) \\
+    &= \Theta(n^2+n) \\
+    &= \Theta(n^2) &&\qed
+  \end{align*}
+  #+END_EXPORT
+* 2
+  Let $n\geq 15$. Iterating through $T$ $k$ times:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    T(n) &= 6 + T(\floor{n/2}) \\
+    &= 6 + 6 + T(\floor{n/2^2}) \\
+    &= \vdots \\
+    &= 6k + T(\floor{n/2^k})
+  \end{align*}
+  #+END_EXPORT
+  After $k$ iterations, this process terminates when $1\leq\floor{n/2^k} < 15$ where $T(\floor{n/2^k})=9$.  That is:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    1\leq &\floor{n/2^k} < 15 \\
+    2^k\leq &\floor{n} < 15\cdot2^k \\
+    2^k \leq &\floor{n} < 15\cdot2^k \\
+    \lg(2^k)\leq &\floor{\lg(n)} < \lg(15)+\lg(2^k) \\
+    k \leq &\lg(n) < \lg(15)+k &&\tag{Assume without loss of generality that $n\in\N$}
+  \end{align*}
+  #+END_EXPORT
+  So $k=\lg(n)+C$ where $0\leq C < \lg(15)$. Now solving the exact equation:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    T(n) &= 6k + T(\floor{n/2^k}) \\
+    &= 6(\lg(n)+C) + 9 \\
+    &= \Theta(6\log(n)+6C+9) \\
+    &= \Theta(6\log(n)) &&\tag{Constant terms are dominated by the logarithmic term} \\
+    &= \Theta(\log(n)) &&\tag{Coefficient does not affect asymptotic growth and can be ignored}
+  \end{align*}
+  #+END_EXPORT
+* 3
+  Let $n\geq 3$. Iterating through $T$ $k$ times:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    T(n) &= n + T(\floor{n/3}) \\
+    &= n + \floor{n/3} + T(\floor{n/3^2}) =\floor{n(1+1/3)} + T(\floor{n/3^2}) \\
+    &=\floor{n(1+1/3+1/3^2)} + T(\floor{n/3^3}) \\
+    &\vdots \\
+    &= \left\lfloor n\sum_{i=0}^{k-1} 1/3^i\right\rfloor + T(\floor{n/3^k}) \\
+    &= n\left\lfloor\frac{1-\left(\frac{1}{3}\right)^k}{1-\frac{1}{3}}\right\rfloor +T(\floor{n/3^k})
+  \end{align*}
+  #+END_EXPORT
+  After $k$ iterations, this process terminates when $1\leq\floor{n/3^k}<3$ where $T(\floor{n/3^k})=4$. That is:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    1 \leq& \floor{n/3^k} < 3 \\
+    3^k \leq& \floor{n} < 3^{k+1} \\
+    \log_3(3^k) \leq&\log_3(n)<\log_3(3^{k+1}) &&\tag{Assume $n$ is an integer without loss of generality} \\
+    k\leq&\log_3(n)< k+1
+  \end{align*}
+  #+END_EXPORT
+  So $k=\log_3(n)$. Now solving the exact equation:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    T(n) &= n\left\lfloor\frac{1-\left(\frac{1}{3}\right)^k}{1-\frac{1}{3}}\right\rfloor +T(\floor{n/3^k}) \\
+    &= n\left\lfloor\frac{1-\frac{1}{3^{\log_3(n)}}}{\frac{2}{3}}\right\rfloor + 4 \\
+    &= n\left\lfloor\frac{1-\frac{1}{n}}{2/3}\right\rfloor + 4 \\
+    &= \left\lfloor\frac{n-\frac{n}{n}}{2/3}\right\rfloor + 4 \\
+    &= \left\lfloor\frac{n-1}{2/3}\right\rfloor + 4 \\
+    &= \left\lfloor\frac{3n-3}{2}\right\rfloor + 4 \\
+    &= \Theta\left(\left\lfloor\frac{3n-3}{2}\right\rfloor + 4\right) \\
+    &= \Theta\left(\left\lfloor\frac{3n-3}{2}\right\rfloor\right) \\
+    &= \Theta\left(\frac{3n-3}{2}\right) \\
+    &= \Theta(n)
+  \end{align*}
+  #+END_EXPORT
+* 4
+** Problem 2
+   $a=1,b=2,f(n)=O(1),\log_2(1)=0. f(n)=\Theta(n^0)$. \\
+   Hence, $T(n)=\Theta(n^0\cdot\log(n)) = \Theta(\log(n))$.
+** Problem 3
+   $a=1,b=3,f(n)=n,\log_3(1)=0. f(n) = \Omega(n^{0+0.1})$ where $\epsilon=0.1$. \\
+   Furthermore, $1f(n/3) = n/3 \leq f(n)/2 = n/2$ where $c=1/2$. \\
+   Hence, $T(n) = \Theta(n)$.
+* 5
+** a
+   $a=3,b=3/2,f(n)=n^3, c=\log_3/2(3)\cong2.7. f(n)=\Omega(n^{2.7+0.1})$ where $\epsilon=0.1$. \\
+   Furthermore, $3f(2n/3) = 3(8n^3/27) = 8n^3/9 \leq 8f(n)/9 = 8n^3/9$ with $c=8/9< 1$. \\
+   Hence, $T(n) = \Theta(n^3)$.
+** b
+   $a=2,b=3,f(n)=\sqrt{n},c=\log_3(2)\cong 0.63. f(n)=O(n^{0.63-0.1})$ where $\epsilon=0.1$. \\
+   Hence, $T(n)=\Theta(n^{\log_3(2)})$.
+** c
+   $a=5,b=4,f(n)=n^{\lg\sqrt{5}}\cong n^{1.1609}, c=\log_4(5)=\lg(\sqrt{5}). f(n) = \Theta(n^c)$. \\
+   Hence, $T(n)\Theta(n^{\lg_4(5)}\cdot\log(n))$.
+
+** d
+   $a=3, b=5/2=2.5, f(n)=n\log n. c=\log_2.5(3)\cong1.198. f(n)=O(n^{\log_2.5(3)-0.1})$ where $\epsilon=0.1$. \\
+   Hence, $T(n)=\Theta(n^{\lg_4(5)})$.
+
+** e
+   $a=a, b=4, f(n)=n^2$.
+
+   Three cases:
+
+  - $a<16\newline$
+    $c=\log_4(a) < 2$, so $\exists 0<\epsilon<1$ such that $f(n)=\Omega(n^{\log_4(a)+\epsilon})$ with $\log_4(a)+\epsilon<2$. \\
+    Furthermore, $af(n/4) = an^2/16 < cf(n)$ for some $0<c<1$ since $a<16\implies a/16<1$. \\
+    Hence, $S(n)=\Theta(n^2)$.
+
+  - $a=16\newline$
+    $c=\log_4(16) = 2$, so $f(n)=\Theta(n^2)$. \\
+    Hence, $S(n)=\Theta(n^2\cdot\log(n))$.
+
+  - $a>16\newline$
+    $c=\log_4(a)>2$, so $\exists 0<\epsilon<1$ such that $f(n)=O(n^{\log_4(a)-\epsilon})$ with $\log_4(a)-\epsilon>2$. \\
+    Hence, $S(n)=\Theta(n^{\log_4(a)})$.
+* 6
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Using induction. $\newline$
+    Let the size of the array $n=r-p+1$. $\newline$
+    Base case: let $n=1\newline$
+    Hence, the array is already trivially sorted, and since $p=r$, the algorithm exits. $\newline$
+    Now assume that quicksort works on all arrays of size $1\leq n<m$. It will now be shown that the algorithm also works on arrays of size $m$. $\newline$
+    Given that $m>1$, $r>p$. Hence the algorithm calls partition, which is assumed to work correctly.
+    Partition returns a $q$ equal to the index of some item in the array. That is $p\leq q\leq r$.
+    The algorithm then calls quicksort twice.
+    The first call is $QUICKSORT(A,p,q-1)$. Note that $p\leq q\leq r \implies p\leq q-1<r$. So since $q-1<r$, the size of the array must have decreased,
+    therefore $1\leq q-1-p<m$, so by the inductive hypothesis, this partition of the array is sorted. Note that this ignores the case where
+    $q-1<p$, since in this case the size of the array is less than 1, so the array is already trivially sorted and the algorithm will immidiatly exit when this is called.
+    $\newline$
+    The second call is $QUICKSORT(A,q+1, r)$. Note again that since $p\leq q\leq r \implies p<q+1\leq r$. So since $q+1>p$, the size of the array must have decreased,
+    and again by the inductive hypothesis, this partition of the array is sorted. Also note that this ignores the case where $r<q+1$, since in this case the size
+    of the array is again less than 1, so it is trivially sorted and the algorithm will immidiatly exit when it is called. $\newline$
+    Therefore, the partition of the array spanning $p,q-1$ is sorted and the one spanning $q+1,r$ is also sorted. By the assumption of the correctness of the
+    partition algorithm, the element at index $q$ is also at its correct place, with all elements greater than $A[q]$ to the left,
+    and all elements less than $A[q]$ to the right, and therefore the entire array is sorted. $\qedhere$
+  \end{proof}
+  #+END_EXPORT

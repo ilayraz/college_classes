@@ -1,0 +1,117 @@
+#+TITLE: Homework 3
+#+DATE: October 18, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* 1
+** $f_^{-1} = (132)(45)$
+** $f\circ f = (132)(4)(5)$
+** $f\circ f\circ f = (45)(1)(2)(3)$
+** Smallest integer $e$ satisfying $f^e=\Id$
+*** $f^4 = (123)(4)(5)$
+*** $f^5 = (132)(45)$
+*** $f^6 = (1)(2)(3)(4)(5)$
+    $e=6$
+* 2
+  Let $f=(12)(34)(5), g=(15)(23)(4)$.
+  Then, $f\circ g = (15243)$ and $g\circ f = (13425)$.
+  Clearly, $f\circ g \neq g\circ f$, therefore, not all two 2-cycle permutations in $S_5$ are commutitive.
+* 3 CHALLANGE
+  $s=(12)(3)(4), t=(1)(23)(4), u=(1)(2)(34)$.
+** $ststut = tsttut = tsut = (13)(24)$
+** $stustustu = stsutustu = tstutustu = tsttutstu = tsutstu = tsustsu = tusstsu = tutsu = utusu = utuus = uts = (1432)$
+** $stusutstusut = stssuutstusut = sttstusut = sstusut = tusut = tsuut = tst = (13)(2)(4)$
+* 5
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Let $\uptau$ be any transposition in $S_n$.
+    Now let $A_n$ be the set of permutations in $S_n$ with a sign of 1, let $B_n$ be the set of permutations in $S_n$ with a sign of -1,
+    and let $f(x): A_n\mapsto S_n = \uptau\circ x$. Note that $f$ maps permutations with sign of $1$ to $-1$ since the sgn function is homomorphic
+    and the sign of any transposition is $-1$. Therefore, if $sgn(x)=1, sgn(f(x)) = sgn(\uptau\circ x) = sgn(\uptau)sgn(x) = (-1)(1) = (-1)$. \\
+    To show that $f$ is a bijective function, it is needed to show that $f$ is both injective and surjective. \\
+    To show that $f$ is injective, note that it is impossible for two distinct permutations to map to the same permutation under $f$,
+    since the original permutation remains unchanged except for the single transposition $\uptau$, which only changes two elements.
+    Let $x,y\in A_n$ be two permutations that map to the same permutation under $f$. That is,
+    \begin{align*}
+      f(x) &= f(y) \\
+      \uptau\circ x &= \uptau\circ y \\
+      \uptau^{-1}\uptau x &= \uptau^{-1}\uptau y \\
+      x &= y
+    \end{align*}
+    Hence two permutations map to the same permutation under $f$ if and only if they are the same permutation. Therefore, $f$ is injective. \\
+    To show $f$ is surjective, let $x\in B_n$, and let $y\in A_n$ be such that $y=\uptau^{-1} x$. Note that $sgn(y) = 1$ since $sgn(\uptau^{-1} x) = sgn(\uptau^{-1}) sgn(x) = -1\cdot -1 = 1$. Now note that $f(y) = \uptau\uptau^{-1} x = x$. Therefore, $f$ is surjective. \\
+    Now that $f$ has been established as a bijective function, it can be said that $|A_n| = |B_n|$, and since $A_n$ and $B_n$ are disjoint sets, and $A_n\sqcup B_n = S_n$,
+    they both must contain exactly half of the elements in $S_n$. That is $A_n = \frac{1}{2}|S_n|$. $\qedhere$
+  \end{proof}
+  #+END_EXPORT
+* 7
+  Clearly, every element $f\in S_n$ has the same cycle-type as its inverse, $f^{-1}$.
+  Now by Corollary 3.9, every two elements in $S_n$ which have the same cycle-type are conjugate.
+  Hence, $f$ and $f^{-1}$ are conjugate.
+* 9
+  Elements have conjugates in $S_5$ if and only if they have the same cycle-type as their conjugate.
+  This is, $f\in S_5$ need to be such that the cycle type of $f$ is the same as that of $f^2$. \\
+  By inspection this is true for all permutations with cycle-type of $2-2-1, 3-1-1$ and the identity permutation,
+  all of which have a positive sign and not true for any other cycle-types, all of which have a negative sign.
+* 11
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    2: f(x) &= (12) &&sgn(f)=-1 \\
+    3: f(x) &= (13)(2) &&sgn(f)=-1 \\
+    4: f(x) &= (14)(23) &&sgn(f)=1 \\
+    5: f(x) &= (15)(24)(3) &&sgn(f)=1 \\
+    6: f(x) &= (16)(25)(34) &&sgn(f)=-1
+  \end{align*}
+  #+END_EXPORT
+  By inspection:
+  #+BEGIN_EXPORT latex
+  \[ sgn(f) = \begin{cases}
+    1 & x\equiv 0, 1 \mod{4} \\
+    -1 & x\equiv 2, 3 \mod{4}
+  \end{cases}
+  \]
+  #+END_EXPORT
+* 13
+** Show that $Z(f)$ is a subgroup of $S_n$
+
+*** SG1
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      g &= \Id\circ g \\
+      &= g\circ\Id
+    \end{align*}
+    #+END_EXPORT
+
+*** SG2
+    #+BEGIN_EXPORT latex
+    Let $g\in Z(f)$
+    \begin{align*}
+      g\circ f &= f\circ g \\
+      g^{-1}\circ g\circ f &= g^{-1}\circ f\circ g \\
+      f &= g^{-1}\circ f\circ g \\
+      f\circ g^{-1} &= g^{-1}\circ f\circ g\circ g^{-1} \\
+      f\circ g^{-1} &= g^{-1}\circ f
+    \end{align*}
+    #+END_EXPORT
+    Therefore, $g^{-1} \in Z(f)$.
+
+*** SG3
+    Since composition is associative, this property is satisfied.
+
+** Compute the centralizer of (12)(34) in $S_4$.
+   Let $f = (12)(34)$
+   Note that since $Z(f)$ is a subgroup, $\Id$ is trivially in $Z(f)$. \\
+   Furthermore, by definition, of $Z(f)$, for all $g\in Z(f)$:
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     gf &= fg \\
+     g^{-1}gf &= g^{-1}fg \\
+     f &= g^{-1}fg
+   \end{align*}
+   #+END_EXPORT
+   Therefore, by theorm 3.8, $ g^{-1}fg$ must have the same cycle-type as f and must be such that $f=(g(1) g(2))(g(3) g(4))$. \\
+   Going through all possible permutations, $Z(f) = \set{\Id, (12)(34), (13)(24), (14)(23)}$
+* 14
+** a
+   A permutation with 0 inversions is $(123\ldots (n-1)n)$. A permutation with the maximal number of inversions would be $(n(n-1)\ldots 321)$.
+   That is a permutation where every combination of 2 elements is an inversion. Therefore, there are $\binom{n}{2}=\frac{n!}{2!(n-2)!} = \frac{n(n-1)}{2}$ inversions.

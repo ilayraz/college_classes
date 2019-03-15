@@ -1,0 +1,193 @@
+#+TITLE: Homework 4
+#+DATE: October 30, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* 1
+  Let $z\in\C$, show that $(z\R, +)$ is a subgroup of $(\C, +)$. \\
+  Let $z=x+yi, x,y\in\R$. Hence every element in $z\R$ is of the form $xr+yri$.
+
+** Identity
+   if $r=0$, then $z=0+0i$ which is the identity element of $\C$
+
+** Inverse
+   Let $c\in z\R = x+yi, x,y\in\R$. The inverse of $c$ is therefore $-c = -x-yi$,
+   since $c+(-c) = x+yi + (-x-yi) = (x-x) + i(y-y) = 0+0i$
+
+** Closure
+   Let $z=x+yi, a\in z\R = r_1x+r_1yi, b\in z\R = r_2x+r_2yi$.
+   Now, $a+b = (r_1x+r_1yi) + (r_2x+r_2yi) = x(r_1+r_2) + yi(r_1+r_2) = z(r_1+r_2)$.
+   Now since $r_1+r_2\in\R, z(r_1+r_2)\in z\R$.
+* 2
+  Define $f: \Z+x\Z\mapsto \Z\times\Z$.
+  $f(a+xb)=(a,b)$ where $a,b\in\Z$.
+
+** Homomorphism
+   $f((a+xb)+(c+xd)) = f(a+c+x(b+d)) = (a+c, b+d) = (a,b) + (c,d) = f(a+xb) + f(c+xd)$
+
+** Injection
+   If $a+xb, k+cb \in \Z+x\Z$ such that $f(a+xb) = f(k+cb)$, then
+   $(a,b) = (k,c)$, therefore $a=k, b=c$, then they must be the same element $a+bx = k+cx \in \Z+x\Z$.
+
+** Surjection
+   Let $(a,b) \in \Z\times\Z$. Then since both $a$ and $b$ are both integers, there exists $a+xb \in \Z+x\Z$ such that $f(a+xb) = (a,b)$.
+* 3
+
+** a
+   Let $f: (\R,+)\times(\R,+) \mapsto (\C,+) = (x,y) \mapsto x+yi$
+
+*** Homomorphsim
+    $f((a,b)+(x,y)) = f((a+x,b+y)) = (a+x) + (b+y)i = (a + bi) + (x + yi) = f((a,b)) + f((x,y))$
+
+*** Injectivity
+    Let $(a,b), (x,y)\in \R^2$ be such that $f((a,b)) = f((x,y))$.
+    Now, $f((a,b))=a+bi$ and $f((x,y)) = x+yi$, and since $f((a,b))=f((x,y))$, $a+bi=x+yi$, therefore $a=x$ and $b=y$.
+
+*** Surjectivity
+    Let $a+bi\in\C$. Now since $a,b\in\R$, there exists $(x,y)\in\R^2$ such that $(x,y)=(a,b)$, namely, the pair $(a,b)$.
+    Therefore, $f(a,b)=a+bi$.
+** c
+   Let $f: U(1)\times\R_{pos}^x \mapsto \C^x = (a+bi)\times r \mapsto r(a+bi)$
+*** Homomorphism
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      f((a+bi, r_1) \cdot (x+yi, r_2)) &= f((a+bi)(x+yi), r_1r_2) \\
+      &= f(ax+ayi+bxi+byi^2, r_1r_2) \\
+      &= r_1r_2(ax+ayi+bxi+byi^2) \\
+      &= r_1r_2(a(x+yi)+bi(x+yi)) \\
+      &= r_1r_2((a+bi)(x+yi)) \\
+      &= r_1(a+bi)r_2(x+yi) \\
+      &= f(a+bi, r_1)f(x+yi, r_2)
+    \end{align*}
+    #+END_EXPORT
+*** Injectivity
+    Let $(a+bi, r_1), (x+yi, r_2)\in U(1)\times\R_{pos}^x$ such that $f(a+bi,r_1) = f(x+yi, r_2)$.
+    Then, $r_1a+r_1bi = r_2x+r_2yi$. Hence, $r_1a = r_2x$ meaning that either $r_1=r_2$ or $r_1=x$, but $r_1$ can not always be equal to $x$ since $r_1\in\R_{pos}^x$ and $0\leq x < 1$,
+    therefore, $r_1=r_2$ and $a=x$. Also, $r_1bi = r_2yi$ and since $r_1=r_2$, $r_2bi = r_2yi \implies b=y$. Therefore, $(a+bi, r_1) = (x+yi, r_2)$.
+*** Surjectivity
+    Let $v=a+bi\in\C$. Now let the norm of $||v||=\sqrt{a^2+b^2}$. Clearly, $\frac{v}{||v||}$ is a unit complex number in $U(1)$ and $||v||\in\R_{pos}^x$. Therefore,
+    there exists a pair $U(1)\times\R_{pos}^x = (\frac{v}{||v||}, ||v||)$ such that $f(\frac{v}{||v||}, ||v||) = v$.
+** e
+   Assume to the contrary that $f: \C^x\mapsto R^x\times\R^x$ is an isomorphism under multiplication.
+   Now, since $f$ must map the identity to the identity, $f(1) = (1,1)$.
+   Now note that there are 2 solutions to $z^2=1$ in $\C$: $\set{-1, 1}$, however there are 4 solutions in $\R^x\times\R^x$: $\set{(1,1),(-1,-1),(1,-1),(-1,1)}$.
+   Let $x = f(-1)$.
+   Now, since $f$ is homomorphic, $f(1\cdot 1) = f(1)f(1) = (1,1)\cdot (1,1) = (1,1)$, and $f((-1)(-1)) = f(-1)f(-1) = x\cdot x = f(1) = (1,1)$.
+   Therefore, since $x^2=(1,1)$, $x$ must clearly be one of the four elements above, while also not being $(1,1)$, since $f$ is injective.
+   However, there are no more elements in $\C^x$ that satisfy the property such that $z^2=1$, however there are two more such elements in $\R^x\times\R^x$,
+   which must satisfy $f(k^2) = f(1) = (1,1) = f(k)f(k)$. Therefore, there can not exist such function which is surjective, meaning that there exists no such $f$ which is isomorphic. $\qedhere$
+* 6
+** a
+   Note that $\exp(2\pi i) = \cos(2\pi) + i\sin(2\pi) = 1$, and that this is true for any integer multiple of $2\pi$.
+   Hence, $\exp(2\pi i\Z) = 1 \implies \Ker(f) = \Z$.
+** b
+*** Homomorphism
+    $f(x+y) = \exp(2\pi i(x+y)) = \exp(2\pi ix)\exp(2\pi iy) = f(x)f(y)$
+*** Surjectivity
+    $\exp(2\pi ir) = \cos(r) + i\sin(r)$ where $(cos(r), sin(r)) = [0,1]\times [0,1]$ by definition of those functions.
+    Hence all values on the unit circle are mapped to by $f$, which means that $f$ is surjective.
+** c
+*** Identity
+    $1^n = 1 \forall n\in\Z \implies 1\in\mu_n$
+*** Inverse
+    If $x\in\mu_n$, then $x^n=1$, then $(x^{-1})^n = (x^n)^{-1} = 1^{-1} = 1$, therefore $x^{-1}\in\mu_n$
+*** Closure
+    If $x,y\in\mu_n$, then $x^n=1, y^n=1$. Then $(xy)^n = x^ny^n = 1\cdot 1 = 1$, therefore $(xy)\in\mu_n$
+** d
+   Firstly, note that $\mu_n\subseteq U(1)$, since if $a+bi\in\mu_n$, then $(a+bi)^n = 1$, which can only be true if $-1\leq a,b \leq 1$. \\
+   Secondly, note that $(a+bi)^n - 1 = 0$ is a polynomial equation with degree $n$, and hence has $n$ solutions.
+   Now consider the set $A_n=\setc{\frac{a}{n}}{0 < a\in\Z \leq n}$, note that every element in that set mapped under $f$ produces a unique solution,
+   and also that each one of these solutions is in $\mu_n$, since $f(A_n)=\exp(2\pi i\frac{a}{n})^n = \exp(2\pi ia) = \cos(2a\pi) + i\sin(2a\pi) = 1\in \mu_n$.
+   Therefore, since $A \subseteq n^{-1}\Z. f(A)\subseteq \mu_n$ and $|n^{-1}\Z| \geq |A_n| = |f(A_n)| = |\mu_n|$, there must exist a surjection from $n^{-1}\Z$ to $\mu_n$
+   under $f$ by definition of cardinality equality. $\qedhere$
+** e
+   Note that $a+\Z = b+\Z$ where $a,b\in\R$ when $a-b\in\Z$. Now recall that the set of real numbers from 0 to 1 are bijective to $\R$.
+   Using part b, it was shown that $f$ is a surjective homomorphism from $\R$ to $U(1)$, hence it only remains to show that $f$ is injective. \\
+   Now consider only $\R/\Z$ for the minimum elements in that set, that is the set of elements (0,1]. Recall that $f$ is unique for that set, since
+   $\cos(2\pi x) + i\sin(2\pi x)$ produce unique values for $0 < x \leq 1$. Therefore $f$ is injecitve on all equivalence classes in $\R/\Z$, and is therefore an isomorphism.
+** f
+   Let $f: \Z/n\Z \mapto \mu_n. f(x) = \exp(2\pi ix)$ be the isomorphic function.
+   Note that $\Z/n\Z$ has $n$ elements. Similarly to part d, note that $|\mu_n| = n$. Now consider the set $A_n=\frac{\Z/n\Z}{n}$, which has $n$ elements between 0 to 1.
+   Note that there is a trivial isomorphism $l$ from $\Z/n\Z \mapsto \frac{\Z/n\Z}{n}$ and also note that $f(A_n)$ produces $n$ unique elements in $\mu_n$ as shown in part d.
+   Therefore, since $f(A_n)\subseteq\mu_n$ and $|A_n| = |f(A_n)| = |\mu_n|$ so since $f(A_n) is a subset of $\mu_n$ with the same cardinality, $f(A_n)=\mu_n$,
+   meaning that $f$ must be a bijection from $A_n$ to $\mu_n$, so $f\circ l$ must be a bijection from $\Z/n\Z$ to $\mu_n$.
+   Now it remains to show $f$ is homomorphic: Let $a,b \in \Z$, then
+   $f((a+n\Z)+(b+n\Z)) = f((a+b)+n\Z) = \exp(2\pi i((a+b)+n\Z)) = \exp(2\pi i(a+n\Z))\exp(2\pi i(b+n\Z)) = f(a+n\Z)f(b+n\Z) = f((a+b)+n\Z)$. \\
+   So since it has been shown that $f$ is both bijective and homomorphic, and $l$ is a trivial isomorphism, $f\circ l$ is isomorphic.
+* 8
+  Let $z=a+bi+cj+dk\in\HH$, then $\bar{z}=a-bi-cj-dk\in\HH$, now:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    z\cdot\bar{z} &= (a+bi+cj+dk)(a-bi-cj-dk) \\
+    &= a^2-abi-acj-adk+abi+acj+adk + (bi+cj+dk)(bi-cj-dk) \\
+    &= a^2 + (bi+cj+dk)(-bi-cj-dk) \\
+    &= a^2 - b^2i^2 - bcij - bdik - bcji - bdki + (cj+dk)(-cj-dk) \\
+    &= a^2 + b^2 - bck + bdj + bck - bdj + (cj+dk)(-cj-dk) \\
+    &= a^2 + b^2 + (cj+dk)(-cj-dk) \\
+    &= a^2 + b^2 - c^2j^2 - cdjk - dckj - d^2k^2 \\
+    &= a^2 + b^2 + c^2 + d^2 - cdi + dci \\
+    &= a^2 + b^2 + c^2 + d^2
+  \end{align*}
+  #+END_EXPORT
+* 10
+  There are 6 possible cases:
+** Tr(xyz) = Tr(xyz) -> Done
+** Tr(xzy)
+   Let $x=i, y=j, z=k$,
+   then, $Tr(ikj) = Tr(-jj) = Tr(1) = 2 \neq Tr(xyz) = Tr(ijk) = Tr(kk) = Tr(-1) = -2$
+** Tr(yxz)
+   Let $x=i, y=j, z=k$,
+   then, $Tr(yxz) = Tr(jik) = Tr(-kk) = Tr(1) = 2 \neq Tr(ijk) = Tr(-1) = -2$
+** Tr((yz)x) = Tr(x(yz)) -> Done
+** Tr(z(xy)) = Tr((xy)z) -> Done
+** Tr(zyx)
+   Let $x=i, y=j, z=k$,
+   then $Tr(kji) = Tr(-ii) = Tr(1) = 2 \neq Tr(ijk) = Tr(-1) = -2$
+* 11
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    (ck+d)\cdot (ai+bj)\cdot (ck+d)^{-1} &= (caki + cbkj + dai + dbj)\cdot (Norm(ck+d)^{-1}\overline{ck+d}) \\
+    &= (caj - cbi + dai + dbj)(\frac{d-ck}{c^2+d^2}) \\
+    &= \frac{(caj - cbi + dai + dbj)(d-ck)}{c^2+d^2} \\
+    &= \frac{cadj - cbdi + d^2ai + d^2bj - c^2ajk + c^2bik - dcaik - dcbjk}{c^2+d^2} \\
+    &= \frac{acdj - bcdi + ad^2i + bd^2j - ac^2i - bc^2j + acdj - bcdj}{c^2+d^2} \\
+    &= \frac{(-bcd+ad^2-ac^2)i + (acd+bd^2-bc^2+acd-bcd)j}{c^2+d^2}
+  \end{align*}
+  #+END_EXPORT
+
+  Now clearly, $\frac{(-bcd+ad^2-ac^2)i}{c^2+d^2}\in\R i$ and $\frac{(acd+bd^2-bc^2+acd-bcd)j}{c^2+d^2}\in\R j$.
+  Hence, $(ck+d)\cdot (ai+bj)\cdot (ck+d)^{-1} \in \R i + \R j$
+* 12
+  Let $Q_8=\set{1,-1,i,-i,j,-j,k,-k}$
+** Identity
+   $\Id_\HH = 1 \in \Q_8$
+** Inverse
+*** $\Inv 1 = 1$
+*** $\Inv -1 = -1$
+*** $\Inv \pm i,j,k = \mp i,j,k \in Q_8$
+** Closure:
+   Any multiplication with $1, -1$ satisfies this property trivially.
+   Any multiplication of two units is the positive or negative of the last unit, which is in $Q_8$
+* 14
+#+BEGIN_EXPORT latex
+\begin{proof}
+  $\vec{u} = (a,b,c), \vec{v} = (x,y,z)$. \\
+  $\vec{u}\times\vec{t} = \Det$\begin{pmatrix}
+    i & j & k \\
+    a & b & c \\
+    x & y & z
+  \end{pmatrix}$ = (bz-cy)i - (az-cx)j + (ay-bx)k$ \\
+
+  and
+  \begin{align*}
+    \frac{1}{2}(uv-vu) &= \frac{1}{2}((ai+bj+ck)(xi+yj+zk) - (xi+yj+zk)(ai+bj+ck))\\
+    &= \frac{1}{2}(axi^2 + ayij + azik + bxji + cxki + byj^2 + bzjk + cykj + czk^2 - axi^2 - xbij \\
+    &- xcik - ayji - azki - ybj^2 - ycjk - zbkj - zck^2) \\
+    &= \frac{1}{2}(-ax + ayk - azj - bxk + cxj - by + bzi - cyi - cz + ax - xbk + xcj + ayk \\
+    &- azj + yb - yci + zbi + zc) \\
+    &= \frac{1}{2}((bz-cy+yc+zb)i + (-az+cx+xc-az)j + (ay-bx-xb+ay)k) \\
+    &= \frac{1}{2}((2bz-2cy)i + (2cx-2az)j + (2ay-2bx)k) \\
+    &= (bz-cy)i - (az-cx)j + (ay-bx)k &&\qedhere
+  \end{align*}
+\end{proof}
+#+END_EXPORT

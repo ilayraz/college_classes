@@ -1,0 +1,22 @@
+* 2
+** a
+   It suffices to show that $\set{\neg\neg\alpha}\vdash\alpha$ by the deduction theorem.
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     &\vdash \neg\neg\alpha\longrightarrow(\neg\neg\neg\neg\alpha\longrightarrow\neg\neg\alpha) &&L_1\tag{1} \\
+     &\vdash(\neg\neg\neg\neg\alpha\longrightarrow\neg\neg\alpha)\longrightarrow(\neg\alpha\longrightarrow\neg\neg\neg\alpha) &&L_3\tag{2} \\
+     &\vdash(\neg\alpha\longrightarrow\neg\neg\neg\alpha)\longrightarrow(\neg\neg\alpha\longrightarrow\alpha) &&L_3\tag{3} \\
+     &\neg\neg\alpha &&\text{by assumption}\tag{4} \\
+     &\vdash \neg\neg\neg\neg\alpha\longrightarrow\neg\neg\alpha &&MP 1,4\tag{5} \\
+     &\vdash\neg\alpha\longrightarrow\neg\neg\neg\alpha &&MP 2,5\tag{6} \\
+     &\vdash \neg\neg\alpha\longrightarrow\alpha &&MP 3,6\qed \\
+   \end{align*}
+   #+END_EXPORT
+** b
+   It suffices to show that $\set{\alpha}\vdash\neg\neg\alpha$ by the deduction theorem.
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     &\vdash\neg\neg\alpha\longrightarrow\alpha &&\text{from 2a}\tag{1} \\
+     &\vdash(\neg\neg\neg\neg\alpha\longrightarrow\neg
+   \end{align*}
+   #+END_EXPORT

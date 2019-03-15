@@ -1,0 +1,157 @@
+#+TITLE: Homework 2
+#+DATE: October 9, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+* Chapter 1 excercises
+** 16
+   Using the Chinese Remainder Theorm:
+*** $16\Z\cap 12\Z$
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      x &\equiv 0 \pmod{16} \\
+      x &= 16k &&k\in\Z \\
+      x &\equiv 0 \pmod{12} \\
+      16k &\equiv 0 \pmod{12} \\
+      4k &\equiv 0 \pmod{12} \\
+      k &\equiv 0 \pmod{3} \\
+      x &= 16(4n) = 48 &&n\in\Z \\
+      16\Z\cap 12\Z &= 48\Z
+    \end{align*}
+    #+END_EXPORT
+*** $5\Z+7\Z$
+    All possible integer linear combinations of two integers are multiples of their GCD.
+    Therefore, since $\GCD(5,7)=1$, $5\Z+7\Z=1\Z=\Z$
+*** $3\Z+(-3\Z)$
+    Since $(-3\Z)=3\Z$, $3\Z+(-3\Z)=3\Z+3\Z=3\Z$.
+*** $12\Z \cap (3\Z + 9\Z)$
+    Since $\GCD(3,9)=3$, $3\Z+9\Z=3\Z$.
+    Using the Chinese Remainder Theorm on $12\Z \cap 3\Z$, we get:
+    #+BEGIN_EXPORT latex
+    \begin{align*}
+      x &\equiv 0 \pmod{3} \\
+      x &= 3k_1 &&k_1\in\Z \\
+      x &\equiv 0 \pmod{12} \\
+      3k_1 &\equiv 0 \pmod{12} \\
+      k_1 &\equiv 0 \pmod{4} \\
+      k_1 &= 4k_2 &&k_2\in\Z \\
+      x &= 3(4k_2) = 12k_2 = 12\Z
+    \end{align*}
+    #+END_EXPORT
+    Hence, $12\Z \cap 3\Z = 12\Z$.
+*** $5\Z + (10\Z \cap 55\Z)$
+    Using the Chinese Remainder Theorm again, $10\Z \cap 55\Z = 110\Z$.
+    Then, since $\GCD(5,110)=5$, therefore $5\Z+110\Z = 5\Z$.
+** 17
+*** GCD
+    The GCD is defined as $l\in\Z$ such that $m\Z+0\Z=l\Z$.
+    Where $m\Z+0\Z$ is the set consisting of all integer linear combinations of
+    every element in $m\Z$ with every element in $0\Z$.
+    Since $0\Z$ is a subgroup consisting of only the identity element of the group $(\Z,+)$,
+    every linear combination of it with any other element would equal that element by definition.
+    Hence, $m\Z+0\Z=m\Z$, meaning that $\GCD(m,0)=m$.
+*** LCM
+    Using the subgroup interpretation, $\LCM(m,0)=m\Z\cap 0\Z$.
+    Which is a set consisting of every element in both $m\Z$ and $0\Z$.
+    However, $0\Z=\set{0}$, which is also in $m\Z$, therefore, $m\Z\cap 0\Z=0\Z$.
+    Hence, $\LCM(m,0)=0$.
+** 19
+*** Part 1
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $m,n,x,y\in\Z$, $m$ and $n$ be such that $\GCD(m,n)=1$, and $x,y$ be such that $mx+ny=1$.
+      \begin{align*}
+        1 &= mx+ny \\
+        1^2 &= (mx+ny)^2 \\
+        &= m^2x^2+2mxny+n^2y^2 \\
+        1 &= m^2x^2 + n(2mxy+ny^2)
+      \end{align*}
+      Since $x^2$ and $2mxy+ny^2$ are both integers, $\GCD(m^2, n)|1$, which means that the GCD is less than or equal to one.
+      However since the GCD is always greater than or equal to one, $\GCD(m^2,n)=1$.
+    \end{proof}
+    #+END_EXPORT
+*** Challange
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Assume $m,n\in\Z$ be such that $\GCD(m,n)=1$ and $x,y\in\Z$ be such that $mx+ny=1$.
+      Let $e,f\in\N$ and $e,f\geq 1$.
+      \begin{align*}
+        1 &= mx+ny \\
+        1^{ef} &= (mx+ny)^{ef} \\
+        &= (mx)^{ef}+\ldots+(ny)^{ef} &&\tag{binomial}
+      \end{align*}
+      Gather intermidiate terms into two groups, those with power of $m \geq e$ and those with power of $m< e$. Since the sum of the powers of $m$ and $n$ is equal to $ef$, Those with powers of $m< e$ mush have power of $n\geq ef-e+1>0$. \\
+      Using the distributive property, distribute all those terms into the form
+      $m^ek_1+n^fk_2$ where $k_1$ is the sum of all the distributed terms with power of $m\geq e$ and $k_2$ is the sum of all the distributed terms with power $m<e$.
+      Recall that $1=m^ek_1+n^fk_2$. Therefore, $\GCD(m^e,n^f)|1$ and since the GCD must be greater than or equal to one, and also be less than or equal to one, $\GCD(m^e,n^f)=1$. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+* Chapter 2 excercies
+** 1
+*** a
+    $2\equiv 5\pmod{3} \implies (2+3\Z) = (5+3\Z)$
+*** b
+    $-6\equiv 4\pmod{10} \implies (-6 + 10\Z) = (4+10\Z)$
+*** c
+    $x\equiv 2y\pmod{7} \implies (x+7\Z) = (2y+7\Z)$
+** 2
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Let $a,b,m\in\Z$, $S=(a+m\Z)\cdot(b+m\Z)$, and $x\in S$.
+     Since $x\in S$, $x=(a+k_1m)(b+k_2m)=ab+m(ak_2+bk_1+k_1k_2m)=ab+m\Z$ for some $k_1,k_2\in\Z$.
+     Therefore, $x\in ab+m\Z$ and $S\subset ab+m\Z$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+
+   Challange:
+     Rephrase question as: Under what condition is $ab+mx=(a+my)(b+mz).
+     Since challange doesn't ask for the general condition,
+     one condition that this is true under is when $m=0$, then this equation becomes
+     $ab=(a+0)(b+0)=ab$
+** 4
+   Using the Chinese Remainder Theorm to solve $x\equiv 1\pmod{4}$ and $x=2\pmod{5}$:
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     x &\equiv 1\pmod{4} \\
+     x &= (4k_1+1) &&k_1\in\Z \\
+     x &\equiv 2\pmod{5} \\
+     4k_1+1 &\equiv 2\pmod{5} \\
+     4k_1 &\equiv 1\pmod{5} \\
+     4k_1 &\equiv 16\pmod{5} \\
+     k_1 &\equiv 4\pmod{5} \\
+     k_1 &= 5k_2 + 4 &&k_2\in\Z \\
+     x &= 4(5k_2+4)+1 \\
+     &= 20k_2+16+1 \\
+     &= 20k_2 + 17 \\
+     &= 17+20\Z
+   \end{align*}
+   #+END_EXPORT
+   Therefore, the above statement can be best described as $17+20\Z$.
+** 5
+   Divide the sumset $3\N+5\N$ into two groups. Those of numbers less than 8, and of those greater than or equal to 8.
+   By checking every combination of sums less than 8, you get $\set{0,3,5,6}$.
+   Once you get to 8, the sumset includes three consecutive numbers: $8,9,10$.
+   Once you get 3 consecutive numbers, it is trivial to generate every other larger number using some multiple of 3.
+   Hence, all numbers greater than 8 are included in the sumset. Therefore, the sumset can be described as $3\N+5\N=\N\setminus\set{1,2,4,7}$.
+** 6
+   $\pi^{-1}_5(\set{\bar{1},\bar{4}}) = (1+5\Z)\cup(4+5\Z)$ \\
+   $= \set{-19,-14,-9,-4,1,6,11,16}\cup\set{-16,-11,-6,-1,4,9,14,19}$ \\
+   $= \set{-19,-14,-11,-9,-6,-4,-1,1,4,6,9,11,14,16,19}$
+** 7
+   $\pi_20(15\Z) = \set{(15+20\Z), (30+20\Z), (45+20\Z), (60+20\Z), (75+20\Z), \ldots}$
+   $= \set{(20\Z), (5+20\Z), (10+20\Z), (15+20\Z)}$
+** 8
+   $\Z/8\Z = \set{\bar{0}, \bar{1}, \bar{2}, \bar{3}, \bar{4}, \bar{5}, \bar{6}, \bar{7}}$
+** 9
+   By definition, $\Z/m\Z$ has as many groups as it has divisors.
+   Hence, $\Z/p\Z$ has 2 subgroups, namely $\Z/p\Z$ and $p\Z/p\Z$. \\
+   For $p^2$, the only numbers that divide it are $1, p$ and $p^2$. 3 subgroups.
+   For $p^3$, it's $1, p, p^2, p^3$. 4 subgroups. \\
+   For $p^3$, it's subgroups would be $1, p, p^2, p^3, \ldots, p^e$, or $e+1$ subgroups.
+** 15
+** 17
+   Since $\GCD(3,5)=1$, $\phi$ is an isomorphism, meaning that $\phi(\Z/15\Z)$ has the same structure as $\Z/3\Z\times\Z/5\Z$,
+   and since $\Z/15\Z$ has 15 subgroups, so does $\Z/3\Z\times \Z/5\Z$.
+** 19
+*** $\phi(3+10\Z) = (3+2\Z, 3+5\Z) = (1+2\Z, 3+5\Z)$
+*** $\phi(6+10\Z) = (6+2\Z, 6+5\Z) = (0+2\Z, 1+5\Z)$
+*** $\phi^-^1(1+2\Z, 2+5\Z) = \phi^-^1(7+2\Z, 7+5\Z) = 7+10\Z$

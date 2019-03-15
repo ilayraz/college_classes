@@ -1,0 +1,107 @@
+#+TITLE: Homework 7
+#+DATE: November 30, 2018
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+* 8.3
+** a
+*** $f(H)\subseteq G'$
+**** $1\in f(H)$
+     If $H$ is a subgroup, then $1\in H$, and as has been shown, a homomorphism fixes the identity element, so $1\in H \implies 1\in f(H)$.
+**** Inverse elements
+     If $x\in H$, then $x^{-1} \in H$, because $H$ is a subgroup. In which case, $f(xx^{-1}) = f(1) = 1 = f(x)f(x^{-1}) \implies f(x)f(x)^{-1} = 1$.
+     This shows that inverses are perserved across homomorphisms. So all elements in $f(H)$ have inverses.
+**** Closure
+     Let $x,y\in H$. Note that since $H$ is a group, $xy\in H$. Now $f(x)f(y) = f(xy) \in f(H)$. So $f(H)$ maintains closure.
+*** $f^{-1}(H') := \setc{g\in G}{f(g)\in H'} \subseteq G$
+**** Identity
+     As has been shown, a homomorphism fixes the identity. So since $H'$ is a group, $1\in H'$, so $f^{-1}(1_{G'}) = 1_{G} \in G$.
+**** Inverse elements
+     Since $H'$ is a group, Every $x\in H'$ has an inverse such that $f^{-1}(x)(f(x)^{-1})^{-1} = 1$.
+     Now as has been shown above, homomorphisms maintain inverse relations, so this is equivalent to saying $f(x^{-1})f(x^{-1^{-1}}) = f(x^{-1})f(x) = 1$.
+     Which means that there exist elements in $G$, $x$ and $x^{-1}$ that are inverses in $H'$, so every element in $f^{-1}(H')$ has an inverse.
+**** Closure
+     Let $x,y\in H'$. Note that since $H'$ is a group, $xy\in H'$. Now $f(xy)^{-1} = f(y^{-1}x^{-1}) = f(y^{-1})f(x^{-1}) \in G$. So $f^{-1}(H')$ maintains closure.
+** b
+*** kernel
+**** Identity
+     The identity is fixed under any homomorphism so this property is trivial.
+**** Inverses
+     Let $x\in \Ker(f)$. This means that $f(x) = 1 = f(x)f(x)$, so $f(x) = f(x)^{-1}$, which as has been shown above means that $f(x) = f(x^{-1})$.
+     If both $x$ and its inverse both map to the same value, and that value is 1, then the inverse of $x$ must be in $\Ker(f)$ by definition of the kernel.
+**** Closure
+     Let $x,y \in \Ker(f)$. Now consider $f(xy) = f(x)f(y) = 1\cdot 1 = 1$, so since $f(xy) = 1, xy \in\Ker(f)$, so the kernel maintains closure.
+*** Image
+**** Identity
+     The identity is trivially in the image of any homomorphism since $f(1) = 1$.
+**** Inverses
+     Let $x \in G$. Since $G$ is a group, $x^{-1} \in G$ also. Now consider $f(xx^{-1}) = f(1) = 1 = f(x)f(x^{-1}) \implies f(x)^{-1} = f(x^{-1})$,
+     which shows that $f$ maintains inverse relations.
+**** Closure
+     Let $x,y \in G$. Then, $f(xy) = f(x)f(y) \in G'$, so $f$ maintains closure.
+* 8.4
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Let $\Ord(x^k) = j$ and $\GCD(n,k)=r$.
+    Note that $x^n = 1$ and $(x^k)^{n/r} = (x^n)^{k/r} = (1)^{k/r} = 1$, with ${k/r} \in\N$ by definition of the GCD.
+    Hence we have $j|(n/r)$. \\
+    Now let $m$ be a number such that $a^{km} = 1$, then $n|km$, and $j | \frac{n}{r} | \frac{k}{r}m$.
+    Now since $\GCD(\frac{n}{r}, \frac{k}{r}) = 1$, $\frac{n}{r} | m \implies \frac{n}{r} \leq m$, so $\frac{n}{r}$ must be the smallest such number,
+    meaning that $\Ord(x^k) = \frac{n}{\GCD(n,k)}$. $\qedhere$
+  \end{proof}
+  #+END_EXPORT
+* 8.5
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    2x^5+3x^4+x^2+4 &= (x^4+2x^3+x+3)(2x+4) + (2x^3+4x^2+2) \\
+    x^4+2x^3+x+3 &= (2x^3+4x^2+2)(3x) + 3
+  \end{align*}
+  #+END_EXPORT
+  So their GCD is 1.
+* 8.6
+** a
+   $3^8 \equiv -1 \mod 17$, so $3^16 \equiv 1$, meaning that the order of 3 is either 2, 8, or 16, and since it's clearly not 2 or 8, it must therefore be 16.
+   So 3 is a primitive root of $(\Z/7\Z)^\times$.
+** b
+   The primitive roots are: $2, 6, 7, 11$.
+** c
+   This problem can be approached in two ways: Firstly, by trying all elements in the group until finding that no primitive roots exist,
+   or otherwise by noting that $16 \neq 2,4,p^k, 2p^k$, where $p$ is a prime and $k\in\N$.
+** d
+   $27 = 3^3$ and so it is cyclic (for example with 2).
+* 9.1
+** Degree 2
+   A polynomial of degree 2 is irreducible if and only if it has no roots.
+   The polynomials of degree 2 are: $x^2, x^2 + 1, x^2 + x, x^2 + x + 1$.
+   Of them, the only one that has no roots and is therefore irreducible is: $x^2 + x  + 1$.
+** Degree 3
+   Likewise a polynomial of degree 3 has no roots if and only if it has no roots.
+   The polynomials of degree 3 are: $x^3, x^3 + 1, x^3 + x, x^3 + x + 1, x^3+x^2,
+   x^3+x^2+1, x^3+x^2+x, x^3+x^2+x+1$.
+   Of them, the only ones that have no roots and are therefore irreducible are:
+   $x^3+x+1, x^3+x^2+1$.
+** Degree 4
+   All polynomials of degree 4 that are redducible are formed by the product
+   of two degree 2 polynomials or a degree 3 polynomials with the degree 1 polynomial.
+   So all the polynomials of degree 4 left are those which are irreducible.
+   Those polynomials are: $x^4 + x + 1, x^4+x^3+1, x^4+x^3+x^2+x+1$.
+* 9.2
+  By trying all degree 1 polynomials in order, it can be found that:
+  $x^4+3x^2+3x+1 = (x+3)(x^3+2x^2+2x+2)$, so this polynomial is not irreducible.
+* 9.3
+  By testing, $(x^2+x+1)(x) = x^3+x^2+x$
+  and $x^3+x^2+x+2 = (x^2+x+1)(x) + 1$,
+  so $x^3+x^2+x \equiv 1 \mod{x^3+x^2+x+2}$,
+  therefore the inverse of $x^2+x+1$ is $x$.
+* 9.4
+** a
+   By testing all possible values:
+   $f(0) = 2, f(1) = 1, f(2) = 2$, so this polynomial has no roots.
+   A polynomial of degree two is irreducible if and only if it has no roots,
+   so $x^2+x+2$ is irreducible.
+** b
+   All elments in $F[x]$ with degree greater than or equal 2 will be congruent
+   to elements with degree less than 2, so the order of $G$ is the number
+   of possible elements with degree less than 2.
+   Polynomials of degree 1 are: $x, x+1, x+2$, and the ones of degree 0 are: $1$.
+   So $\Ord(G) = 4$. To find a generator of $G$, we want to find which coset has degree of 4.
+   Start with $<x+1> = \set{x+1, x+2, x, 1}$, so $x+1$ is a generator of $G$.

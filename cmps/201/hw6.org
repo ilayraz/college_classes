@@ -1,0 +1,5 @@
+#+TITLE: Homework 6
+#+DATE: Febuary 26, 2019
+#+OPTIONS: TOC:nil AUTHOR:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+* 1

@@ -1,0 +1,275 @@
+#+TITLE: Homework 4
+#+DATE: February 12, 2019
+#+OPTIONS: TOC:nil AUTHOR:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+#+LATEX_HEADER: \usepackage{algorithm}
+#+LATEX_HEADER: \usepackage{algorithmic}
+* 1
+  In the base case of the algorithm (when $n<4$), $T(n,a)=1$.
+  Now consider the recursive case of the algorithm. It has two loops.
+  In the first loop, 1 unit of time is wasted $n^2$ times, so the amount of time
+  wasted by it is $n^2$. In the second loop, it wastes $T(\ceil{n/4},a)$ time
+  1 to $a$ times, so it wastes $aT(\ceil{n/4},a)$ time wasted. So the reccurence
+  can be described as:
+  #+BEGIN_EXPORT latex
+  \[
+  T(n,a) = \begin{cases}
+    1, &x<4 \\
+    aT(\ceil{n/4},a) + n^2, &n\geq 4
+  \end{cases}
+  \]
+  #+END_EXPORT
+  Note that even though the function acts on two variables, $a's$ value is constant, so
+  it can essentially be treated as a global constant, and so the reccurrence relation fits
+  the form of the Master Theorem with $a=a,b=4, f(n)=n^2$.
+  This gives us 3 cases for the runtime of the algorithm:
+  - $a > 16$ \\
+   Then $\log_4(a) \geq 2$
+   Hence, $f(n) = O(n^{\log_4(a)-\epsilon})$ where $0<\epsilon< \log_4(a)-2$.
+   So in this case, $T(n,a) = \Theta(n^{\log_4(a)})$.
+  - $a=16$ \\
+   Then $\log_4(16) = 2$
+   Hence, $f(n) = \Theta(n^2)$, so $T(n,a) = \Theta(n^2\log(n))$.
+  - $1\leq a < 16$ \\
+   Then $0 \leq \log_4(a) \leq 2$
+   Hence $f(n) = \Omega(n^{\log_4(a)+\epsilon})$ where $0<\epsilon < 2-\log_4(a)$.
+   Furthermore, $af(n/4) = (a/16)n^2 \leq f(n) = n^2$
+   Since $\log_4(a) \leq 2 \implies a \leq 16 \implies a/16 \leq 1$.
+   Therefore, $T(n,a) = \Theta(n^2)$.
+* 2
+** a
+     #+BEGIN_EXPORT latex
+  \begin{algorithm}
+    \caption{Helper function to order 2 elements. Returns (min,max)}
+    \begin{algorithmic}
+      \STATE Sort$(A,B)$
+      \IF{$A\leq B$}
+      \RETURN{$(A,B)$}
+      \ELSE
+      \RETURN{$(B,A)$}
+      \ENDIF
+    \end{algorithmic}
+  \end{algorithm}
+
+  \begin{algorithm}
+    \caption{Find max of two elements}
+    \begin{algorithmic}
+      \STATE Max$(A,B)$
+      \IF{$A\leq B$}
+      \RETURN{$B$}
+      \ELSE
+      \RETURN{$A$}
+      \ENDIF
+    \end{algorithmic}
+  \end{algorithm}
+
+  \begin{algorithm}
+    \caption{Find min of two elements}
+    \begin{algorithmic}
+      \STATE Min$(A,B)$
+      \IF{$A\geq B$}
+      \RETURN{$B$}
+      \ELSE
+      \RETURN{$A$}
+      \ENDIF
+    \end{algorithmic}
+  \end{algorithm}
+
+  \begin{algorithm}
+    \caption{Calculate min and max at the same time}
+    \begin{algorithmic}[1]
+      \REQUIRE $p\leq r$
+      \STATE Extrema$(A,p,r)$
+      \IF{$p+1 = r$}
+      \RETURN{Sorted$(A[p],A[p+1])$}
+      \ELSE[$p=r$]
+      \RETURN{$(A[p], A[p])$}
+      \ELSE
+      \STATE $(Min1, Max1) \leftarrow$ Extrema$(A,p, p+1)$
+      \STATE $(Min2, Max2) \leftarrow$ Extrema$(A,p+2, r)$
+      \RETURN{$($ Min$(Min1,Min2),$ Max$(Max1,Max2))$}
+      \ENDIF
+    \end{algorithmic}
+  \end{algorithm}
+  #+END_EXPORT
+** b
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     By induction on $m=r-p+1 \newline$
+     Base case 1: $m=1$, then $p=r$, so the algorithm enters the if clause on line (4) and returns $(A[p], A[p])$,
+     which is correct since the array has only one element which is both the min and
+     the max. \\
+     Base case 2: $m=2$, then $p+1 = r$, so the algorithm enter the if clause on line (2) and returns Sort$(A[p], A[p+1]).$
+     Note that Sort trivally returns the minmax pair of the two elements given in,
+     so the algorithm works correctly. \\
+     Now assume that $\forall m\in[1,n)$ for some $n>2$, Extrema works and the algorithm correctly
+       returns the minmax pair of elements from the array. We want to show
+       that the algorithm correctly works on $m=n$: \\
+       Since $n>2$, the algorithm enters the else clause on line (6), and makes two
+       recursive calls on lines (7) and (8): Extrema$(A,p,p+1)$ and Extrema$(A,p+2,r)$.
+       Note that for both of these, the sizes of the subarrays are smaller than the original subarray,
+       being of size 2 and $n-2$, and therefore, both return the correct mins and maxes by the inductive hypothesis.
+       After the recursive calls, the algorithm then returns the actual min and max
+       by comparing the two mins and maxes from the recursive calls to each other,
+       thereby giving the min and max for the entire subarray of size $n$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+** c
+   The comparison count for the subarray of size 1 is trivially 0,
+   and the comparison count for the subarray of size 2 is the amount of comparisons
+   done by the Sort function, which is one comparison.
+   The amount of comparisons done by the recursive case is $T(2)=1 + T(n-2) + 2$ for the min and max calls.
+   So the recurrence relaton is:
+   #+BEGIN_EXPORT latex
+   \[
+   T(n) =
+   \begin{cases}
+     0 &n=1 \\
+     1 &n=2 \\
+     T(n-2) + 3 &n>2
+   \end{cases}
+   \]
+   #+END_EXPORT
+   Now solving the exact reccurence relation for $n>2$:
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     T(n) &= 3 + T(n-2) \\
+     &= 3 + 3 + T(n-2\cdot2) = 2\cdot3 + T(n-2\cdot2) \\
+     &= 3\cdot3 + T(n-3\cdot2) \\
+     &= \ldots \\
+     &= r\cdot3 + T(n-r\cdot2)
+   \end{align*}
+   #+END_EXPORT
+   After $r$ iterations. Now note that this terminates when $n-r\cdot2 = 2$
+   That is, when $r=\ceil{n/2} - 1$. Substituting this back in:
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     T(n) &= r\cdot 3 + T(n-r\cdot2) \\
+     &= 3(\ceil{n/2} - 1) + T(2) \\
+     &= \ceil{3n/2} - 3 + 1 \\
+     &= \ceil{3n/2} - 2 &&\qed
+   \end{align*}
+   #+END_EXPORT
+* 3
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    By induction on $n$. $\newline$
+    Base case: $n=1$, then
+    \begin{align*}
+      \sum_{k=1}^1 kH_k &= \sum_{k=1}^1k\sum_{j=1}^1\frac{1}{k} = 1 \\
+      &= \frac{1}{2}\cdot1(1+1)H_1-\frac{1}{4}\cdot1(1-1) \\
+      &= \frac{1}{2}\cdot2-0 \\
+      &= 1
+    \end{align*}
+    Now assume that $\forall m\in[1,n)$ for some $n>1$:
+      \begin{equation*}
+        \sum_{k=1}^m kH_k = \frac{1}{2}m(m+1)H_m-\frac{1}{4}m(m-1)
+      \end{equation*}
+      Holds. Want to show that the above is also true when $m=n$.
+      \begin{align*}
+        \sum_{k=1}^nkH_k &= nH_n + \sum_{k=1}^{n-1}kH_k \\
+        &= nH_n + \frac{1}{2}(n-1)(n-1+1)H_{n-1}-\frac{1}{4}(n-1)(n-1-1) &&\tag{By the inductive hypothesis since $1\leq n-1<n$} \\
+        &= nH_n + \frac{2n(n-1)H_{n-1}}{4} - \frac{(n-1)(n-2)}{4} \\
+      \end{align*}
+      Now note the following:
+      \begin{align*}
+        H_n &= \sum_{k=1}^n\frac{1}{k} \\
+        &= \frac{1}{n}+\sum_{k=1}^{n-1}\frac{1}{k} \\
+        &= \frac{1}{n}+H_{n-1} \\
+        H_{n-1} &= H_n - \frac{1}{n}
+      \end{align*}
+      So,
+      \begin{align*}
+        \sum_{k=1}^nkH_k &= nH_n + \frac{2n(n-1)H_{n-1}}{4} - \frac{(n-1)(n-2)}{4} \\
+        &= nH_n + \frac{2n(n-1)(H_n - \frac{1}{n})}{4} - \frac{(n-1)(n-2)}{4} \\
+        &= \frac{1}{4}(2n^2H_n+2nH_n-n^2+n) \\
+        &= \frac{1}{2}n(n+1)H_n - \frac{1}{4}n(n-1) &&\qedhere
+      \end{align*}
+  \end{proof}
+  #+END_EXPORT
+* 4
+  The ordering of elements in the final array is decided by the last loop
+  of the counting sort, so that will be the one that is focused on. \\
+  Note that array $A$ contains the elements, and array $C$ denotes
+  the cummulative number of elements with a value smaller than itself,
+  that is, the number of elements that should appear before itself in the
+  final array. \\
+  If the original array $A$ has more than one element of the same value,
+  then since $A$ is iterated on in backwards order, the last one will be
+  compared first, and will be placed into the array $B$ at the $C[A[j]]'th$ index.
+  After it is placed there, $C[A[j]]$ is decremented by one, so that the next
+  time an element of the same value is found, it will occur in the original
+  array $A$ before the previous one, since $A$ is accessed in reverse order,
+  and will be placed in $B$ before the previous one as well, since the value
+  of $C[A[j]]$ was decremented after the previous one was placed,
+  so it will be placed in the index right before the previous one in $B$,
+  so right before it. The same process will repeat for all other elements
+  of the same value in $A$, so that all of them will appear next to each other
+  in the same order that they were in $A$. Hence, the algorithm is stable. \\
+  If instead of reverse order, the loop happened in normal order, then
+  instead of placing the last of $A$ in the greatest index of $B$, it will place
+  the smallest one there, and then decrement the value at array $C$, so in effect,
+  the algorithm will sort all of the elements of the same value in reverse order
+  than they were originally at in $A$, making it an unstable algorithm, although
+  still all elements of the same value will be placed at the same index range,
+  so the algorithm will still be correct.
+* 5
+  #+BEGIN_EXPORT latex
+  \begin{algorithm}
+    \caption{Pre-process an array $A$ to respond to the queries}
+    \begin{algorithmic}
+      \REQUIRE $p\leq r$
+      \STATE Process$(A, k)$
+      \STATE Let $C[0\ldots k]$ be a new array
+      \FOR{$i=0$ to $k$}
+      \STATE $C[i] = 0$
+      \ENDFOR
+      \FOR{$j=1$ to $A.length$}
+      \STATE $C[A[j]] = C[A[j]] + 1$
+      \ENDFOR
+      \FOR{$i=1$ to $k$}
+      \STATE $C[i] = C[i] + C[i-1]$
+      \ENDFOR
+      \RETURN{$C$}
+    \end{algorithmic}
+  \end{algorithm}
+  #+END_EXPORT
+  This algorithm returns an array $C$ where every element in $C$ has the cummulative
+  sum of all elements in the sorted array that will be at or before that value,
+  so the find how many integers fall into the interval $(a,b]$ one simply has
+  to compute $C[b] - C[a]$ using the pre-computed array.
+  #+BEGIN_EXPORT latex
+  \begin{algorithm}
+    \caption{Given a pre-processed array $C$ compute the number of integers in the range}
+    \begin{algorithmic}
+      \REQUIRE $0\leq a\leq b\leq k$
+      \STATE Process$(C, a, b)$
+      \RETURN{$C[b] - C[a]$}
+    \end{algorithmic}
+  \end{algorithm}
+  #+END_EXPORT
+  The pre-processing algorithm has two loops on size $k$ and one on size $n=A.length$,
+  so the asymptotic time of that function is $\Theta(n+k)$, while the computation
+  function simply has two array index access and one subtraction, so an asymptotic time of $\Theta(1).$
+* 6
+  If we have a method to compute the product of $3\times 3$ matrices in $k$
+  multiplications, then the reccurrence relation for all $n>3$ would be:
+  #+BEGIN_EXPORT latex
+  \begin{equation*}
+    T(n) = kT(n/3) + \Theta(1)
+  \end{equation*}
+  #+END_EXPORT
+  Now noting that in this case, $\log_3(k)$ is always going to asymptotically dominate
+  $\Theta(1)$, we can use the Master Theorem to find that the asymptotic runtime of this algorithm
+  is $T(n) = \Theta(n^{\log_3(k)})$, now recalling that we want this
+  algorithm to be $o(n^{\lg(7)})$, we need to find the maximum $k$ such that
+  $\log_3(k) < \lg(7)$, which occurs when $k=21$, so $T(n) = \Theta(n^{\log_3(21)})$.
+* 7
+  If we assume that a method exists for multiplying $m\times m$ using $k$
+  multiplications with $k < m^3$, then we can use this method recursively on matrices
+  of greater size $n\times n$ with $n$ an exact power of $m$ by dividing the original
+  matrices $A,B$ into $m$ $m\times m$ matrices each, which we can then divide repeatedly until we get an $m\times m$
+  matrix, which we can multiply together in $k$ multiplications, and then combine in time $\Theta(1)$.
+  Using this method divides the array into $m$ parts, and uses $k$ multiplications, so it has the following reccurrence for $n>m$:
+  $T(n) = kT(n/m) + \Theta(1)$, since we know that $n^{\log_m(k)} = \Omega(1)$, we can use the Master Theorem to find that
+  $T(n) = \Theta(n^{\log_m(k)})$. Now since we know that $k < m^3 \implies \log_m(k) < 3$, this tells us that $T(n) = o(n^3)$.

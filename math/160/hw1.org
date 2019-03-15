@@ -1,0 +1,168 @@
+#+TITLE: Homework 1
+#+DATE: January 18, 2019
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* 1.1
+** 1
+*** If you have small feet then you have small shoes, and if you have big feet then you have big shoes, and if you don't have big feet or small feet, then you don't have shoes.
+    $(($ small feet $\implies$ small shoes $)\land ((\neg$ big feet $)\implies (\neg$ small shoes$)) \land (\neg((\neg$ small feet $)\lor$ small feet$)\implies (\neg$ have shoes$)))$.
+*** If you turn left, then you can't turn not turn left, and if you can turn not left, then you can't turn left.
+    $(($ turn left $\implies(\neg(\neg$ turn left $)))\land(\(\neg(\neg$ turn left $))\implies(\neg$ turn left $)))$
+*** Alpha and beta and delta, and not gamma then zeta or lambda and kappa
+    $((((\alpha \land \beta)\land\delta)\land((\neg\gamma)\implies((\zeta\lor\lambda)\land\kappa))))$
+** 2
+   Our sementics has the follow construction for wffs with the following resulting lenght increase
+   - $\alpha \mapsto (\neg \alpha)$ :: \alpha+3
+   - $(\alpha, \beta) \mapsto (\alpha\land \beta)$ :: \alpha+\beta+3
+   With the rest of the transistions causing a similar length change.
+   Hence a wff of length 1 is simply a single variable, however there is no transformation that maps
+   creates a wff of length 2 or 3, since the smallest transformation is with a single variable, which maps
+   the length to 1+3=4. A transformation of length 5 is simply any binary operator mapping from 2 variables.
+   A transformation of length 6 is not possible, since no combination of allowable smaller lengths can be transformed to create a length 6 wff, and wffs
+   are always increasing in length.
+   So for example, a wff of length 1: $a$, 4: $(\neg a)$, 5: $(a\land b)$, 7: $(\neg(\neg a))$, 8: $(\neg(a\land b))$ 9: $((a\land b)\land c)$
+   and from there, a wff of any length greater than 9 is also possible through a combination of the previous wffs.
+** 3
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     Base case: Let $c=0$, then wff must be of the form $A$, or $(\neg A)$...
+     Clearly, $c=0, s=1=c+1$.
+     Assume that $\forall c\leq n, s=c+1$.
+     Now let $c=n+1$, then let the wff be of the form $A_L \star A_R$
+     where $A_L, A_R$ are any wffs.
+     Since wffs are constructed inductivly with strictly increasing length,
+     $A_L,A_R$ must have less than $n+1$ connective. Now let $C_L,C_R$ be the number of
+     connectives in $A_L,A_R$ respectivly.
+     Since $C_L,C_R < n+1$, by the inductive hypothesis, $S_L = C_L+1, S_R=C_R+1$.
+     Now note that the orginial wff has one connective not belonging to either $A_L$ or $A_R$,
+     so $C=C_L+C_R+1$, and by the inductive hypothesis, $S=(C_L+1)+(C_R)+1 = C_L+C_R+2$ which is exactly
+     one more than $S$. $\qedhere$
+   \end{proof}
+   #+END_EXPORT
+* 1.2
+** 1
+   | $A$ | $B$ | $C$ | $(A\iff(B\iff C))$ | $((A\land(B\land C))\lor((\neg A)\land ((\neg B)\land(\neg C))))$ |
+   | T   | T   | T   | T                  | T                                                                 |
+   | T   | T   | F   | F                  | F                                                                 |
+   | T   | F   | T   | F                  | F                                                                 |
+   | T   | F   | F   | T                  | F                                                                 |
+   | F   | T   | T   | F                  | F                                                                 |
+   | F   | T   | F   | T                  | F                                                                 |
+   | F   | F   | T   | T                  | F                                                                 |
+   | F   | F   | F   | F                  | T                                                                 |
+   Given that the two expressions don't have the same truth evaluation under every possible truth assignment, they are not tautologies.
+** 2
+*** a
+   | $P$ | $Q$ | $(((P\implies Q)\implies P)\implies P)$ |
+   | T   | T   | T                                       |
+   | T   | F   | T                                       |
+   | F   | T   | T                                       |
+   | F   | F   | T                                       |
+   Since this sentence is true under all possible truth assignments, it is a tautology.
+*** b
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      By induction. \\
+      Base case: Let $k=2$, then $\sigma_k$ is a tautology by part (a). \\
+      Assume that $\forall k=2q, q\leq n, \sigma_k$ is tautology. \\
+      Let $k=2n+2$, then consider the wff as $((\sigma_{2n}\implies P)\implies P)$.
+      By the inductive assumption, $\sigma_{2n}$ is a tautology, and then $((T\implies P)\implies P)$ is trivially a tautology. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+** 3
+*** a
+    | $P$ | $Q$ | $((P\implies Q)\lor(Q\implies P))$ |
+    | T   | T   | T                                  |
+    | T   | F   | T                                  |
+    | F   | T   | T                                  |
+    | F   | F   | T                                  |
+    So this sentence is a tautology.
+*** b
+    Let $\alpha = ((P\land Q)\implies R)$ and $\beta=((P\implies R)\lor(Q\implies R))$.
+    | $P$ | $Q$ | $R$ | $\alpha$ | $\beta$ | \alpha\vDash\beta |
+    | T   | T   | T   | T        | T       | T                 |
+    | T   | T   | F   | F        | F       | T                 |
+    | T   | F   | T   | T        | T       | T                 |
+    | T   | F   | F   | T        | T       | T                 |
+    | F   | T   | T   | T        | T       | T                 |
+    | F   | T   | F   | T        | T       | T                 |
+    | F   | F   | T   | T        | T       | T                 |
+    | F   | F   | F   | T        | T       | T                 |
+    Since $\alpha\vDash\beta$ is true under all truth assignments, $\alpha$ tautologically implies $\beta$.
+** 5
+*** a
+    $((\Sigma\vDash\alpha)\lor(\Sigma\vDash\Beta))\implies(\Sigma\vDash(\alpha\lor\beta))$
+    is false if $((\Sigma\vDash\alpha)\lor(\Sigma\vDash\Beta))$ is true when $(\Sigma\vDash(\alpha\lor\beta))$ is false.
+    For this to happen, either $(\Sigma\vDash\alpha)$ or $(\Sigma\vDash\Beta)$ must be true. Assume without loss of generality that
+    $(\Sigma\vDash\alpha)$ is true. If that is true, then it must be that under all truth assignments, all of the sentences in $\Sigma$ are true iff $\alpha$ is true.
+    So notice that we are only interested in the cases where under a certain truth assignment $\Sigma\vDash\alpha$ is true, however, $\Sigma\vDash(\alpha\lor\beta)$ is false.
+    That is, times when $\alpha$ is true, but $\alpha\lor\beta$ is false. However such a case can never occur, since $\alpha\lor\beta$ must be true at least under all
+    truth assignments where $\alpha$ was true by definition of $\lor$. Therefore, if $\Sigma\vDash\alpha$, then $\Sigma\vDash(\alpha\lor\beta)$.
+    The same case applies by symmetry to $\Sigma\vDash\beta$. Hence, $((\Sigma\vDash\alpha)\lor(\Sigma\vDash\Beta))\implies(\Sigma\vDash(\alpha\lor\beta)). \qed$
+*** b
+    Like the last case, we are only interested in cases where $\Sigma\vDash(\alpha\lor\beta)$ is true, and $\Sigma\vDash\alpha\lor\Sigma\vDash\beta$ is false.
+    That is there exists some truth assignment under which $\Sigma\vDash\alpha$ and $\Sigma\vDash\beta$ is false,
+    and $\Sigma\vDash(\alpha\lor\beta)$ is true. That is, this truth assignment makes every
+    sentence in $\Sigma$ true, and $(\alpha\lor\beta)$ also true, but buth $\alpha$ and $\beta$ individually are false.
+    This can clearly never happen, since if $\(\alpha\lor\beta)$ is true, then either $\alpha$ or $\beta$ must be true.
+    Hence, $\Sigma\vDash(\alpha\lor\beta)\implies\Sigma\vDash\alpha\lor\Sigma\vDash\beta$ must be true. $\qed$
+** 7
+   You are a truth teller if and only if the road to the left leads to the capital.
+   If he says true the road is to the left, else it's to the right.
+   | Person is truth teller | Road to capital is to the left | truth teller $\iff$ capital is to the left |
+   | T                      | T                              | T                                          |
+   | T                      | F                              | F                                          |
+   | F                      | T                              | F                                          |
+   | F                      | F                              | T                                          |
+   So if we negate everything the liar says, we get that he will say true if the road is to the left, and false if the road is to the right, which matches the output of the truth teller.
+** 9*
+** 10**
+*** a
+    Consider the set $\Sigma = \set{A_1\lor A_2, A_1\lor A_2\lor (A_2\land\neg A_2)}$.
+    This finite set has an independent subset $\Gamma = \set{A_1\lor A_2}$.
+    Since $|\Gamma|=1$, it is trivially an independent set.
+    Now consider all possible truth assignments for $A_1$, $A_2$, and some wff $\alpha$, now check if $(\Sigma\vDash\alpha)\iff(\Gamma\vDash\alpha)$:
+    | $A_1$ | $A_2$ | $\alpha$ | $\Sigma\vDash\alpha$ | $\Gamma\vDash\alpha$ | $(\Sigma\vDash\alpha)\iff(\Gamma\vDash\alpha)$ |
+    | T     | T     | T        | T                    | T                    | T                                              |
+    | T     | T     | F        | F                    | F                    | T                                              |
+    | T     | F     | T        | T                    | T                    | T                                              |
+    | T     | F     | F        | F                    | F                    | T                                              |
+    | F     | T     | T        | T                    | T                    | T                                              |
+    | F     | T     | F        | F                    | F                    | T                                              |
+    | F     | F     | T        | T                    | T                    | T                                              |
+    | F     | F     | F        | T                    | T                    | T                                              |
+    Hence $\Sigma$ is equivalent to $\Gamma$. So $\Sigma$ is a finite set of wffs with an independent equivalent subset $\Gamma$.
+*** b
+    Consider the set $\Psi=\setc{\lor_{i=1}^n A_i}{n\in\N}$ where $A_n$ is a sentence symbol.
+    That is, the set of all sentences of the form $A_1\lor A_2\lor A_3\lor\ldots\lor A_n$ for any $n\geq 1$.
+    Define $\delta_n=\lor_{i=1}^n A_i$, and furthermore let $\Psi$ be ordered on $n$ of $\delta_n$.
+    It is obvious from the construction of $\Psi$ that it is infinite, since it is constructed from the natural numbers which are infinite.
+    Furthermore, the only independent subsets of $\Psi$ are the trivial ones with a cardinality of 1.
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Let $\Xi\subseteq\Psi$ with cardinality greater than 1. Since $\Xi$ is non-empty, it has some least element $\delta_l$.
+      Since $\delta_l$ is the least element of $\Xi$, every other element of $\Xi$ has $\delta_l$ as its beginning ors.
+      That is if $\delta_k\in\Xi$ is some element not $\delta_l$, then $\delta_k = \delta_l\lor\lor_{i=l+1}^kA_i$.
+      Hence every other element in $\Xi$ will be at least true when $\delta_l$ is true.
+      Therefore, every $\delta_k\in\Xi k\neq l$ is implied by $\delta_l$, so $\Xi$ is not independent. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+    Now it remains to show that no single element of $\Psi$ is logically equivalent to $\Psi$.
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Consider any $\delta_n\in\Psi$. Since $\Psi$ is infinite, it also has an element in it $\delta_{n+1}\in\Psi$.
+      Now consider the following truth assignment over all $A_k$:
+      \[ v = \begin{cases}
+        f & k\leq n \\
+        t & k > n
+      \end{cases}
+      \]
+      Under this truth assignment $\bar{v}(\delta_n) = f$ and $\bar{v}(\delta_{n+1})=t$.
+      Now consider the independent subset $\Xi=\set{\delta_{n+1}}\subset\Psi$.
+      Observe that $\Xi\nvDash\delta_n$, since the above truth assignment satisfies $\delta_{n+1}$ but not $\delta_n$.
+      However, $\Psi\vDash\delta_n$ since the only truth assignments that satify all of $\Psi$ are the ones with $A_1=t$ since no other
+      truth assignment can satify $A_1\in\Psi$, and that any of those truth assignments also satisfy $\delta_n$.
+      Therefore, $\Psi$ has no independent equivalent subset. $\qedhere$
+    \end{proof}
+    #+END_EXPORT

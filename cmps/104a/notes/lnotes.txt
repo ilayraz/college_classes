@@ -1,0 +1,45 @@
+Fall 2018
+CMPS-104A -- Fundamentals of Compiler Design I
+Mon/Wed 5:20pm--6:55pm Earth&Marine/B206
+
+week 1:
+ 1. Mon Oct  1 - syllabus; projects; lab0-unix; notes104a-ch1 (p1-4)
+ 2. Wed Oct  3 - asg1-stringset; code/{string_set,cppstrtok}; ch1(p5--)
+
+week 2:
+ 4. Mon Oct  8 - notes104a-ch02; e00.expr-recdes (p1-3)
+ 5. Wed Oct 10 - e00.expr-recdes (p4--); e01.wordcount; e02.scantokens
+
+week 3:
+ 7. Mon Oct 15 - flex regex; extern-tutorial; asg2-scanner; e08.expr-smc
+ 8. Wed Oct 17 - notes104a-ch03 (p1-15)
+
+week 4:
+10. Mon Oct 22 - notes104a-ch03 (p16--); e03.infixtorpn
+11. Wed Oct 24 - e04.calculator; notes104a-ch04 (p1-4)
+
+week 5:
+13. Mon Oct 29 - notes104a-ch04 (p5--); 4 LR(0) examples; asg3-parser
+14. Wed Oct 31 - asg3-parser; construction of AST: repetition
+
+week 6:
+16. Mon Nov  5 - LALR1-handout
+17. Wed Nov  7 - lec-22-runtime
+
+week 7:
+19. Mon Nov 12 - HOLIDAY.
+20. Wed Nov 14 - MIDTERM TEST.
+
+week 8:
+22. Mon Nov 19 -
+23. Wed Nov 21 -
+
+week 9:
+25. Mon Nov 26 -
+26. Wed Nov 28 -
+
+week 10:
+28. Mon Dec  3 -
+29. Wed Dec  5 -
+
+$Id: Lecture-log-2018-q4fall,v 1.13 2018-11-08 12:26:16-08 - - $

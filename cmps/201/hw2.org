@@ -1,0 +1,116 @@
+#+TITLE: Homework 2
+#+DATE: January 22, 2019
+#+OPTIONS: TOC:nil AUTHOR:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+* 1
+  First to show that $\sum\limits_{i=1}^nf(i)=O(nf(n))$:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    \sum_{i=1}^nf(i) &\leq \sum_{i=1}^nf(n) &&\tag{since $f(n)$ is a positive increasing function} \\
+    &= f(n)\sum_{i=1}^n 1 \\
+    &= nf(n) \\
+    &= O(nf(n))
+  \end{align*}
+  #+END_EXPORT
+  Now to show that $\sum\limits_{i=1}^nf(i)=\Omega(nf(n))$:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    \sum_{i=1}^nf(i) &\geq \sum_{i=\ceil{n/2}}^nf(i) \\
+    &\geq \sum_{i=\ceil{n/2}}^nf(\ceil{n/2}) &&\tag{Since $f(n)$ is a positive increasing function} \\
+      &= f(\ceil{n/2})\sum_{i=\ceil{n/2}}^n1 \\
+      &\geq f(n/2)\cdot(n/2)  &&\tag{Using common functions handout} \\
+      &= \Omega(f(n/2)\cdot(n/2)) \\
+      &= \Omega(nf(n/2)) &&\tag{Constants can be ignored in asymptotic growth analysis} \\
+      &= \Omega(nf(n)) &&\tag{Given $f(n/2)=\Theta(f(n))$}
+  \end{align*}
+  #+END_EXPORT
+  Hence, $\sum\limits_{i=1}^nf(i)=O(nf(n))\land \sum\limits_{i=1}^nf(i)=\Omega(nf(n)) \implies \sum\limits_{i=1}^nf(i)=\Theta(nf(n)).\qed$
+* 2
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Let $f(n)=\log(n)$, and note that $\log(n!)=\sum\limits_{i=1}^n\log(i) = \sum\limits_{i=1}^nf(i)$. Now using the results found in problem (1),
+    $\sum\limits_{i=1}^nf(i)=\Theta(nf(n)) = \Theta(n\log(n)).\qedhere$
+  \end{proof}
+  #+END_EXPORT
+* 3
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    \binom{2n}{n} &= \frac{(2n)!}{n!(2n-n)!} \\
+    &= \frac{(2n)!}{(n!)^2} \\
+    &= \frac{\sqrt{4\pi n}\cdot(\frac{2n}{e})^{2n}\cdot(1+\Theta(\frac{1}{2n}))}{(\sqrt{2\pi n}\cdot(\frac{n}{e})^n\cdot(1+\Theta(\frac{1}{n})))^2} \\
+    &= \frac{2\sqrt{\pi}\sqrt{n}\cdot2^{2n}\cdot(\frac{n}{e})^{2n}\cdot(1+\Theta(\frac{1}{n}))}{2\pi n\cdot(\frac{n}{e})^{2n}\cdot(1+\Theta(\frac{1}{n}))^2} \\
+    &= \frac{1}{\sqrt{\pi}}\cdot\frac{4^n}{\sqrt{n}\cdot(1+\Theta(\frac{1}{n}))} \\
+    &= \frac{1}{\sqrt{\pi}}\cdot\frac{4^n}{\sqrt{n} + \sqrt{n}\Theta(\frac{1}{n})} \\
+    &= \frac{1}{\sqrt{\pi}}\cdot\frac{4^n}{\sqrt{n} + \frac{\sqrt{n}}{n}} &&\tag{Let $\Theta(\frac{1}{n}) = \frac{1}{n}$} \\
+    &= \Theta\left(\frac{4^n}{\sqrt{n} + \frac{\sqrt{n}}{n}}\right) &&\tag{Constants do not affect asymptotic growth rate} \\
+    &= \Theta\left(\frac{4^n}{\sqrt{n}}\right) &&\tag{$\sqrt{n}$ dominates $\frac{\sqrt{n}}{n}$ so $\sqrt{n}+\frac{\sqrt{n}}{n}=\Theta(\sqrt{n})$} \\
+    &&\qed
+  \end{align*}
+  #+END_EXPORT
+* 4
+  Let $n\geq 2$. Iterating through $S$ $k$ times:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    S(n) &= 1 + S(\ceil{n/2}) \\
+    &= 1 + 1 + S(\ceil{\ceil{n/2}/2}) = 2 + S(\ceil{n/2^2}) \\
+    &= 2 + 1 + S(\ceil{\ceil{n/2^2}/2}) = 3 + S(\ceil{n/2^3}) \\
+    &\vdots \\
+    &= k + S(\ceil{n/2^k})
+  \end{align*}
+  #+END_EXPORT
+  After $k$ iterations. This process terminates when $\ceil{n/2^k} = 1$. That is:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    \ceil{n/2^k} = 1 &\implies 0 < n/2^k \leq 1 \\
+    &= 1 < n/2^k+1 \leq 2 \\
+    &= 2^k < n+2^k \leq 2^{k+1} \\
+    &= \lg(2^k) < \lg(n+2^k) \leq \lg(2^{k+1}) \\
+    &= k < \lg(n) \leq \lg(n+2^k) \leq k+1 \\
+    &\implies k \geq \ceil{\lg(n+2^k)}
+  \end{align*}
+  #+END_EXPORT
+  Therefore the recursion depth is at least $k\geq\ceil{\lg(n)}$ and $S(\ceil{n/2^k}) = S(1) = 0$.
+  The solution to the reccurence is therefore $S(n) \geq \ceil{\lg(n)}$ and $S(n) = \Omega(\log(n))$.
+* 5
+  Let $n\geq 2$. Iterating through $T$ $k$ times:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    T(n) &= n^2 + T(\floor{n/2}) \\
+    &= n^2 + \floor{n/2}^2 + T(\floor{n/2^2}) \\
+    &\ldots \\
+    &= \sum_{i=0}^{k-1} \floor{n/2^i}^2 + T(\floor{n/2^k})
+  \end{align*}
+  #+END_EXPORT
+  After $k$ iterations. This process terminates when $\floor{n/2^k}=1$. That is:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    \floor{n/2^k} = 1 &\implies 1 \leq n/2^k < 2 \\
+    &= 2^k \leq n < 2^{k+1} \\
+    &= \lg 2^k \leq \lg n < \lg(2^{k+1}) \\
+    &= k \leq \lg n < k+1 \\
+    &\implies k = \lg n
+  \end{align*}
+  #+END_EXPORT
+  So this process terminates when $k=\lg n$ and then $T(\floor{n/2^k}) = 1$. Now to find an upper bound on $T$:
+  #+BEGIN_EXPORT latex
+  \begin{align*}
+    T(n) &= \sum_{i=0}^{k-1} \floor{n/2^i}^2 + T(\floor{n/2^k}) \\
+    &= \sum_{i=0}^{k-1} \floor{n/2^i}^2 + 1 \\
+    &\leq\sum_{i=0}^{k-1} (n/2^i)^2 + 1 &&\tag{$\floor{x} \leq x \forall x\geq0$} \\
+    &= \sum_{i=0}^{k-1} n^2/2^{2i} + 1 \\
+    &= n^2\sum_{i=0}^{k-1} (1/4)^i + 1 \\
+    &\leq n^2\sum_{i=0}^\infty (1/4)^i + 1 \\
+    &= n^2\left(\frac{1}{1-(1/4)}\right) + 1 \\
+    &= n^2\left(\frac{1}{3/4}\right) + 1 \\
+    &= n^2\left(\frac{4}{3}\right) + 1 \\
+    &\implies T(n) = O((4/3)n^2) = O(n^2)
+  \end{align*}
+  #+END_EXPORT
+* 6
+  #+BEGIN_EXPORT latex
+  \begin{proof}
+    Assume that $P(1)$ is true and that $\forall n>1, P(n-1)\implies P(n)$. Given this, we can conclude that $P(1)\implies P(2)$ and hence $P(2)$ is true,
+    and repeat this process using the first inductive principle to conclude that $\forall n>1, \land_{i=1}^n P(i)$. This sentence tautologically implies
+    $P(1)\land(\forall k\in(1,n), P(k))\implies P(n) \forall n>1$, which is the Second Principle of Mathematical Induction. Therefore the first principle implies the second one. $\qedhere$
+  \end{proof}
+  #+END_EXPORT

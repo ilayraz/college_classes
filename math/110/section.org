@@ -1,0 +1,45 @@
+#+OPTIONS: toc:nil
+
+* Section 1
+** TODO Problem 7
+* Section 2
+** 3
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     $2^n-1, n\geq3$. \\
+     $(x^m)^n-1 = (x^m-1)(1+x^m+\ldots+(x^m)^{n-1})$ \\
+     $2^{ab}-1$ will be composite because $(2^a)^b-1 = (2^a-1)(1+2^a+2^{2a}+\ldots+(2^a)^{b-1})$
+   \end{proof}
+   #+END_EXPORT
+** 4
+   $6n+1, 6n-1 \exists n$ s.t. both are composite (217,215, n=36)$
+*** $(x^3)+1, (x^3)-1$
+    $n=6^2$
+**** $n=6^2k^3, k\neq0$
+     $6(6^2k^3)-1, 6(6^2k^3)-1
+**** Any odd power will work
+*** Approach 2
+    $m=n-1 \in\Z$ \\
+    $6(m+1)+1, 6(m+1)-1$ \\
+    $6m+7, 6m+5$ \\
+    Want $7|6m+7 \implies 7|6m \implies 7|m$ \\
+    Also want $5|6m+5 \implies 5|6m \implies 5|m$ \\
+    $5|m \land 7|m \implies 35|m \implies m=35k, k\neq0$
+** 12
+   Let $p|n, p$ smallest, $p>n^\frac{1}{3}$. Show $\frac{n}{p}$ is prime.
+   #+BEGIN_EXPORT latex
+   \begin{proof}
+     By contradic ion. \\
+     Assume $\frac{n}{p}$ is composite.
+     \begin{align*}
+       \frac{n}{p} &< n^\frac{2}{3} \\
+       \exists q\text{ prime}\ &s.t.\ q|\frac{n}{p} \\
+       q|\frac{n}{p} \land \frac{n}{p}|n &\implies q|n \\
+       q&>p \\
+       q<\sqrt{\frac{n}{p}} &< n^\frac{1}{3} \\
+       q < n^\frac{1}{3} &\land q > p \land p>n^\frac{1}{3} \\
+       \rightarrow\leftarrow \\
+       \implies \frac{n}{p} \text{ is prime} &&\qedhere
+     \end{align*}
+   \end{proof}
+   #+END_EXPORT

@@ -1,0 +1,186 @@
+* Sept. 28
+** Notation
+*** $\N := \set{1,2,3,4,\ldots}$
+*** $\N_0 := \set{0,1,2,\ldots}$
+*** $\Z := \set{\ldots,-2,-1,0,1,2,\ldots}$
+** Division
+   Let $a,b\in\Z$. We say _$a$ is a multiple of $b$_ (or $b$ divides $a$) if there exists $q\in\Z$ such that $a=qb$ ($b|a$).
+** Proof of division algorithm
+*** Existance
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      There exists $q\in\Z$ such that $qm\leq a < (q+1)m$.
+      Define $r:=a-qm$.
+      Then  $q,r\in\Z$ and $a=qm-r$ and $0\leq r < (q+1)m-qm=m$. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+*** Uniqueness
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Assume $q',r'\in\Z$ also satisfy the division algorithm.
+      Then $|r-r'| = |q'-q|m$.
+      $|r-r'|$ is at most $m-1$, so $m > |r-r'| \geq 0$.
+      Meaning $m|(|r-r'|)$ and $|r-r'|\in\set{0,\ldots,m-1}$, so $|r-r'|=0 \implies r=r'$
+    \end{proof}
+    #+END_EXPORT
+* Oct. 1
+** GCD
+   For $a,b\in\Z$, not both 0:
+   1) $\GCD(a,b)=\GCD(b,a)$
+   2) $\GCD(a,0)=|a|$ (if $a\neq0$)
+   3) $a|b \implies \GCD(a,b)=|a|$
+   4) $\GCD(a,b)=\GCD(|a|,|b|)$
+** Euclidean Algorithm
+   Let $a,b\in\N$ with $b<a$ and $b$ does not divide $a$. \\
+   By the division algorithm, there exists $q,r$ such that
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     a &= q_1b+r_1 &&0<r_1<b \\
+     b &= q_2r_1+r_2 &&0<r_2<r_1 \\
+     &\ldots &&\ldots \\
+     r_{n-1} &= q_{n+1}r_n
+   \end{align*}
+   #+END_EXPORT
+*** $r_n=\GCD(a,b)$
+**** Show that $r_n$ is a common divisor of $a$ and $b$
+     Use equations $(n+1),(n),(n-1),\ldots,(2),(1)$ to show that.
+* Oct. 3
+** =Prime= numbers
+*** Definition
+    A natural number is called a _prime number_ if $p$ has precisely two positive divisors, namely 1 and $p$.
+*** Let $a,b\in\Z$ and $p$ a prime. Then $p|ab \implies p|a$ or $p|b$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      If $a=b=0$, then done. \\
+      Otherwise $a$ and $b$ are not both 0. \\
+      If $p|a$, then done. \\
+      If $p\nmid a$, then $\GCD(p,a)=1$, therefore $\exists u,v\in\Z$ such that $ua+vp=1$
+      \begin{align*}
+        ua+vp &= 1 \\
+        bua+bvp &= b \\
+        upc+vpb &= b &&\tag{$p|ab$} \\
+        p(uc+vb) &= b
+      \end{align*}
+      Which means that $p|b$. $\qedhere$
+    \end{proof}
+    #+END_EXPORT
+*** Uniqueness of primes
+    Let $2\leq a\in\N$. Then $a$ can be written $a=p_1p_2p_3\ldots p_r$ with _unique_ primes $p_1\leq p_2\leq \ldots p_r$
+    #+BEGIN_EXPORT latex
+    \begin{proof}
+      Already proven that a can be written as a product of primes. \\
+      Assume $a=p_1\ldots p_r=q_1q_2\ldots q_s$ with primes $p_1\leq p_2\ldots\leq p_r$ and $q_1\leq q_2\leq\ldots\leq q_s$. \\
+      By induction on $a$ WTS $r=s$ and $p_1=q_2, p_2=q_2\ldots p_r=q_r$. \\
+      If $a$ is a prime, done. \\
+      Base case: $a=2$, done. \\
+      Assume statement is true for all numbers in $\set{2,3,\ldots,a-1}$. \\
+      Assume $a$ is composite.
+    \end{proof}
+    #+END_EXPORT
+* Oct. 5
+** =Relatively prime=
+*** Definition
+    $a,b\in\Z$ are called _relatively prime_ (or _coprime_) if $\GCD(a,b)=1$
+*** Theorm
+    For every prime $p$ and $k\in\N$ one has $\phi(p^k)=p^k-p^{k-1}=p^{k-1}(p-1)$. \\
+    In particular, $\phi(p)=p-1$
+** =Rings= and =Fields=
+*** Definition
+    A _ring_ is a set $R$ imbued with two operations, called _addition_ and _multiplication_, which satisfy the ring axiom below. \\
+    Addition is a function $R\times R\mapsto R, (r,s)\mapsto r+s$. \\
+    Multiplication is a function $R\times R\mapsto R, (r,s)\mapsto r\cdot S$ \\
+    For a group to be a ring, axioms (a)-(c) need to hold. If axiom (d) also hold, it is called a _commutative_ ring.
+**** Axioms
+***** Addition
+****** (r+s)+t=r+(s+t) -- Associativity
+****** $r+s=s+r$ (commutativity)
+****** $∃ \Id\in R$ such that $\Id+z=\Id=z+r$, $∀ r∈ R$
+****** $\forall r\in R, \exists s\in R$ such that $r+s=\Id=s+r$
+***** Multiplication
+****** $(r\cdot s)\cdot t = r\cdot (s\cdot t)$
+****** $\exists \Id\in R$ such that $\Id\cdot r=\Id\r\cdot\Id \forall r\in R$
+***** $r\cdot (s+t) = (r\cdot s)+(r\cdot t)$
+****** $(s+t)\cdot r = (s\cdot r) + (t\cdot r)$
+***** $r\cdot s = s\cdot r \forall r,s\in R$
+* Oct. 8
+** Examples of rings: $\Z, \Q, \R, \C$
+** The trivial ring
+*** Also called the "Zero Ring"
+*** A set with only 1 element (cardinality 1)
+*** Commutitive ring under only possible addition and multiplication in ring
+*** $1=0$
+*** If there is a ring with $0=1$, then it is a trivial ring.
+** Polynomial ring $\R[x]$
+*** Real coefficients and interminiate $X$
+*** commutitive ring
+*** Any ring can form a polynomial ring (if $R$ is a ring, $R[x]$ is a ring).
+**** $R[x]$ is commutative $\iff R$ is commutative.
+*** Do not view polynomials as functions, but as formal expressions
+** Any ring $R$ and any $n\in\N$, the set $M_n(R)$ of $n\times n$ matrices with entries in $R$ is a ring.
+*** If $R$ is not the trivial ring and $n\geq 2$, then $M_n(R)$ is not commutative.
+** Ring homomorphisms
+*** Definition
+    Let $R$ and $S$ be rings. A function $f: R\mapsto S$ is called a
+    _ring homomorphisms_ if:
+**** $f(r_1+r_2) = f(r_1) + f(r_2)
+**** $f(r-1\cdot r_2) = f(r_1)\cdot f(r_2)$
+**** $f(1_R) = 1_S$
+** Units
+   An element in ring $R$ is called a _unit_ in $R$
+   (invertible in $R$) if there exists $v\in R$ such that $uv=1=vu$.
+** Fields
+*** Definition
+    A ring $R$ is called a _field_
+**** $R$ is commutative
+**** $0\neq 1$
+**** $R^x=R\setminus\set{0}$
+*** Examples
+    - $\R$
+    - $\Q$
+    - $\C$
+** Examples
+*** Finding all units
+    Let $R$ be a commutitive ring.
+    Then $M_2(R)^x = \setc*{\Matrix{a}{b}{c}{d}\in M_2(R)}{(ad-bc)\in R^x}$
+* Oct. 12
+** Thm
+   $a+m\Z \in (\Z/m\Z)^x \iff \GCD(a,m)=1$
+*** corallary
+**** $\Z/m\Z$ is a field $\iff m$ is a prime.
+**** $m\in\N, a,b\in\Z, d=\GCD(a,m)$
+***** $ax\equiv b\pmod{m} \iff d|b$
+** Fermat's little thm
+   Le $p$ be a prime, $a\in\Z$.
+   Then $a^p\equiv a\pmod{p}$, and if $p\nmid a$, then $a^{p-1}\equiv 1\pmod{p}$
+   In particular, if $a+p\Z\neq 0+p\Z$, then $(a+p\Z)^{-1}=(a+p\Z)^{p-2}$
+* Oct. 15
+** Euler-Phi function
+   Let $m:=m_1\cdot\ldots m_r$
+   Let $\rho: \Z/m\Z \mapsto \Z/m_1\Z\cdot\ldots\Z/m_r\Z$
+   $a+m\Z\mapsto(a+m_1\Z,\ldots,a+m_r\Z)$ \\
+   is a well-defined ring ispmorphism. Furthermore:
+   $\phi(m)=\phi(m_1)\cdot\ldots\cdot\phi(m_r)$ \\
+   Take its inverse: $\rho: (\Z/m\Z)^x\mapsto(\Z/m_1\Z\cdot\ldots\cdot\Z/m_r\Z)^x$
+   $=(\Z/\m_1)^x\cdot\ldots\cdot(\Z/m_r\Z)^x$ \\
+   Recall number of units of $\Z/m\Z = \phi(m)$.
+   Taking cardinality on both sides, $\phi(m)=\phi(m_1)\cdot\ldots\cdot\phi(m_r)$
+*** Corollaryn
+    If $m$ has prime factorization of $m=p_1^{e_1}p_2^{e_2}\ldots p_r^{e_r}, \phi(m)=\phi(p_1^{e_1})\phi(p_2^{e_2})\ldots\phi(p_r^{e_r})$
+*** Remark
+    Assume that $n\in\N$ is the product of two different primes, $n=pq$, $p < q$ with $p,q$ unknown.
+    The following shows: knowing $\phi(n)$ allows to quickly compute $p$ and $q$, and conversely.
+**** If one knows $p$ and $q$ then $\phi(n)=\phi(p)\phi(q) = (p-1)(q-1)$
+**** If one knows $\phi(n)=(p-1)(q-1)=pq-p-q+1$ and substitute $q=\frac{n}{p}$, then we obtain a quadratic equation in $p$: $p^2+(\phi(n)-n-1)p+n=0$ and solve for p using the quadratic formula
+*** Remark 2
+    Let $m\in\N$ and let $m=p_1^{e_1}\cdot\ldots\cdot p_r^{e_r}$ be the prime factorization. We have a bijective map $\rho(\Z/m\Z)^x\mapsto (\Z/p_1^{e_1}\Z)^x\times\ldots\times(\Z/p_r^{e_r}\Z) = x$ \\
+    Let $e := \LCM(p_1^{e_1-1}(p-1),\ldots,p_r^{e_r-1}(p_r-1))$
+    Then, one has $x^e=1$ for every $x\in rhs$. \\
+    But then, for every $a+m\Z\in(\Z/m\Z)^x$ we have $\rho((a+m\Z)^e)=\rho(a+m\Z)^e=1$ Since $\rho$ is a ring isomorphism, but since $\rho(1)=1$, $(a+m\Z)^e=1+m\Z\equiv1\pmod{m} \forall\GCD(a,m)=1$. \\
+    Therefore, one can replace the exponenet $\phi(m)$ with $e$.
+**** Example \newline
+     $m=15, \phi(15)=\phi(3)\phi(5)=2\cdot 4 = 8$. Then $e=\LCM(2,4)=4$. Therefore, $a^4\equiv 1 \pmod{15} \forall a\in\Z, \GCD(a,15)=1$.
+* Oct. 17
+** Ways to compute $a^n\mod{m}$
+*** Check $\GCD{a,m}=1$. Find $\phi(m), e=\LCM(\text{prime power factorization of } m)$. Find a^e\mod{m}$ by squaring and reducing
+*** Define $(5+99\Z)^{-1}$ using the Euclidean algorithm
+*** Compute $(5+9\Z)^{2009}$
