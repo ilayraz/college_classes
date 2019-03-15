@@ -1,0 +1,77 @@
+#+TITLE: Homework 5
+#+DATE: March 15, 2019
+#+OPTIONS: TOC:nil
+#+LATEX: \setcounter{secnumdepth}{-1}
+
+* 2.4
+
+** 2
+
+*** a
+    Axiom group 1. \\
+    This is of the form $[(A\implies B)\implies C] \implies [A\implies (B\implies C)]$,
+    which is a tautology.
+*** b
+    Axiom group 2. \\
+    Let $\alpha = (Px \implies Px)$, then this is of the form $\forall y [\forall x \alpha \implies \alpha_c^x]$.
+
+*** c
+    None. \\
+    This statement is false. Let $Pxy = x < y$, then $\forall x\exists y Pxy$ is true on $\R$, but $\exists y Pyy$ is false.
+** 4
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     &\vdash \forall x\varphi \implies \varphi_x^x &&\tag{1, Ax. 2} \\
+     &\vdash \forall x\neg\varphi \implies \neg\varphi_x^x &&\tag{2, Ax. 2} \\
+     &\vdash (\forall x\neg\varphi\implies\neg\varphi) \implies (\varphi\implies\neg\forall x\neg\varphi) &&\tag{3, Ax. 1} \\
+     &\vdash (\forall x\neg\varphi\implies\neg\varphi)\implies(\varphi\implies\exists x\varphi) &&\tag{4, definition of $\exists$} \\
+     &\vdash \varphi\implies\exists x \varphi &&\tag{5, MP 2,4} \\
+     &\vdash (\forall x\varphi\implies\varphi) \implies \big((\varphi\implies\exists x\varphi)\implies(\forall x\varphi\implies\exists x\varphi)\big) &&\tag{6, Ax. 1} \\
+     &\vdash \big((\varphi\implies\exists x\varphi)\implies(\forall x\varphi\implies\exists x\varphi)\big) &&\tag{7, MP 1, 6} \\
+     &\vdash \forall x\varphi\implies\exists x\varphi &&\tag{MP 5, 7}\qed
+   \end{align*}
+   #+END_EXPORT
+** 6
+   If $\vdash \alpha\implies\beta$, then by generalization theorem, $\vdash\forall x(\alpha\implies\beta)$,
+   and then by Axiom group 3 and Rule T, $\vdash (\forall x\alpha \implies \forall x\beta)$.
+** 11
+   WTS $\forall x\forall y\forall z(x=y\implies y=z\implies x=z)$.
+   By 3 applications of the generalization theorem, this is equivalent
+   to showing that $x=y\implies y=z\implies x=z$, which by the deduction
+   thoerem is the same as showing that $\set{x=y, y=z} \vdash x=z$:
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     &\vdash x=y &&\tag{1, assumption} \\
+     &\vdash y=z &&\tag{2, assumption} \\
+     &\vdash y=z \implies(x=y \implies x=z) &&\tag{3, Ax. 6} \\
+     &\vdash x=y \implies x=z &&\tag{4, MP 2, 3} \\
+     &\vdash x=z &&\tag{MP 1, 4} \qed
+   \end{align*}
+   #+END_EXPORT
+* 2.5
+
+** 2
+
+*** $a\implies b$
+    Proof by contrapositive: Assume $\Gamma$ is unsatisfiable,
+    then $\Gamma\vDash\perp$, and using part (a) of the completion theorem:
+    $\Gamma\vdash\perp$, which means that $\Gamma$ is inconsistent. $\qed$
+
+*** $b\implies a$
+    Assume $\Gamma$ is consistent and that $\Gamma\vDash \varphi$ for some wff $\varphi$.
+    Then by definition $\Gamma\cup\set{\neg\varphi}$ is unsatisfiable, so then $\Gamma\vdash\varphi$ by the contrapositive theorem. $\qed$
+** 4
+   Let our model $\mathfrak{M} = (\set{1}\cup\mathbb{P}, P)$ where $\mathbb{P}$ is the set of primes, and the unary operator $Pn$ says that $n$ is a prime,
+   then note that $\forall v_1 Pv_1$ fails since 1 is not a prime, so $\neg\forall v_1 Pv_1$ is true, and furthermore $Pv_n$ is true $\forall n\geq 2$,
+   so therefore the set $\Gamma$ is satisfiable, and by the soundness theorem, it is also consistent.
+** 7
+*** a
+f
+*** b
+t
+*** c
+p = is prime, q = is odd, universe is N without 2
+*** d
+* 2.6
+
+** 4
